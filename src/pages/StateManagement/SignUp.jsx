@@ -4,10 +4,20 @@ import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { toast } from "react-toastify"
 import validator from "validator"
+import { register } from "../../store/actions/userActions"
+import { useDispatch, useSelector } from "react-redux"
 function SignUp() {
     const [showPassword, setShowPassword] = useState(false)
     const [emailerror, setError] = useState(false)
     const [check, setCheck] = useState(false)
+
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+    const loginInfo = useSelector((state) => state.userRegister)
+    const { loading, userInfo } = loginInfo
+
+    userInfo && navigate("/")
 
     //form data contains all fields data in application like input fields {represents object}
     const [formData, setFormData] = useState({
@@ -17,8 +27,6 @@ function SignUp() {
     })
     //to use email/pasword anywhere in our app we need to de-structure them from formData
     const { name, email, password } = formData
-
-    const navigate = useNavigate()
 
     function isValidEmail(mail) {
         return /\S+@\S+\. \S+/.test(mail)
@@ -92,7 +100,7 @@ function SignUp() {
     const onSubmit = async (e) => {
         e.preventDefault()
         try {
-            navigate("/")
+            dispatch(register(formData.name, formData.email, formData.password))
         } catch (error) {
             toast.error("Something went wrong with registration")
         }

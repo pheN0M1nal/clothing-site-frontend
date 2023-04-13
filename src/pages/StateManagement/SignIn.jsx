@@ -23,6 +23,8 @@ function SignIn() {
     const loginInfo = useSelector((state) => state.userLogin)
     const { loading, userInfo } = loginInfo
 
+    userInfo && navigate("/")
+
     const dispatch = useDispatch()
 
     const onChange = async (e) => {
@@ -62,11 +64,11 @@ function SignIn() {
         }
         setShowPassword((prevState) => !prevState)
     }
+
     const onSubmit = (e) => {
         e.preventDefault()
 
         dispatch(login(formData.email, formData.password))
-        //navigate("/");
     }
 
     return (

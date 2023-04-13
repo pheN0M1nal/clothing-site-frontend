@@ -93,7 +93,7 @@ const Navbar = () => {
 
                     <div className="items-center hidden lg:flex font-boldh text-zinc-700">
                         <div className="px-7 py-3">
-                            {user?.myNname ? (
+                            {user?.myName ? (
                                 <div className="relative inline-block text-left">
                                     <div className="inline-flex w-full">
                                         <button
@@ -101,7 +101,7 @@ const Navbar = () => {
                                             type="button"
                                             onClick={drop}
                                         >
-                                            {user?.myNname}
+                                            {user?.myName}
                                             <i className="ri-arrow-drop-down-line"></i>
                                         </button>
                                     </div>
@@ -165,7 +165,7 @@ const Navbar = () => {
                             About
                         </Link>
                         <div>
-                            {user?.myNname ? (
+                            {user?.myName ? (
                                 <div className="relative inline-block text-left">
                                     <div className="inline-flex w-full">
                                         <button
@@ -173,7 +173,7 @@ const Navbar = () => {
                                             type="button"
                                             onClick={drop1}
                                         >
-                                            {user?.myNname}
+                                            {user?.myName}
                                             <i className="ri-arrow-drop-down-line"></i>
                                         </button>
                                     </div>
