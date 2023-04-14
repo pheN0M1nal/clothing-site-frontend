@@ -3,7 +3,7 @@ import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { login } from "../../store/actions/userActions"
-import Spinner from "../../components/Spinner"
+import { Spinner } from "../../components/Spinner"
 
 function SignIn() {
     const [showPassword, setShowPassword] = useState(false)

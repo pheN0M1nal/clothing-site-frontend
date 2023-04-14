@@ -1,17 +1,22 @@
-import React from 'react'
-import spinner from '../assets/spinner.gif'
+import styled from "styled-components"
 
-function Spinner() {
-  return (
-    <div className='w-100 mt-20'>
-      <img
-        width={180}
-        className='text-center mx-auto'
-        src={spinner}
-        alt='Loading...'
-      />
-    </div>
-  )
-}
+const SpinnerWidget = styled.div`
+    border: ${(props) => props.size / 8}rem solid transparent; /* Light grey */
+    border-top: ${(props) => props.size / 8}rem solid black; /* Blue */
+    border-right: ${(props) => props.size / 8}rem solid black; /* Blue */
+    border-radius: 50%;
+    width: ${(props) => props.size}rem;
+    height: ${(props) => props.size}rem;
+    animation: spin 0.4s linear infinite;
+    margin:0;
+    
+    @keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+`
 
-export default Spinner
+export const Spinner = ({ size = 2 }) => <SpinnerWidget size={size} />
