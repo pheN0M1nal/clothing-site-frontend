@@ -1,7 +1,10 @@
 import React from "react"
-import { useSelector } from "react-redux"
-import { Link } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
+import { Link, useNavigate } from "react-router-dom"
+
 import "remixicon/fonts/remixicon.css"
+
+import { logout } from "../store/actions/userActions"
 // const btn = document.getElementById('menu-btn')
 // const menu = document.getElementById('menu')
 
@@ -35,8 +38,12 @@ const Navbar = () => {
     const userDetails = useSelector((state) => state.userDetails)
     const { user } = userDetails
 
-    const logout = (e) => {
-        e.preventDefault()
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+    const logoutHandler = () => {
+        dispatch(logout())
+        navigate("/")
     }
 
     return (
@@ -119,6 +126,7 @@ const Navbar = () => {
                                             <a
                                                 href="#"
                                                 className="text-gray-700 block px-4 py-2 text-sm hover:text-black"
+                                                onClick={logoutHandler}
                                             >
                                                 Logout
                                             </a>
@@ -192,6 +200,7 @@ const Navbar = () => {
                                             <a
                                                 href="#"
                                                 className="text-gray-700 block px-4 py-2 text-sm"
+                                                onClick={logoutHandler}
                                             >
                                                 Logout
                                             </a>
