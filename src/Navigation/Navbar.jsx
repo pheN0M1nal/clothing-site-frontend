@@ -67,10 +67,10 @@ const Navbar = () => {
                                 StartCreating
                             </Link>
                             <Link
-                                to="/"
+                                to="/admin"
                                 className="text-zinc-700 hover:text-veryDarkViolet"
                             >
-                                About
+                                Admin Panel
                             </Link>
                         </div>
                     </div>
@@ -161,8 +161,8 @@ const Navbar = () => {
                         <Link to="/" className="nav-links">
                             StartCreating
                         </Link>
-                        <Link to="/" className="nav-links">
-                            About
+                        <Link to="/admin" className="nav-links">
+                            Admin Panel
                         </Link>
                         <div>
                             {user?.myName ? (
