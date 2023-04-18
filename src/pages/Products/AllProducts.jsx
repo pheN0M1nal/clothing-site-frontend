@@ -32,7 +32,9 @@ function AllProducts() {
         </div>
 
         {loading ? (
-          <Spinner />
+          <div className="flex items-center justify-center w-full h-80">
+            <Spinner />
+          </div>
         ) : (
           <>
             <div className="absolute left-16 top-40 text-sm search">

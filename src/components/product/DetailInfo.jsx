@@ -2,12 +2,12 @@ import React from "react";
 import Description from "./Description";
 import ProductViewNavbar from "./ProductViewNavbar";
 
-const DetailInfo = () => {
+const DetailInfo = ({ descr }) => {
   return (
     <>
       <div className="space-y-7">
         <ProductViewNavbar />
-        <Description />
+        <Description descr={descr} />
       </div>
     </>
   );

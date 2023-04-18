@@ -26,7 +26,7 @@ export const singleproductReducer = (state = { singleProduct: [] }, action) => {
     case SINGLE_PRODUCT_REQUEST:
       return { loading: true, singleProduct: action.payload };
     case SINGLE_PRODUCT_SUCCESS:
-      return { loading: false, singleProduct: action.payload };
+      return { loading: false, singleProduct: action.payload.product };
     case SINGLE_PRODUCT_FAIL:
       return { loading: false, error: action.payload };
     default:

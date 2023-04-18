@@ -43,7 +43,6 @@ export const getproductById = single => async dispatch => {
       `/products/getProductByID/${single}`
     );
 
-    console.log(data);
     dispatch({
       type: SINGLE_PRODUCT_SUCCESS,
       payload: data,

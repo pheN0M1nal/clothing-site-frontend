@@ -37,7 +37,7 @@ function Home() {
                     className="h-14 ml-4 items-center focus:outline-none placeholder:text-zinc-700 transition-all"
                     placeholder="Search product here"
                   />
-                  <div className="inline ml-3 py-2 px-3 rounded-md search searchbtn">
+                  <div className="inline ml-12 py-2 px-3 rounded-md search searchbtn">
                     <button className="text-zinc-700">Search</button>
                   </div>
                 </form>
