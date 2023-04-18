@@ -1,10 +1,11 @@
 import React from "react";
 
 import { DynamicStar } from "react-dynamic-star";
+import { toast } from "react-toastify";
 
 const ProductInfo = ({ product }) => {
   const onClick = () => {
-    console.log("fuck you motherfucker");
+    !stock && toast.error("No stock available");
   };
 
   const stock = product.quantity && product.quantity[0];
