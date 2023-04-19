@@ -26,7 +26,7 @@ const PaymentDetails = () => {
             <span>$1,672</span>
             <div className="flex items-center space-x-2 ">
               <button>Checkout</button>
-              <i class="ri-arrow-right-line"></i>
+              <i className="ri-arrow-right-line"></i>
             </div>
           </div>
         </div>

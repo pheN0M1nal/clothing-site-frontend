@@ -1,19 +1,28 @@
 import React from "react";
+import { useState } from "react";
 
 import { DynamicStar } from "react-dynamic-star";
 import { toast } from "react-toastify";
 
 const ProductInfo = ({ product }) => {
-  const onClick = () => {
-    !stock && toast.error("No stock available");
+  const [stock, setStock] = useState(product.quantity && product?.quantity[0]);
+
+  const [activeBtn, setActiveBtn] = useState("");
+
+  const onClick = e => {
+    stock < 1 && toast.error("No stock available");
   };
 
-  const stock = product.quantity && product.quantity[0];
+  const changeStock = (item, index) => {
+    setActiveBtn(item);
+    setStock(product.quantity && product.quantity[index]);
+  };
+
   return (
     <>
       <div className="flex">
         {/* Image  and Add to Cart Button*/}
-        <div className="flex items-center justify-center h-[19.3rem] w-[19.3rem] border border-zinc-300 mx-4 my-4 rounded-lg">
+        <div className="flex items-center justify-center h-[19.3rem] w-[19.3rem] border border-zinc-300 mx-4 my-4 rounded-lg ">
           <img
             src={product.image && product.image[0]}
             alt=""
@@ -28,7 +37,7 @@ const ProductInfo = ({ product }) => {
               <span className="">In stock</span>
             </div>
           )}
-          {stock === 0 && (
+          {stock < 1 && (
             <div className="flex items-center text-xs text-red">
               <i className="ri-check-line"></i>
               <span className="">Out of stock</span>
@@ -68,6 +77,24 @@ const ProductInfo = ({ product }) => {
           {/* Pricing */}
           <div className="flex items-center justify-center w-24 h-10 bg-zinc-600 text-lime-400">
             ${product?.price}
+          </div>
+
+          {/* Product Sizes */}
+          <div className="flex items-center justify-center w-24 h-10  text-zinc-700">
+            {product.size &&
+              product?.size.map((item, index) => (
+                <button
+                  onClick={() => {
+                    changeStock(item, index);
+                  }}
+                  className="w-20 h-10 cursor-pointer text-center border border-black hover:bg-slate-400 selected"
+                  style={{
+                    backgroundColor: activeBtn === item ? "lightblue" : "",
+                  }}
+                >
+                  {item}
+                </button>
+              ))}
           </div>
           {/*  */}
           <div className="flex">
@@ -147,7 +174,6 @@ const ProductInfo = ({ product }) => {
           <button
             onClick={onClick}
             className="w-[18.5rem] h-10 text-white bg-blue-600 rounded-md ml-7 cursor-pointer"
-            disabled
           >
             ADD TO CART
           </button>
