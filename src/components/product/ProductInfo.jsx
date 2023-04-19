@@ -16,7 +16,6 @@ const ProductInfo = ({ product }) => {
   const changeStock = (item, index) => {
     setActiveBtn(item);
     setStock(product.quantity && product.quantity[index]);
-    console.log(stock);
   };
 
   return (

@@ -64,7 +64,12 @@ function Cart() {
           {items.length > 0 ? (
             <Item items={items} onDelete={deleteItem} />
           ) : (
-            <Link to="/">Exlplore More</Link>
+            <>
+              <br />
+              <Link to="/" className="text-blue-400 hover:text-blue-700">
+                Exlplore More
+              </Link>
+            </>
           )}
         </div>
         {/* Right Side Payment Info */}
