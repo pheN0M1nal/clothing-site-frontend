@@ -59,6 +59,7 @@ export const register = (name, email, password) => async (dispatch) => {
             email,
             password,
         })
+        toast.success("Registrated Successfully.")
 
         dispatch({
             type: USER_REGISTER_SUCCESS,

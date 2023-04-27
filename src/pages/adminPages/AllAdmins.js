@@ -4,6 +4,8 @@ import { fetchAllAdmins } from "../../store/actions/adminActions"
 import { Spinner } from "../../components/Spinner"
 import styled from "styled-components"
 import { Link } from "react-router-dom"
+import "remixicon/fonts/remixicon.css"
+import { DELETE_ADMIN_SUCCESS } from "../../store/constants/adminConstants"
 
 const Wrapper = styled.div`
     max-width: 1000px;
@@ -40,16 +42,19 @@ const Wrapper = styled.div`
             box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
         }
         .col-1 {
-            flex-basis: 10%;
+            flex-basis: 30%;
         }
         .col-2 {
-            flex-basis: 40%;
+            flex-basis: 20%;
         }
         .col-3 {
             flex-basis: 25%;
         }
         .col-4 {
-            flex-basis: 25%;
+            flex-basis: 4%;
+        }
+        .col-5 {
+            flex-basis: 10%;
         }
 
         @media all and (max-width: 767px) {
@@ -85,6 +90,14 @@ const AllAdmins = () => {
     useEffect(() => {
         dispatch(fetchAllAdmins())
     }, [])
+
+    const onDelete = (id) => {
+        console.log("first")
+        dispatch({
+            type: DELETE_ADMIN_SUCCESS,
+            payload: id,
+        })
+    }
     return (
         <Wrapper>
             <Link to="/admin/allAdmins">All Admins</Link>
@@ -99,14 +112,15 @@ const AllAdmins = () => {
                         <div className="col col-1">Id</div>
                         <div className="col col-2">Name</div>
                         <div className="col col-3">Email</div>
-                        <div className="col col-4"># #</div>
+                        <div className="col col-4">#</div>
+                        <div className="col col-5"># </div>
                     </li>
 
-                    {!loading && admins.length === 0 && (
+                    {!loading && admins?.length === 0 && (
                         <h3>Zero Admin users.</h3>
                     )}
 
-                    {admins.map((user) => (
+                    {admins?.map((user) => (
                         <li className="table-row">
                             <div className="col col-1" data-label="Id">
                                 {user._id}
@@ -118,7 +132,13 @@ const AllAdmins = () => {
                                 {user.email}
                             </div>
                             <div className="col col-4" data-label="# #">
-                                Pending
+                                <i
+                                    className="ri-delete-bin-line w-[20px] cursor-pointer mx-2"
+                                    onClick={() => onDelete(user.id)}
+                                ></i>
+                            </div>
+                            <div className="col col-5" data-label="# #">
+                                <i className="ri-edit-box-line cursor-pointer mx-2"></i>
                             </div>
                         </li>
                     ))}

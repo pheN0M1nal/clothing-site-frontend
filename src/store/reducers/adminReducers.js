@@ -1,4 +1,5 @@
 import {
+    DELETE_ADMIN_SUCCESS,
     FETCH_ALL_ADMIN_FAIL,
     FETCH_ALL_ADMIN_REQUEST,
     FETCH_ALL_ADMIN_SUCCESS,
@@ -19,7 +20,15 @@ export const adminsReducer = (state = { admins: [] }, action) => {
             return { loading: false, admins: action.payload }
         case FETCH_ALL_ADMIN_FAIL:
             return { loading: false, error: action.payload }
-
+        case DELETE_ADMIN_SUCCESS:
+            return {
+                loading: false,
+                admins: [
+                    ...state.admins.filter(
+                        (user) => user._id !== action.payload
+                    ),
+                ],
+            }
         default:
             return state
     }

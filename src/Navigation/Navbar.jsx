@@ -36,7 +36,7 @@ const Navbar = () => {
     }
 
     const userDetails = useSelector((state) => state.userDetails)
-    const { user } = userDetails
+    const { user, error } = userDetails
 
     const dispatch = useDispatch()
     const navigate = useNavigate()

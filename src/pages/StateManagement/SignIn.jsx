@@ -23,7 +23,7 @@ function SignIn() {
     const loginInfo = useSelector((state) => state.userLogin)
     const { loading, userInfo } = loginInfo
 
-    userInfo && navigate("/")
+    userInfo?.myName && navigate("/")
 
     const dispatch = useDispatch()
 
