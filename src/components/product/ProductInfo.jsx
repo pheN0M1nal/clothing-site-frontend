@@ -2,16 +2,48 @@ import React from "react";
 import { useState } from "react";
 
 import { DynamicStar } from "react-dynamic-star";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import { addToCart } from "../../store/actions/cartActions";
 
 const ProductInfo = ({ product }) => {
   const [stock, setStock] = useState(product.quantity && product?.quantity[0]);
 
-  const [activeBtn, setActiveBtn] = useState("");
+  const [activeBtn, setActiveBtn] = useState("L");
 
-  const onClick = e => {
+  const loginInfo = useSelector(state => state.userLogin.userInfo);
+
+  const dispatch = useDispatch();
+  const onClick = () => {
+    var actualQty = 0;
+    if (activeBtn === "L") {
+      actualQty = product.quantity && product?.quantity[0];
+    }
+    if (activeBtn === "M") {
+      actualQty = product.quantity && product?.quantity[1];
+    }
+    if (activeBtn === "S") {
+      actualQty = product.quantity && product?.quantity[2];
+    }
+
+    var data = {
+      _id: product._id,
+      productName: product.productName,
+      size: activeBtn,
+      quantity: actualQty,
+      price: product.price,
+      rating: product && product?.rating,
+      purchaseQty: 1,
+    };
+
     stock < 1 && toast.error("No stock available");
+    stock > 1 && dispatch(addToCart(data));
   };
+  // const onClick = () => {
+  //   loginInfo === null && toast.error("Please login first.");
+  //   stock < 1 && toast.error("No stock available");
+  //   stock > 1 && loginInfo !== null && dispatch(addToCart(product));
+  // };
 
   const changeStock = (item, index) => {
     setActiveBtn(item);

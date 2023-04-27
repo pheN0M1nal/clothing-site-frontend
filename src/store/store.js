@@ -15,6 +15,7 @@ import {
   designersReducer,
 } from "./reducers/adminReducers";
 import thunk from "redux-thunk";
+import { cartReducer } from "./reducers/cartReducers";
 
 const reducer = combineReducers({
   userLogin: userLoginReducer,
@@ -27,6 +28,7 @@ const reducer = combineReducers({
   allDesigners: designersReducer,
   allProducts: productDetailReducer,
   singleProduct: singleproductReducer,
+  cartItems: cartReducer,
 });
 
 // const bindMiddleware = (middleware) => {
@@ -38,7 +40,12 @@ const userInfoFromStorage = localStorage.getItem("userInfo")
   ? JSON.parse(localStorage.getItem("userInfo"))
   : null;
 
+const cartItemsFromStorage = localStorage.getItem("cartItems")
+  ? JSON.parse(localStorage.getItem("cartItems"))
+  : [];
+
 const initialState = {
+  cartItems: cartItemsFromStorage,
   userLogin: { userInfo: userInfoFromStorage },
   userDetails: { user: userInfoFromStorage },
 };
