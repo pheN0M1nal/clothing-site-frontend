@@ -6,15 +6,12 @@ import Bill from "../../components/cart/Bill";
 import { deleteFromCart } from "../../store/actions/cartActions";
 import Items from "../../components/cart/Items";
 import { decQty, incQty } from "../../store/actions/cartActions";
-import { toast } from "react-toastify";
 
 const Cart = () => {
   var bill = 0;
 
   //getting cart data from local storage
-  const { error, cartItems: items } = useSelector(state => state.cartItems);
-
-  error && toast.error(error);
+  const items = useSelector(state => state.cartItems);
 
   //deleting data from cart regarding product id
   const dispatch = useDispatch();

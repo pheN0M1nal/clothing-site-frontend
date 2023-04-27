@@ -17,6 +17,12 @@ import { Link } from "react-router-dom";
 function Home() {
   return (
     <>
+      <div className="flex items-center justify-center h-72 text-2xl">
+        {" "}
+        This application is in DEVELOPMENT. Sorry for the disturbance but you
+        can use it.
+      </div>
+
       <div className="container flex flex-col min-w-full">
         {/* First Section: Main heading with search bar and Picture */}
         <section className="search">

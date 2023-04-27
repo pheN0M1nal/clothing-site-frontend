@@ -13,8 +13,22 @@ const ProductInfo = ({ product }) => {
 
   const loginInfo = useSelector(state => state.userLogin.userInfo);
 
+  const items = useSelector(state => state.cartItems);
+
   const dispatch = useDispatch();
   const onClick = () => {
+    var flag = false;
+    items.map(item => {
+      if (item._id === product._id)
+        for (let i = 0; i < item.size.length; i++) {
+          console.log(item.size[i]);
+          if (item.size[i] === activeBtn) {
+            flag = true;
+          }
+        }
+      return item;
+    });
+
     var actualQty = 0;
     if (activeBtn === "L") {
       actualQty = product.quantity && product?.quantity[0];
@@ -37,7 +51,9 @@ const ProductInfo = ({ product }) => {
     };
 
     stock < 1 && toast.error("No stock available");
-    stock > 1 && dispatch(addToCart(data));
+    flag
+      ? toast.error("Already in the cart")
+      : stock > 1 && dispatch(addToCart(data));
   };
   // const onClick = () => {
   //   loginInfo === null && toast.error("Please login first.");
