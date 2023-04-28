@@ -23,17 +23,17 @@ export const deleteFromCart = id => async (dispatch, getState) => {
   toast.success("Item removed from cart");
   localStorage.setItem("cartItems", JSON.stringify(getState().cartItems));
 };
-export const incQty = (id, value) => async (dispatch, getState) => {
+export const incQty = value => async (dispatch, getState) => {
   dispatch({
     type: INCREMENT,
-    payload: id,
+    payload: value,
   });
   localStorage.setItem("cartItems", JSON.stringify(getState().cartItems));
 };
-export const decQty = id => async (dispatch, getState) => {
+export const decQty = value => async (dispatch, getState) => {
   dispatch({
     type: DECREMENT,
-    payload: id,
+    payload: value,
   });
   localStorage.setItem("cartItems", JSON.stringify(getState().cartItems));
 };

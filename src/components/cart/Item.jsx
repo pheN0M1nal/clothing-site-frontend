@@ -16,12 +16,12 @@ const Item = ({ item, onDelete, onIncrement, onDecrement }) => {
           <div className="flex flex-row w-[90px] space-x-2">
             <i
               className="ri-arrow-left-s-fill fa-2x cursor-pointer"
-              onClick={() => onDecrement(item._id)}
+              onClick={() => onDecrement(item)}
             ></i>
             <h1>{item.purchaseQty}</h1>
             <i
               className="ri-arrow-right-s-fill fa-2x cursor-pointer"
-              onClick={() => onIncrement(item._id)}
+              onClick={() => onIncrement(item)}
             ></i>
           </div>
         </div>

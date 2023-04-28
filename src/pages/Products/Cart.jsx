@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Bill from "../../components/cart/Bill";
 import { deleteFromCart } from "../../store/actions/cartActions";
@@ -10,8 +10,15 @@ import { decQty, incQty } from "../../store/actions/cartActions";
 const Cart = () => {
   var bill = 0;
 
-  //getting cart data from local storage
-  const items = useSelector(state => state.cartItems);
+  const [items, setItems] = useState([]);
+
+  const data = useSelector(state => state.cartItems);
+  useEffect(() => {
+    //getting cart data from local storage
+    setItems(data);
+  }, [data]);
+
+  const [actQuantity, setActQuantity] = useState(0);
 
   //deleting data from cart regarding product id
   const dispatch = useDispatch();
@@ -25,12 +32,76 @@ const Cart = () => {
       return (bill += item.price);
     });
 
-  const decrementQty = id => {
-    dispatch(decQty(id));
+  const decrementQty = item => {
+    const updatedItems = items.map(i => {
+      if (i._id === item._id) {
+        const newQuantity = i.purchaseQty > 1 ? i.purchaseQty - 1 : 1;
+        return {
+          ...i,
+          purchaseQty: newQuantity,
+        };
+      }
+      return i;
+    });
+    setItems(updatedItems);
+    dispatch(decQty(updatedItems));
   };
-  const incrementQty = id => {
-    dispatch(incQty(id));
+
+  const incrementQty = item => {
+    const updatedItems = items.map(i => {
+      if (i._id === item._id) {
+        const newQuantity =
+          i.purchaseQty < i.quantity ? i.purchaseQty + 1 : i.purchaseQty;
+        return {
+          ...i,
+          purchaseQty: newQuantity,
+        };
+      }
+      return i;
+    });
+    setItems(updatedItems);
+    dispatch(incQty(updatedItems));
   };
+
+  // const decrementQty = item => {
+  //   setActQuantity(item.purchaseQty);
+  //   setActQuantity(actQuantity - 1);
+  //   if (actQuantity > 1) {
+  //     dispatch(
+  //       decQty(
+  //         items.map(i => {
+  //           if (i._id === item._id) {
+  //             const newQuantity =
+  //               actQuantity >= 0 ? actQuantity : actQuantity + 1;
+
+  //             return {
+  //               ...item,
+  //               purchaseQty: newQuantity,
+  //             };
+  //           }
+  //           return i;
+  //         })
+  //       )
+  //     );
+  //   }
+  // };
+  // const incrementQty = item => {
+  //   setActQuantity(item.purchaseQty);
+  //   setActQuantity(actQuantity + 1);
+  //   dispatch(
+  //     incQty(
+  //       items.map(i => {
+  //         if (i._id === item._id) {
+  //           return {
+  //             ...item,
+  //             purchaseQty: actQuantity,
+  //           };
+  //         }
+  //         return i;
+  //       })
+  //     )
+  //   );
+  // };
   return (
     <>
       <div className="flex flex-col items-center justify-center space-y-6 space-x-0 mx-auto md:flex-row md:space-x-10 md:space-y-0">

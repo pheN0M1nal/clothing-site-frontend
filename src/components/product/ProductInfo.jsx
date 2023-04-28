@@ -19,13 +19,9 @@ const ProductInfo = ({ product }) => {
   const onClick = () => {
     var flag = false;
     items.map(item => {
-      if (item._id === product._id)
-        for (let i = 0; i < item.size.length; i++) {
-          console.log(item.size[i]);
-          if (item.size[i] === activeBtn) {
-            flag = true;
-          }
-        }
+      if (item._id === product._id.concat(activeBtn)) {
+        flag = true;
+      }
       return item;
     });
 
@@ -41,7 +37,7 @@ const ProductInfo = ({ product }) => {
     }
 
     var data = {
-      _id: product._id,
+      _id: product._id.concat(activeBtn),
       productName: product.productName,
       size: activeBtn,
       quantity: actualQty,

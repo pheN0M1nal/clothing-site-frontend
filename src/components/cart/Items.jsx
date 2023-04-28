@@ -6,7 +6,7 @@ const Items = ({ items, onDelete, onInc, onDec }) => {
     <>
       {items.map(item => (
         <Item
-          key={item._id}
+          key={item?._id}
           item={item}
           onDelete={onDelete}
           onIncrement={onInc}

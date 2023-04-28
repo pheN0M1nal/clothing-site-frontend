@@ -54,29 +54,20 @@ export const cartReducer = (state = {}, action) => {
     // };
     case DELETE_FROM_CART:
       return state.filter(item => item._id !== action.payload);
-    // case INCREMENT:
-    //   return state.map(item => {
-    //     if (item._id === action.payload) {
-    //       return {
-    //         ...item,
-    //         purchaseQty:
-    //           item.purchaseQty <= item.quantity && item.purchaseQty + 1,
-    //       };
-    //     } else {
-    //       return item;
-    //     }
-    //   });
-    // case DECREMENT:
-    //   return state.map(item => {
-    //     if (item._id === action.payload) {
-    //       return {
-    //         ...item,
-    //         purchaseQty: item.purchaseQty > 0 && item.purchaseQty - 1,
-    //       };
-    //     } else {
-    //       return item;
-    //     }
-    //   });
+    case INCREMENT:
+      return action.payload;
+    case DECREMENT:
+      return action.payload;
+    // return state.map(item => {
+    //   if (item._id === action.payload) {
+    //     return {
+    //       ...item,
+    //       purchaseQty: item.purchaseQty > 0 && item.purchaseQty - 1,
+    //     };
+    //   } else {
+    //     return item;
+    //   }
+    // });
     default:
       return state;
   }
