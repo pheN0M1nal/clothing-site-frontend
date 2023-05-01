@@ -55,7 +55,7 @@ const initialState = {
   userLogin: { userInfo: userInfoFromStorage },
   userDetails: { user: userInfoFromStorage },
   userBill: 0,
-  billingInfo: billingInfoFromStorage,
+  // billingInfo: billingInfoFromStorage,
 };
 
 const middleware = [thunk];
