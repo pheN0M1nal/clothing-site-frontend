@@ -32,7 +32,7 @@ function AllProducts() {
         </div>
 
         {loading ? (
-          <div className="flex items-center justify-center w-full h-80">
+          <div className="flex items-center justify-center w-full h-96">
             <Spinner />
           </div>
         ) : (
@@ -53,7 +53,7 @@ function AllProducts() {
             </div>
 
             <div className="flex flex-wrap gap-7 items-center justify-center p-40">
-              {allProducts.map(product => (
+              {allProducts?.map(product => (
                 <ProductCard product={product} />
               ))}
             </div>

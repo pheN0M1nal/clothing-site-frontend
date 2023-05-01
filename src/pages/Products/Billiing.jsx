@@ -4,6 +4,7 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
 import { logo } from "../../assets/svg/logo";
+import { addBillingInfo } from "../../store/actions/billingActions";
 const Billiing = () => {
   const loginInfo = useSelector(state => state.userLogin);
   const { loading, userInfo } = loginInfo;
@@ -29,14 +30,16 @@ const Billiing = () => {
 
   const onSubmit = e => {
     e.preventDefault();
-    // dispatch();
-    // navigate("/order-place");
+    dispatch(addBillingInfo(formData));
+    navigate("/order-place");
   };
 
   return (
     <>
       {loading ? (
-        <Spinner />
+        <div className="flex items-center justify-center w-full h-96">
+          <Spinner />
+        </div>
       ) : (
         <div className="flex flex-row signIn md:justify-between sm:w-full h-full">
           <div className="flex items-center justify-center sm:w-3/4">
