@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Bill from "../../components/cart/Bill";
 import { deleteFromCart } from "../../store/actions/cartActions";
 import Items from "../../components/cart/Items";
@@ -10,18 +10,21 @@ import { decQty, incQty } from "../../store/actions/cartActions";
 const Cart = () => {
   var bill = 0;
 
+  const navigate = useNavigate();
+
+  const dispatch = useDispatch();
+
   const [items, setItems] = useState([]);
 
+  //getting cart data from local storage
   const data = useSelector(state => state.cartItems);
+
   useEffect(() => {
-    //getting cart data from local storage
     setItems(data);
   }, [data]);
 
-  const [actQuantity, setActQuantity] = useState(0);
-
   //deleting data from cart regarding product id
-  const dispatch = useDispatch();
+
   const deleteItem = id => {
     dispatch(deleteFromCart(id));
   };
@@ -63,45 +66,13 @@ const Cart = () => {
     dispatch(incQty(updatedItems));
   };
 
-  // const decrementQty = item => {
-  //   setActQuantity(item.purchaseQty);
-  //   setActQuantity(actQuantity - 1);
-  //   if (actQuantity > 1) {
-  //     dispatch(
-  //       decQty(
-  //         items.map(i => {
-  //           if (i._id === item._id) {
-  //             const newQuantity =
-  //               actQuantity >= 0 ? actQuantity : actQuantity + 1;
+  const placeOrder = totalbill => {
+    if (totalbill > 0) {
+      localStorage.setItem("userBill", JSON.stringify(totalbill));
+      navigate("/billing");
+    }
+  };
 
-  //             return {
-  //               ...item,
-  //               purchaseQty: newQuantity,
-  //             };
-  //           }
-  //           return i;
-  //         })
-  //       )
-  //     );
-  //   }
-  // };
-  // const incrementQty = item => {
-  //   setActQuantity(item.purchaseQty);
-  //   setActQuantity(actQuantity + 1);
-  //   dispatch(
-  //     incQty(
-  //       items.map(i => {
-  //         if (i._id === item._id) {
-  //           return {
-  //             ...item,
-  //             purchaseQty: actQuantity,
-  //           };
-  //         }
-  //         return i;
-  //       })
-  //     )
-  //   );
-  // };
   return (
     <>
       <div className="flex flex-col items-center justify-center space-y-6 space-x-0 mx-auto md:flex-row md:space-x-10 md:space-y-0">
@@ -137,7 +108,7 @@ const Cart = () => {
         </div>
         {/* Right Side Payment Info */}
         <div className="w-[290px] h-[450px] bg-zinc-600 rounded-2xl">
-          <Bill bill={bill} />
+          <Bill bill={bill} placeOrder={placeOrder} />
         </div>
       </div>
     </>

@@ -48,6 +48,7 @@ const initialState = {
   cartItems: cartItemsFromStorage,
   userLogin: { userInfo: userInfoFromStorage },
   userDetails: { user: userInfoFromStorage },
+  userBill: 0,
 };
 
 const middleware = [thunk];

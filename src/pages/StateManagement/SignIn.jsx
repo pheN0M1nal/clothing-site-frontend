@@ -2,8 +2,10 @@ import React from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "../../store/actions/userActions";
+import { login, logout } from "../../store/actions/userActions";
 import { Spinner } from "../../components/Spinner";
+
+import { logo } from "../../assets/svg/logo";
 
 function SignIn() {
   const [showPassword, setShowPassword] = useState(false);
@@ -76,78 +78,100 @@ function SignIn() {
       {loading ? (
         <Spinner />
       ) : (
-        <div className="flex items-center justify-center min-h-screen">
-          <div className="flex flex-col my-12 p-3" style={{ width: "340px" }}>
-            <div className="shadow-2xl shadow-black text-white hover:shadow-indigo-500/40 duration-200">
-              <div className="p-8 bg-slate-800">
-                <div className="text-center uppercase">Login</div>
-                <div className="mt-2">
-                  <form onSubmit={onSubmit}>
-                    <div
-                      className="relative mt-3
-                  "
-                    >
-                      <input
-                        type="test"
-                        className="p-3 w-full rounded-md text-slate-700 placeholder:font-sans placeholder:font-light italic transition-all focus:outline-violet-600"
-                        placeholder="Enter your email address"
-                        id="email"
-                        value={email}
-                        onChange={onChange}
-                      />
+        <div className="flex flex-row signIn md:justify-between w-full h-full">
+          <div className="flex items-center justify-center sm:w-3/4">
+            <div className="flex flex-col my-12 p-3 w-80 sm:w-[376px] md:w-[500px]">
+              <div className="shadow-lg rounded-xl">
+                <div className="p-8">
+                  <div className="flex flex-col space-y-5">
+                    <div className="flex text-2xl font-mono font-semibold space-x-2 mt-8">
+                      <span>{logo()}</span>
+                      <span>STee</span>
                     </div>
-                    <span className="mt-1 italic hidden errorMsg text-white">
-                      Email doesn't exist
+
+                    <span className="text-xs text-zinc-500">
+                      Welcome Back !!!
                     </span>
-                    {/* {emailerror && (
+                    <span className="text-4xl font-medium">Sign in</span>
+                  </div>
+                  <div className="mt-8">
+                    <form onSubmit={onSubmit}>
+                      <div className="relative mt-3">
+                        <label className="text-sm font-mono text-zinc-700">
+                          Email
+                        </label>
+                        <input
+                          type="email"
+                          className="p-2 mt-2 w-full rounded-md text-white bg-slate-600 outline-none"
+                          id="email"
+                          value={email}
+                          onChange={onChange}
+                        />
+                      </div>
+                      <span className="mt-1 italic hidden errorMsg text-white">
+                        Email doesn't exist
+                      </span>
+                      {/* {emailerror && (
                       <span className='mt-1 italic text-white'>
                         {emailerror}
                       </span>
                     )} */}
-                    <div className="relative mt-3">
-                      <input
-                        type={showPassword ? "text" : "password"}
-                        className="p-3 w-full rounded-md text-slate-700 placeholder:font-sans placeholder:font-light italic transition-all focus:outline-violet-600"
-                        placeholder="Enter your password"
-                        id="password"
-                        value={password}
-                        onChange={onChange}
-                      />
-                      <span
-                        className="absolute top-3 right-2"
-                        onClick={togglePasswordEye}
-                      >
-                        <i className="changeeye fa fa-eye-slash cursor-pointer text-slate-900"></i>
-                      </span>
-                    </div>
-                    <div className="mt-2">
-                      <Link
-                        to="/forgot-password"
-                        className="hover:text-violet-600 text-sm italic"
-                      >
-                        Forgot Password?
+                      <div className="relative mt-3">
+                        <label className="text-sm font-mono text-zinc-700">
+                          Password
+                        </label>
+                        <input
+                          type={showPassword ? "text" : "password"}
+                          className="p-2 mt-2 w-full rounded-md text-white bg-slate-600 outline-none"
+                          id="password"
+                          value={password}
+                          onChange={onChange}
+                        />
+                        <span
+                          className="absolute top-10 right-2"
+                          onClick={togglePasswordEye}
+                        >
+                          <i className="changeeye fa fa-eye-slash cursor-pointer text-white"></i>
+                        </span>
+                      </div>
+                      <div className="flex justify-end mt-2">
+                        <Link
+                          to="/forgot-password"
+                          className="hover:text-zinc-800 text-sm text-zinc-400"
+                        >
+                          Forgot Password?
+                        </Link>
+                      </div>
+
+                      <div className="flex items-center justify-center mt-5 ">
+                        <div className="flex items-center justify-center bg-slate-600 w-36 rounded-3xl">
+                          <button
+                            type="submit"
+                            className="p-2 text-[#D2FF28] transition-all duration-200"
+                          >
+                            SIGN IN
+                          </button>
+
+                          <i className="ri-arrow-right-line text-[#D2FF28]"></i>
+                        </div>
+                      </div>
+                    </form>
+
+                    <div className="flex flex-row items-center justify-center mt-8 text-xs sm:text-sm space-x-2 mb-10">
+                      <div className="text-zinc-400">
+                        I don't have an account?
+                      </div>
+                      <Link to="/sign-up" className="hover:text-slate-700">
+                        Sign Up
                       </Link>
                     </div>
-
-                    <div className="relative flex justify-center mt-3">
-                      <button
-                        type="submit"
-                        className="p-3 w-full text-center border border-violet-600 rounded-lg hover:bg-violet-800 transition-all duration-200"
-                      >
-                        Sign In
-                      </button>
-                    </div>
-                  </form>
-
-                  <div className="flex flex-row relative mt-5 italic text-sm space-x-2">
-                    <div>Don't have an account?</div>
-                    <Link to="/sign-up" className="hover:text-violet-600">
-                      Sign Up
-                    </Link>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
+          <div className="hidden dis md:block">
+            <div className="w-96 h-full search"></div>
           </div>
         </div>
       )}
