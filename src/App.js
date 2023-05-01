@@ -18,6 +18,7 @@ import AllUsers from "./pages/adminPages/AllUsers";
 import AllDesigners from "./pages/adminPages/AllDesigners";
 import AllAdmins from "./pages/adminPages/AllAdmins";
 import Billiing from "./pages/Products/Billiing";
+import OrderPlace from "./pages/Products/OrderPlace";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
           <Route path="/billing" element={<Billiing />} />
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/order-place" element={<OrderPlace />} />
         </Routes>
         <Footer />
       </Router>

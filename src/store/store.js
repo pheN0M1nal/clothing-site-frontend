@@ -16,6 +16,7 @@ import {
 } from "./reducers/adminReducers";
 import thunk from "redux-thunk";
 import { cartReducer } from "./reducers/cartReducers";
+import { billingReducer } from "./reducers/billingReducer";
 
 const reducer = combineReducers({
   userLogin: userLoginReducer,
@@ -29,6 +30,7 @@ const reducer = combineReducers({
   allProducts: productDetailReducer,
   singleProduct: singleproductReducer,
   cartItems: cartReducer,
+  billingInfo: billingReducer,
 });
 
 // const bindMiddleware = (middleware) => {
@@ -44,11 +46,16 @@ const cartItemsFromStorage = localStorage.getItem("cartItems")
   ? JSON.parse(localStorage.getItem("cartItems"))
   : [];
 
+const billingInfoFromStorage = localStorage.getItem("billingInfo")
+  ? JSON.parse(localStorage.getItem("billingInfo"))
+  : null;
+
 const initialState = {
   cartItems: cartItemsFromStorage,
   userLogin: { userInfo: userInfoFromStorage },
   userDetails: { user: userInfoFromStorage },
   userBill: 0,
+  billingInfo: billingInfoFromStorage,
 };
 
 const middleware = [thunk];

@@ -78,9 +78,9 @@ function SignIn() {
       {loading ? (
         <Spinner />
       ) : (
-        <div className="flex flex-row signIn md:justify-between w-full h-full">
+        <div className="flex flex-row signIn md:justify-between sm:w-full h-full">
           <div className="flex items-center justify-center sm:w-3/4">
-            <div className="flex flex-col my-12 p-3 w-80 sm:w-[376px] md:w-[500px]">
+            <div className="flex flex-col my-12 p-3 w-80 md:w-[500px]">
               <div className="shadow-lg rounded-xl">
                 <div className="p-8">
                   <div className="flex flex-col space-y-5">
@@ -92,7 +92,7 @@ function SignIn() {
                     <span className="text-xs text-zinc-500">
                       Welcome Back !!!
                     </span>
-                    <span className="text-4xl font-medium">Sign in</span>
+                    <span className="text-4xl font-medium">Sign In</span>
                   </div>
                   <div className="mt-8">
                     <form onSubmit={onSubmit}>
@@ -102,7 +102,7 @@ function SignIn() {
                         </label>
                         <input
                           type="email"
-                          className="p-2 mt-2 w-full rounded-md text-white bg-slate-600 outline-none"
+                          className="p-2 mt-2 w-full rounded-md text-white bg-slate-600 outline-none text-xs"
                           id="email"
                           value={email}
                           onChange={onChange}
@@ -122,13 +122,13 @@ function SignIn() {
                         </label>
                         <input
                           type={showPassword ? "text" : "password"}
-                          className="p-2 mt-2 w-full rounded-md text-white bg-slate-600 outline-none"
+                          className="p-2 mt-2 w-full rounded-md text-white bg-slate-600 outline-none text-xs"
                           id="password"
                           value={password}
                           onChange={onChange}
                         />
                         <span
-                          className="absolute top-10 right-2"
+                          className="absolute top-9 right-2"
                           onClick={togglePasswordEye}
                         >
                           <i className="changeeye fa fa-eye-slash cursor-pointer text-white"></i>
