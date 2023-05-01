@@ -797,6 +797,10 @@ video {
   height: 36px;
 }
 
+.h-72 {
+  height: 18rem;
+}
+
 .h-80 {
   height: 20rem;
 }
@@ -827,10 +831,6 @@ video {
 
 .h-64 {
   height: 16rem;
-}
-
-.h-72 {
-  height: 18rem;
 }
 
 .h-44 {
@@ -935,6 +935,10 @@ video {
 
 .w-\[30px\] {
   width: 30px;
+}
+
+.w-\[90px\] {
+  width: 90px;
 }
 
 .w-\[40px\] {
@@ -1410,6 +1414,11 @@ video {
   line-height: 1.25rem;
 }
 
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
 .text-4xl {
   font-size: 2.25rem;
   line-height: 2.5rem;
@@ -1814,11 +1823,6 @@ video {
 .hover\:text-black:hover {
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity));
-}
-
-.hover\:text-blue-700:hover {
-  --tw-text-opacity: 1;
-  color: rgb(29 78 216 / var(--tw-text-opacity));
 }
 
 .hover\:text-violet-600:hover {
