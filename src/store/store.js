@@ -30,7 +30,7 @@ const reducer = combineReducers({
   allProducts: productDetailReducer,
   singleProduct: singleproductReducer,
   cartItems: cartReducer,
-  billingInfo: billingReducer,
+  // billingInfo: billingReducer,
 });
 
 // const bindMiddleware = (middleware) => {
@@ -48,14 +48,14 @@ const cartItemsFromStorage = localStorage.getItem("cartItems")
 
 const billingInfoFromStorage = localStorage.getItem("billingInfo")
   ? JSON.parse(localStorage.getItem("billingInfo"))
-  : null;
+  : [];
 
 const initialState = {
   cartItems: cartItemsFromStorage,
+  billingInfo: billingInfoFromStorage,
   userLogin: { userInfo: userInfoFromStorage },
   userDetails: { user: userInfoFromStorage },
   userBill: 0,
-  // billingInfo: billingInfoFromStorage,
 };
 
 const middleware = [thunk];
