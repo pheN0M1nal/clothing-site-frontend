@@ -2,9 +2,8 @@ import React from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { login, logout } from "../../store/actions/userActions";
+import { login } from "../../store/actions/userActions";
 import { Spinner } from "../../components/Spinner";
-
 import { logo } from "../../assets/svg/logo";
 
 function SignIn() {

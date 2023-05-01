@@ -21,7 +21,7 @@ const ProductView = () => {
   return (
     <>
       {loading ? (
-        <div className="flex items-center justify-center w-full h-80">
+        <div className="flex items-center justify-center w-full h-96">
           <Spinner />
         </div>
       ) : (
