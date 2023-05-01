@@ -30,7 +30,7 @@ const reducer = combineReducers({
   allProducts: productDetailReducer,
   singleProduct: singleproductReducer,
   cartItems: cartReducer,
-  // billingInfo: billingReducer,
+  billingInfo: billingReducer,
 });
 
 // const bindMiddleware = (middleware) => {
