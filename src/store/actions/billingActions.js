@@ -5,5 +5,5 @@ export const addBillingInfo = billInfo => async (dispatch, getState) => {
     type: ADD_BILLING_INfO,
     payload: billInfo,
   });
-  localStorage.setItem("billInfo", JSON.stringify(getState().billInfo));
+  localStorage.setItem("billingInfo", JSON.stringify(getState().billingInfo));
 };

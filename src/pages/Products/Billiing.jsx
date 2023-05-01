@@ -29,8 +29,8 @@ const Billiing = () => {
 
   const onSubmit = e => {
     e.preventDefault();
-    dispatch();
-    navigate("/order-place");
+    // dispatch();
+    // navigate("/order-place");
   };
 
   return (

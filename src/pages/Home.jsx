@@ -206,10 +206,10 @@ function Home() {
               </div>
               <div className="arrows space-y-3 space-x-4">
                 <button>
-                  <i class="ri-arrow-left-line"></i>
+                  <i className="ri-arrow-left-line"></i>
                 </button>
                 <button>
-                  <i class="ri-arrow-right-line"></i>
+                  <i className="ri-arrow-right-line"></i>
                 </button>
               </div>
             </div>
