@@ -6,7 +6,7 @@ import twitterlogo from "../assets/svg/icon-twitter.svg";
 const Footer = () => {
   return (
     <>
-      <footer className="py-16 bg-slate-800 mt-10 subcateg subcateg1 sm:max-w-full">
+      <footer className="py-16 bg-slate-800 mt-5 subcateg subcateg1 sm:max-w-full">
         <div className="container flex flex-col items-center justify-between mx-auto space-y-6 bg-slate-800 md:flex-row md:space-y-0 md:items-start">
           <div className="flex flex-col text-gray-500 res">
             <div className="text-3xl">Stay up to date with our story</div>

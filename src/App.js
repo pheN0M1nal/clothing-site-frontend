@@ -17,6 +17,8 @@ import AdminDashboard from "./pages/adminPages/AdminDashboard";
 import AllUsers from "./pages/adminPages/AllUsers";
 import AllDesigners from "./pages/adminPages/AllDesigners";
 import AllAdmins from "./pages/adminPages/AllAdmins";
+import Billiing from "./pages/Products/Billiing";
+import OrderPlace from "./pages/Products/OrderPlace";
 
 function App() {
   return (
@@ -26,8 +28,6 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/sign-in" element={<SignIn />} />
-          <Route path="/sign-up" element={<SignUp />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/allProducts" element={<AllProducts />} />
@@ -36,8 +36,11 @@ function App() {
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/admin/allUsers" element={<AllUsers />} />
           <Route path="/admin/allDesigners" element={<AllDesigners />} />
-
           <Route path="/admin/allAdmins" element={<AllAdmins />} />
+          <Route path="/billing" element={<Billiing />} />
+          <Route path="/sign-in" element={<SignIn />} />
+          <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/order-place" element={<OrderPlace />} />
         </Routes>
         <Footer />
       </Router>

@@ -3,118 +3,124 @@
 @tailwind utilities;
 
 .nav-links {
-    @apply w-full text-center text-grayishViolet hover:text-veryDarkViolet;
+  @apply w-full text-center text-grayishViolet hover:text-veryDarkViolet;
 }
 
 .hamburger {
-    cursor: pointer;
-    width: 24px;
-    height: 24px;
-    transition: all 0.25s;
-    position: relative;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  transition: all 0.25s;
+  position: relative;
 }
 .hamburger-top,
 .hamburger-middle,
 .hamburger-bottom {
-    content: '';
-    position: absolute;
-    width: 24px;
-    height: 3px;
-    top: 0;
-    left: 0;
-    background: #9c9aa6;
-    transform: rotate(0);
-    transition: all 0.5s;
+  content: "";
+  position: absolute;
+  width: 24px;
+  height: 3px;
+  top: 0;
+  left: 0;
+  background: #9c9aa6;
+  transform: rotate(0);
+  transition: all 0.5s;
 }
 .hamburger-middle {
-    transform: translateY(7px);
-
+  transform: translateY(7px);
 }
 .hamburger-bottom {
-    transform: translateY(14px);
+  transform: translateY(14px);
 }
 
 .open {
-    transform: rotate(90deg);
-    transform: translateY(0px);
+  transform: rotate(90deg);
+  transform: translateY(0px);
 }
 
 .open .hamburger-top {
-    transform: rotate(45deg) translateY(6px) translateX(6px);
+  transform: rotate(45deg) translateY(6px) translateX(6px);
 }
 .open .hamburger-middle {
-    display: none;
+  display: none;
 }
 .open .hamburger-bottom {
-    transform: rotate(-45deg) translateY(6px) translateX(-6px);
+  transform: rotate(-45deg) translateY(6px) translateX(-6px);
 }
 .join {
-    max-width: 24rem;
+  max-width: 24rem;
 }
 .ficon:hover {
-    filter: invert(79%) sepia(61%) saturate(464%) hue-rotate(130deg) brightness(89%) contrast(85%);
+  filter: invert(79%) sepia(61%) saturate(464%) hue-rotate(130deg)
+    brightness(89%) contrast(85%);
 }
 .responsive {
-    max-width: 19rem;
+  max-width: 19rem;
 }
 
 .search {
-    background: #D2FF28;
+  background: #d2ff28;
 }
 
 .allproduct {
-    width: 200px;
-    height: 40px;
-    margin-top: 2rem;
-    margin-left: 4em;
+  width: 200px;
+  height: 40px;
+  margin-top: 2rem;
+  margin-left: 4em;
 }
 
-@media screen and (max-width: 264px) { 
-    .response {
-        width: 270px;
-    }
+@media screen and (max-width: 264px) {
+  .response {
+    width: 270px;
+  }
 }
 
 @media screen and (max-width: 323px) {
-    .productadjust {
-        width: 10rem;
-        margin-left: 75px;
-        margin-right: 75px;
-    }
-    .arrows {
-        margin-right: 60px;
-    }
+  .productadjust {
+    width: 10rem;
+    margin-left: 75px;
+    margin-right: 75px;
+  }
+  .arrows {
+    margin-right: 60px;
+  }
 }
 
 .trendy {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .res {
-    min-width: 320px;
-    max-width: 320px;
+  min-width: 320px;
+  max-width: 320px;
 }
 
 @media screen and (max-width: 304px) {
-.subcateg {
+  .subcateg {
     min-width: 320px;
-}
-.res {
+  }
+  .res {
     align-items: center;
     text-align: center;
-}
+  }
 }
 .textsize {
-    font-size: 26px;
-    line-height: 32px;
+  font-size: 26px;
+  line-height: 32px;
 }
 .categ {
-
-    height: 46rem;
+  height: 46rem;
 }
 /* @media screen and (max-width: 752px) and (min-width: 638px) {
     .subcateg1 {
         max-width: 100%;
     }
 } */
+@media screen and (max-width: 768px) {
+  .signIn {
+    align-items: center;
+    justify-content: center;
+    margin-left: 3rem;
+  }
+}
