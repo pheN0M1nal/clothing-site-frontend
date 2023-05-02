@@ -4,8 +4,8 @@ import { fetchAllAdmins } from "../../store/actions/adminActions"
 import { Spinner } from "../../components/Spinner"
 import styled from "styled-components"
 import { Link } from "react-router-dom"
+import { deleteAdmin } from "../../store/actions/adminActions"
 import "remixicon/fonts/remixicon.css"
-import { DELETE_ADMIN_SUCCESS } from "../../store/constants/adminConstants"
 
 const Wrapper = styled.div`
     max-width: 1000px;
@@ -85,19 +85,14 @@ const Wrapper = styled.div`
 `
 const AllAdmins = () => {
     const dispatch = useDispatch()
-    const { loading, admins } = useSelector((state) => state.allAdmins)
+    const { loading_delete, loading, admins } = useSelector(
+        (state) => state.allAdmins
+    )
 
     useEffect(() => {
         dispatch(fetchAllAdmins())
-    }, [])
+    }, [dispatch])
 
-    const onDelete = (id) => {
-        console.log("first")
-        dispatch({
-            type: DELETE_ADMIN_SUCCESS,
-            payload: id,
-        })
-    }
     return (
         <Wrapper>
             <Link to="/admin/allAdmins">All Admins</Link>
@@ -121,7 +116,7 @@ const AllAdmins = () => {
                     )}
 
                     {admins?.map((user) => (
-                        <li className="table-row">
+                        <li className="table-row" key={user._id}>
                             <div className="col col-1" data-label="Id">
                                 {user._id}
                             </div>
@@ -131,12 +126,22 @@ const AllAdmins = () => {
                             <div className="col col-3" data-label="Email">
                                 {user.email}
                             </div>
+
+                            {}
+
                             <div className="col col-4" data-label="# #">
-                                <i
-                                    className="ri-delete-bin-line w-[20px] cursor-pointer mx-2"
-                                    onClick={() => onDelete(user.id)}
-                                ></i>
+                                {loading_delete === user._id ? (
+                                    <Spinner />
+                                ) : (
+                                    <i
+                                        onClick={() =>
+                                            dispatch(deleteAdmin(user._id))
+                                        }
+                                        className="ri-delete-bin-line w-[20px] cursor-pointer mx-2"
+                                    ></i>
+                                )}
                             </div>
+
                             <div className="col col-5" data-label="# #">
                                 <i className="ri-edit-box-line cursor-pointer mx-2"></i>
                             </div>
