@@ -136,4 +136,8 @@
   .subcateg2 {
     margin: 0 2rem;
   }
+  .subcategRes {
+    width: 150px;
+    height: 150px;
+  }
 }
