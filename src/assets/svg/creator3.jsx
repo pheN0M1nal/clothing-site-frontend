@@ -2,14 +2,14 @@ export const creator3 = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     xmlnsXlink="http://www.w3.org/1999/xlink"
-    width="208"
-    height="208"
+    width="175"
+    height="175"
     fill="none"
-    viewBox="0 0 208 208"
+    viewBox="0 0 175 175"
   >
-    <rect width="208" height="208" fill="#fff" rx="10"></rect>
-    <rect width="208" height="208" fill="url(#pattern0)" rx="10"></rect>
-    <rect width="208" height="208" fill="url(#pattern1)" rx="10"></rect>
+    <rect width="175" height="175" fill="#fff" rx="10"></rect>
+    <rect width="175" height="175" fill="url(#pattern0)" rx="10"></rect>
+    <rect width="175" height="175" fill="url(#pattern1)" rx="10"></rect>
     <defs>
       <pattern
         id="pattern0"
