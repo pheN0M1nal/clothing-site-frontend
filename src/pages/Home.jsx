@@ -26,24 +26,24 @@ function Home() {
       <div className="container flex flex-col min-w-full">
         {/* First Section: Main heading with search bar and Picture */}
         <section className="search">
-          <div className="container flex flex-col  sm:mx-auto sm:items-start search">
+          <div className="container flex flex-col mx-0 sm:mx-auto sm:items-start">
             {/* Main Heading with search bar */}
-            <div className="flex flex-col w-72 sm:w-80 h-80 search mx-7">
-              <span className="capitalize text-4xl font-bold text-zinc-700 mt-5 w-auto">
+            <div className="flex flex-col w-80 h-80 search">
+              <span className="capitalize text-4xl font-bold text-zinc-700 mt-5">
                 Create & Wear on demand
               </span>
-              <p className="mt-5 text-zinc-700 w-auto">
+              <p className="mt-5 text-zinc-700">
                 Create & sell custom products with your designs, we'll print and
                 ship them to your customers
               </p>
-              <div className="flex flex-row mt-5 w-[275px] sm:w-auto rounded-lg shadow-2xl bg-white">
+              <div className="flex flex-row mt-5 rounded-lg shadow-2xl bg-white">
                 <form action="">
                   <input
                     type="email"
-                    className="h-14 ml-1 sm:ml-4 items-center focus:outline-none placeholder:text-zinc-700 transition-all"
+                    className="h-14 ml-4 items-center focus:outline-none placeholder:text-zinc-700 transition-all"
                     placeholder="Search product here"
                   />
-                  <div className="inline ml-3 sm:ml-12 py-2 px-3 rounded-md search searchbtn">
+                  <div className="inline ml-12 py-2 px-3 rounded-md search searchbtn">
                     <button className="text-zinc-700">Search</button>
                   </div>
                 </form>
@@ -107,16 +107,16 @@ function Home() {
         <div className="h-20"></div>
         {/*Sub Categories button*/}
         <div className="flex">
-          <div className="flex flex-col items-center space-y-6 space-x-0 subcateg subcateg3 mx-auto text-zinc-700 font-bold sm:flex-row sm:space-x-16 sm:space-y-0">
-            <div className="flex flex-col w-52 h-52 shadow-2xl rounded-2xl space-y-2 items-center justify-center mx-auto subcateg1">
+          <div className="flex flex-col items-center space-y-6 space-x-0 subcateg mx-auto text-zinc-700 font-bold sm:flex-row sm:space-x-16 sm:space-y-0">
+            <div className="flex flex-col w-52 h-52 shadow-2xl rounded-2xl space-y-2 items-center justify-center mx-auto ">
               <div className="">{sweaterSvg()}</div>
               <div>Sweater Custom</div>
             </div>
-            <div className="flex flex-col w-52 h-52 bg-zinc-700 shadow-2xl rounded-2xl space-y-2 items-center justify-center mx-auto subcateg1">
+            <div className="flex flex-col w-52 h-52 bg-zinc-700 shadow-2xl rounded-2xl space-y-2 items-center justify-center mx-auto">
               <div>{tShirtsvg()}</div>
               <div className="text-white">T-Shirt Custom</div>
             </div>
-            <div className="flex flex-col w-52 h-52 shadow-2xl rounded-2xl space-y-2 items-center justify-center mx-auto subcateg1">
+            <div className="flex flex-col w-52 h-52 shadow-2xl rounded-2xl space-y-2 items-center justify-center mx-auto">
               <div>{jacketsvg()}</div>
               <div>Jacket Custom</div>
             </div>
@@ -174,8 +174,8 @@ function Home() {
         </section>
         {/*Sub Categories button*/}
         <div className="flex search">
-          <div className="flex flex-col items-center subcateg mx-auto space-y-6 space-x-0 text-zinc-700 font-bold search categ sm:flex-row sm:h-96 sm:space-x-16 sm:space-y-0 sm:mt-0 subcateg2">
-            <div className="shadow-2xl rounded-2xl mt-5 sm:mt-0 ">
+          <div className="flex flex-col items-center subcateg mx-auto space-y-6 space-x-0 text-zinc-700 font-bold search categ sm:flex-row sm:h-96 sm:space-x-16 sm:space-y-0 sm:mt-0">
+            <div className="shadow-2xl rounded-2xl mt-5 sm:mt-0">
               {creator1()}
             </div>
             <div className="shadow-xl rounded-2xl">{creator2()}</div>
