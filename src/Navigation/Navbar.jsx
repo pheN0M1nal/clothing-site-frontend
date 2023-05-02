@@ -67,14 +67,14 @@ const Navbar = () => {
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-80">
             {/* Logo */}
-            <div className="flex flex-row items-center justify-center space-x-2 ml-10">
+            <div className="flex flex-row items-center justify-center space-x-1">
               <span>{logo()}</span>
               <Link to="/">
                 <h1 className="font-bold cursor-pointer">STee</h1>
               </Link>
             </div>
             {/* left Menu */}
-            <div className="hidden lg:flex font-bold space-x-14">
+            <div className="hidden lg:flex font-bold space-x-14 text-sm">
               <Link to="/" className="text-zinc-700 hover:text-veryDarkViolet">
                 Home
               </Link>
@@ -146,7 +146,7 @@ const Navbar = () => {
                   to="/sign-in"
                   className="text-zinc-700 hover:text-veryDarkViolet"
                 >
-                  SignIn/SignUp
+                  Login
                 </Link>
               )}
             </div>
@@ -217,7 +217,7 @@ const Navbar = () => {
                   to="/sign-in"
                   className="text-zinc-700 hover:text-veryDarkViolet"
                 >
-                  SignIn/SignUp
+                  Login
                 </Link>
               )}
             </div>

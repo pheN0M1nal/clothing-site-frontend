@@ -20,7 +20,7 @@ function Home() {
       <div className="container flex flex-col min-w-full">
         {/* First Section: Main heading with search bar and Picture */}
         <section className="search">
-          <div className="container flex flex-col  sm:mx-auto sm:items-start search">
+          <div className="container flex flex-col sm:mx-auto sm:items-start search">
             {/* Main Heading with search bar */}
             <div className="flex flex-col w-72 sm:w-80 h-80 search mx-7">
               <span className="capitalize text-4xl font-bold text-zinc-700 mt-5 w-auto">
@@ -47,7 +47,7 @@ function Home() {
         </section>
         {/* Best Product Category */}
         <section className="mt-20">
-          <div className="container flex flex-col items-center justify-center mx-auto max-w-full">
+          <div className="container flex flex-col items-center justify-center w-80 sm:max-w-full">
             <div className="flex flex-col items-center justify-center">
               <div className="flex items-center w-80 text-center">
                 <span className="capitalize text-3xl font-bold text-zinc-700 ml-7">
@@ -62,7 +62,7 @@ function Home() {
                 <img src={img3} className="w-40 h-30" alt="" />
                 <img src={img4} className="w-40 h-30" alt="" />
               </div>
-              <div className="allproduct">
+              <div className="">
                 <button className="text-zinc-700">
                   <Link to="/allProducts">See all product</Link>
                   <i className="fa fa-long-arrow-right" aria-hidden="true"></i>
@@ -125,7 +125,7 @@ function Home() {
                 <img src={img3} className="w-40 h-30" alt="" />
                 <img src={img4} className="w-40 h-30" alt="" />
               </div>
-              <div className="allproduct">
+              <div className="">
                 <button className="text-zinc-700">
                   See all product
                   <i className="fa fa-long-arrow-right" aria-hidden="true"></i>
@@ -164,22 +164,22 @@ function Home() {
         <div className="h-20"></div>
         {/* Best Product Category */}
         <section className="mt-20">
-          <div className="container flex flex-col items-center justify-center mx-auto max-w-full">
+          <div className="container flex flex-col items-center justify-center mx-auto w-80 sm:max-w-full">
             <div className="flex flex-col items-center justify-center">
-              <div className="flex items-center w-80 text-center">
+              <div className="flex items-center justify-center w-80 text-center">
                 <span className="capitalize text-3xl font-bold text-zinc-700 ml-7">
                   Sell your Designs
                 </span>
               </div>
             </div>
-            <div className="container flex flex-col items-end overflow-hidden productadjust sm:w-180 sm:mx-auto mt-7">
+            <div className="container flex flex-col items-center productadjust sm:w-180 sm:mx-auto mt-7">
               <div className="flex flex-row space-x-2">
-                <img src={img1} className="w-40 h-30" alt="" />
+                {/* <img src={img1} className="w-40 h-30" alt="" />
                 <img src={img2} className="w-40 h-30" alt="" />
                 <img src={img3} className="w-40 h-30" alt="" />
-                <img src={img4} className="w-40 h-30" alt="" />
+                <img src={img4} className="w-40 h-30" alt="" /> */}
               </div>
-              <div className="allproduct">
+              <div className="">
                 <button className="text-zinc-700">
                   <Link to="/allProducts">See all product</Link>
                   <i className="fa fa-long-arrow-right" aria-hidden="true"></i>
