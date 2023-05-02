@@ -678,6 +678,11 @@ video {
   margin-right: auto;
 }
 
+.mx-7 {
+  margin-left: 1.75rem;
+  margin-right: 1.75rem;
+}
+
 .mx-0 {
   margin-left: 0px;
   margin-right: 0px;
@@ -701,11 +706,6 @@ video {
 .my-4 {
   margin-top: 1rem;
   margin-bottom: 1rem;
-}
-
-.mx-7 {
-  margin-left: 1.75rem;
-  margin-right: 1.75rem;
 }
 
 .my-12 {
@@ -733,8 +733,12 @@ video {
   margin-left: 0.5rem;
 }
 
-.ml-12 {
-  margin-left: 3rem;
+.ml-1 {
+  margin-left: 0.25rem;
+}
+
+.ml-3 {
+  margin-left: 0.75rem;
 }
 
 .mt-20 {
@@ -921,6 +925,18 @@ video {
   width: 5rem;
 }
 
+.w-72 {
+  width: 18rem;
+}
+
+.w-auto {
+  width: auto;
+}
+
+.w-\[275px\] {
+  width: 275px;
+}
+
 .w-80 {
   width: 20rem;
 }
@@ -995,10 +1011,6 @@ video {
 
 .w-\[19\.3rem\] {
   width: 19.3rem;
-}
-
-.w-72 {
-  width: 18rem;
 }
 
 .w-96 {
@@ -1783,6 +1795,22 @@ video {
   }
 }
 
+@media screen and (max-width: 751px) and (min-width: 640px) {
+  .subcateg3 {
+    /* margin-left: 1rem;*/
+    margin-right: 0rem;
+  }
+
+  .subcateg1 {
+    width: 150px;
+    height: 150px;
+  }
+
+  .subcateg2 {
+    margin: 0 2rem;
+  }
+}
+
 .placeholder\:text-sm::-webkit-input-placeholder {
   font-size: 0.875rem;
   line-height: 1.25rem;
@@ -1849,6 +1877,14 @@ video {
     margin-right: auto;
   }
 
+  .sm\:ml-4 {
+    margin-left: 1rem;
+  }
+
+  .sm\:ml-12 {
+    margin-left: 3rem;
+  }
+
   .sm\:mt-0 {
     margin-top: 0px;
   }
@@ -1863,6 +1899,10 @@ video {
 
   .sm\:w-24 {
     width: 6rem;
+  }
+
+  .sm\:w-80 {
+    width: 20rem;
   }
 
   .sm\:w-180 {

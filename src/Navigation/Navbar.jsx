@@ -5,18 +5,33 @@ import { Link, useNavigate } from "react-router-dom";
 import "remixicon/fonts/remixicon.css";
 
 import { logout } from "../store/actions/userActions";
-// const btn = document.getElementById('menu-btn')
-// const menu = document.getElementById('menu')
 
 const Navbar = () => {
+  let showMenu = false;
+
   //Toggle Mobile Menu
   const onClick = () => {
+    showMenu = !showMenu;
+    toggleMenu();
+  };
+
+  document.addEventListener("click", e => {
+    if (showMenu && e.target.closest("#menu")) {
+      showMenu = false;
+      toggleMenu();
+    }
+  });
+
+  function toggleMenu() {
     var btn = document.getElementById("menu-btn");
     var menu = document.getElementById("menu");
     btn.classList.toggle("open");
-    menu.classList.toggle("flex");
-    menu.classList.toggle("hidden");
-  };
+    if (showMenu) {
+      menu.classList.remove("hidden");
+    } else if (!showMenu) {
+      menu.classList.add("hidden");
+    }
+  }
 
   const drop = () => {
     var menu = document.querySelector(".dropdown");
@@ -145,6 +160,7 @@ const Navbar = () => {
           </button>
         </div>
         {/* Mobile View */}
+        {/* {showMenu && ( */}
         <div
           id="menu"
           className="absolute hidden p-6 left-6 right-6 top-20 z-40 bg-white"
@@ -185,7 +201,6 @@ const Navbar = () => {
                       </Link>
 
                       <a
-                        href="#"
                         className="text-gray-700 block px-4 py-2 text-sm"
                         onClick={logoutHandler}
                       >
@@ -205,6 +220,7 @@ const Navbar = () => {
             </div>
           </div>
         </div>
+        {/* )} */}
       </nav>
     </>
   );
