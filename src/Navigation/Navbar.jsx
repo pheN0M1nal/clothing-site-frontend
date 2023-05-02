@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "remixicon/fonts/remixicon.css";
 
 import { logout } from "../store/actions/userActions";
-
+import { logo } from "../assets/svg/logo";
 const Navbar = () => {
   let showMenu = false;
 
@@ -67,9 +67,12 @@ const Navbar = () => {
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-80">
             {/* Logo */}
-            <Link to="/">
-              <h1 className="font-bold cursor-pointer">STee</h1>
-            </Link>
+            <div className="flex flex-row items-center justify-center space-x-2 ml-10">
+              <span>{logo()}</span>
+              <Link to="/">
+                <h1 className="font-bold cursor-pointer">STee</h1>
+              </Link>
+            </div>
             {/* left Menu */}
             <div className="hidden lg:flex font-bold space-x-14">
               <Link to="/" className="text-zinc-700 hover:text-veryDarkViolet">

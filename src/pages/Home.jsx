@@ -17,12 +17,6 @@ import { Link } from "react-router-dom";
 function Home() {
   return (
     <>
-      <div className="flex items-center justify-center h-72 text-2xl">
-        {" "}
-        This application is in DEVELOPMENT. Sorry for the disturbance but you
-        can use it.
-      </div>
-
       <div className="container flex flex-col min-w-full">
         {/* First Section: Main heading with search bar and Picture */}
         <section className="search">
@@ -53,32 +47,25 @@ function Home() {
         </section>
         {/* Best Product Category */}
         <section className="mt-20">
-          <div className="container flex flex-col mx-auto max-w-full sm:flex-row">
-            <div className="flex flex-col w-80 h-40 mx-0 sm:items-start">
-              <span className="capitalize text-4xl font-bold text-zinc-700 ml-7">
-                Best Product Category
-              </span>
-              <div className="allproduct">
-                <button className="text-zinc-700">
-                  <Link to="/allProducts">See all product</Link>
-                  <i className="fa fa-long-arrow-right" aria-hidden="true"></i>
-                </button>
+          <div className="container flex flex-col items-center justify-center mx-auto max-w-full">
+            <div className="flex flex-col items-center justify-center">
+              <div className="flex items-center w-80 text-center">
+                <span className="capitalize text-3xl font-bold text-zinc-700 ml-7">
+                  Best Product Category
+                </span>
               </div>
             </div>
-            <div className="container flex flex-col items-end overflow-hidden productadjust sm:w-180 sm:mx-auto ">
+            <div className="container flex flex-col items-end overflow-hidden productadjust sm:w-180 sm:mx-auto mt-7">
               <div className="flex flex-row space-x-2">
                 <img src={img1} className="w-40 h-30" alt="" />
                 <img src={img2} className="w-40 h-30" alt="" />
                 <img src={img3} className="w-40 h-30" alt="" />
                 <img src={img4} className="w-40 h-30" alt="" />
               </div>
-              <div className="arrows space-y-3 space-x-4">
-                <button>
-                  {/* <i className="fa fa-long-arrow-left" aria-hidden="true"></i> */}
-                  <i className="ri-arrow-left-line"></i>
-                </button>
-                <button>
-                  <i className="ri-arrow-right-line"></i>
+              <div className="allproduct">
+                <button className="text-zinc-700">
+                  <Link to="/allProducts">See all product</Link>
+                  <i className="fa fa-long-arrow-right" aria-hidden="true"></i>
                 </button>
               </div>
             </div>
@@ -131,12 +118,6 @@ function Home() {
             </span>
           </div>
           <div className="container flex flex-col mx-auto max-w-full sm:flex-row">
-            <div className="allproduct">
-              <button className="text-zinc-700">
-                See all product{" "}
-                <i className="fa fa-long-arrow-right" aria-hidden="true"></i>
-              </button>
-            </div>
             <div className="container flex flex-col items-end overflow-hidden productadjust sm:w-180 sm:mx-auto ">
               <div className="flex flex-row space-x-2">
                 <img src={img1} className="w-40 h-30" alt="" />
@@ -144,12 +125,10 @@ function Home() {
                 <img src={img3} className="w-40 h-30" alt="" />
                 <img src={img4} className="w-40 h-30" alt="" />
               </div>
-              <div className="arrows space-y-3 space-x-4">
-                <button>
-                  <i className="ri-arrow-left-line"></i>
-                </button>
-                <button>
-                  <i className="ri-arrow-right-line"></i>
+              <div className="allproduct">
+                <button className="text-zinc-700">
+                  See all product
+                  <i className="fa fa-long-arrow-right" aria-hidden="true"></i>
                 </button>
               </div>
             </div>
@@ -185,31 +164,25 @@ function Home() {
         <div className="h-20"></div>
         {/* Best Product Category */}
         <section className="mt-20">
-          <div className="container flex flex-col mx-auto max-w-full sm:flex-row">
-            <div className="flex flex-col w-80 h-40 mx-0 sm:mx- sm:items-start">
-              <span className="capitalize text-4xl font-bold text-zinc-700 ml-7">
-                Sell your designs
-              </span>
-              <div className="allproduct">
-                <button className="text-zinc-700">
-                  See all product{" "}
-                  <i className="fa fa-long-arrow-right" aria-hidden="true"></i>
-                </button>
+          <div className="container flex flex-col items-center justify-center mx-auto max-w-full">
+            <div className="flex flex-col items-center justify-center">
+              <div className="flex items-center w-80 text-center">
+                <span className="capitalize text-3xl font-bold text-zinc-700 ml-7">
+                  Sell your Designs
+                </span>
               </div>
             </div>
-            <div className="container flex flex-col items-end overflow-hidden productadjust sm:w-180 sm:mx-auto ">
+            <div className="container flex flex-col items-end overflow-hidden productadjust sm:w-180 sm:mx-auto mt-7">
               <div className="flex flex-row space-x-2">
                 <img src={img1} className="w-40 h-30" alt="" />
                 <img src={img2} className="w-40 h-30" alt="" />
                 <img src={img3} className="w-40 h-30" alt="" />
                 <img src={img4} className="w-40 h-30" alt="" />
               </div>
-              <div className="arrows space-y-3 space-x-4">
-                <button>
-                  <i className="ri-arrow-left-line"></i>
-                </button>
-                <button>
-                  <i className="ri-arrow-right-line"></i>
+              <div className="allproduct">
+                <button className="text-zinc-700">
+                  <Link to="/allProducts">See all product</Link>
+                  <i className="fa fa-long-arrow-right" aria-hidden="true"></i>
                 </button>
               </div>
             </div>
