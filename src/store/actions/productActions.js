@@ -1,34 +1,59 @@
 import {
-    ALL_PRODUCT_REQUEST,
-    ALL_PRODUCT_SUCCESS,
-    ALL_PRODUCT_FAIL,
-} from "../constants/productConstants"
+  ALL_PRODUCT_REQUEST,
+  ALL_PRODUCT_SUCCESS,
+  ALL_PRODUCT_FAIL,
+  SINGLE_PRODUCT_REQUEST,
+  SINGLE_PRODUCT_FAIL,
+  SINGLE_PRODUCT_SUCCESS,
+} from "../constants/productConstants";
 
-import axiosInstance from "../../api/axios"
+import axiosInstance from "../../api/axios";
 
 //Fetch All Products
-export const getProducts = (id) => async (dispatch, getState) => {
-    try {
-        dispatch({
-            type: ALL_PRODUCT_REQUEST,
-        })
-        const {
-            getProduct: { productInfo },
-        } = getState()
+export const getAllProducts = () => async dispatch => {
+  try {
+    dispatch({
+      type: ALL_PRODUCT_REQUEST,
+    });
 
-        const { data } = await axiosInstance().get(`/products/getAllProducts`)
+    const { data } = await axiosInstance().get(`/products/getAllProducts`);
 
-        dispatch({
-            type: ALL_PRODUCT_SUCCESS,
-            payload: data,
-        })
-    } catch (error) {
-        dispatch({
-            type: ALL_PRODUCT_FAIL,
-            payload:
-                error.response && error.response.data.message
-                    ? error.response.data.message
-                    : error.message,
-        })
-    }
-}
+    dispatch({
+      type: ALL_PRODUCT_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: ALL_PRODUCT_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+//Get Single Product
+export const getproductById = single => async dispatch => {
+  try {
+    dispatch({
+      type: SINGLE_PRODUCT_REQUEST,
+    });
+
+    const { data } = await axiosInstance().get(
+      `/products/getProductByID/${single}`
+    );
+
+    dispatch({
+      type: SINGLE_PRODUCT_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: SINGLE_PRODUCT_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};

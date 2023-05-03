@@ -36,7 +36,7 @@ const Navbar = () => {
     }
 
     const userDetails = useSelector((state) => state.userDetails)
-    const { user, error } = userDetails
+    const { user } = userDetails
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -52,7 +52,9 @@ const Navbar = () => {
                 <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-80">
                         {/* Logo */}
-                        <h1 className="font-bold">STee</h1>
+                        <Link to="/">
+                            <h1 className="font-bold cursor-pointer">STee</h1>
+                        </Link>
                         {/* left Menu */}
                         <div className="hidden lg:flex font-bold space-x-14">
                             <Link

@@ -1,4 +1,8 @@
 import {
+    ADMIN_DETAILS_SUCCESS,
+    ADMIN_LOGIN_FAIL,
+    ADMIN_LOGIN_REQUEST,
+    ADMIN_LOGIN_SUCCESS,
     DELETE_ADMIN_FAIL,
     DELETE_ADMIN_START,
     DELETE_ADMIN_SUCCESS,
@@ -20,6 +24,41 @@ import {
 } from "../constants/adminConstants"
 import axiosInstance from "../../api/axios"
 import { toast } from "react-toastify"
+
+export const adminLogin = (email, password) => async (dispatch) => {
+    try {
+        dispatch({
+            type: ADMIN_LOGIN_REQUEST,
+        })
+
+        const { data } = await axiosInstance().post("/admins/loginAdmin", {
+            email,
+            password,
+        })
+
+        toast.success("Login Suuccessfull.")
+
+        dispatch({
+            type: ADMIN_LOGIN_SUCCESS,
+            payload: data,
+        })
+
+        dispatch({
+            type: ADMIN_DETAILS_SUCCESS,
+            payload: data,
+        })
+
+        localStorage.setItem("userInfo", JSON.stringify(data))
+    } catch (error) {
+        dispatch({
+            type: ADMIN_LOGIN_FAIL,
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message,
+        })
+    }
+}
 
 export const fetchAllUsers = () => async (dispatch) => {
     try {

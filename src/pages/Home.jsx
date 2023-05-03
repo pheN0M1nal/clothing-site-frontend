@@ -17,6 +17,12 @@ import { Link } from "react-router-dom";
 function Home() {
   return (
     <>
+      <div className="flex items-center justify-center h-72 text-2xl">
+        {" "}
+        This application is in DEVELOPMENT. Sorry for the disturbance but you
+        can use it.
+      </div>
+
       <div className="container flex flex-col min-w-full">
         {/* First Section: Main heading with search bar and Picture */}
         <section className="search">
@@ -37,7 +43,7 @@ function Home() {
                     className="h-14 ml-4 items-center focus:outline-none placeholder:text-zinc-700 transition-all"
                     placeholder="Search product here"
                   />
-                  <div className="inline ml-3 py-2 px-3 rounded-md search searchbtn">
+                  <div className="inline ml-12 py-2 px-3 rounded-md search searchbtn">
                     <button className="text-zinc-700">Search</button>
                   </div>
                 </form>
@@ -200,10 +206,10 @@ function Home() {
               </div>
               <div className="arrows space-y-3 space-x-4">
                 <button>
-                  <i class="ri-arrow-left-line"></i>
+                  <i className="ri-arrow-left-line"></i>
                 </button>
                 <button>
-                  <i class="ri-arrow-right-line"></i>
+                  <i className="ri-arrow-right-line"></i>
                 </button>
               </div>
             </div>

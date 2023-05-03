@@ -1,4 +1,12 @@
 import {
+    ADMIN_DETAILS_FAIL,
+    ADMIN_DETAILS_REQUEST,
+    ADMIN_DETAILS_RESET,
+    ADMIN_DETAILS_SUCCESS,
+    ADMIN_LOGIN_FAIL,
+    ADMIN_LOGIN_REQUEST,
+    ADMIN_LOGIN_SUCCESS,
+    ADMIN_LOGOUT,
     DELETE_ADMIN_FAIL,
     DELETE_ADMIN_START,
     DELETE_ADMIN_SUCCESS,
@@ -73,6 +81,40 @@ export const usersReducer = (state = { users: [] }, action) => {
                 error: action.payload,
             }
 
+        default:
+            return state
+    }
+}
+
+// admin-login
+export const adminLoginReducer = (state = {}, action) => {
+    switch (action.type) {
+        case ADMIN_LOGIN_REQUEST:
+            return { loading: true }
+        case ADMIN_LOGIN_SUCCESS:
+            return { loading: false, adminInfo: action.payload }
+        case ADMIN_LOGIN_FAIL:
+            return { loading: false, error: action.payload }
+        case ADMIN_LOGOUT:
+            return { loading: false, adminInfo: {} }
+        default:
+            return state
+    }
+}
+
+//admin-details
+export const adminDetailsReducer = (state = { user: {} }, action) => {
+    switch (action.type) {
+        case ADMIN_DETAILS_REQUEST:
+            return { ...state, loading: true }
+        case ADMIN_DETAILS_SUCCESS:
+            return { loading: false, user: action.payload }
+        case ADMIN_DETAILS_FAIL:
+            return { loading: false, error: action.payload }
+        case ADMIN_DETAILS_RESET:
+            return { loading: false, adminInfo: {} }
+        case ADMIN_LOGOUT:
+            return { loading: false, adminInfo: {} }
         default:
             return state
     }

@@ -1,6 +1,6 @@
 import React from "react";
 
-const PaymentDetails = () => {
+const PaymentDetails = ({ totalbill, placeOrder }) => {
   return (
     <>
       <div className="absolute top-[400px] text-zinc-300 text-xs w-64">
@@ -8,25 +8,28 @@ const PaymentDetails = () => {
           {/* Subtotal */}
           <div className="flex justify-between">
             <span>Subtotal</span>
-            <span>$1,668</span>
+            <span>${totalbill}</span>
           </div>
           {/* Shipping */}
           <div className="flex justify-between">
             <span>Shipping</span>
-            <span>$4</span>
+            <span>free</span>
           </div>
           {/* Tax */}
           <div className="flex justify-between">
             <span>Total(Tax incl.)</span>
-            <span>$1,672</span>
+            <span>${totalbill}</span>
           </div>
           {/* Checkout Buttons */}
-          <div className="flex flex-row justify-between text-zinc-600 text-sm search p-3 rounded-lg">
+          <div
+            className="flex flex-row justify-between text-zinc-600 text-sm search p-3 rounded-lg cursor-pointer"
+            onClick={() => placeOrder(totalbill)}
+          >
             {/* Total Amount To be Paid */}
-            <span>$1,672</span>
+            <span>${totalbill}</span>
             <div className="flex items-center space-x-2 ">
               <button>Checkout</button>
-              <i class="ri-arrow-right-line"></i>
+              <i className="ri-arrow-right-line"></i>
             </div>
           </div>
         </div>
