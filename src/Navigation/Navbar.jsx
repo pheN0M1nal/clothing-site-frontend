@@ -5,17 +5,32 @@ import { Link, useNavigate } from "react-router-dom"
 import "remixicon/fonts/remixicon.css"
 
 import { logout } from "../store/actions/userActions"
-// const btn = document.getElementById('menu-btn')
-// const menu = document.getElementById('menu')
-
+import { logo } from "../assets/svg/logo"
 const Navbar = () => {
+    let showMenu = false
+
     //Toggle Mobile Menu
     const onClick = () => {
+        showMenu = !showMenu
+        toggleMenu()
+    }
+
+    document.addEventListener("click", (e) => {
+        if (showMenu && e.target.closest("#menu")) {
+            showMenu = false
+            toggleMenu()
+        }
+    })
+
+    function toggleMenu() {
         var btn = document.getElementById("menu-btn")
         var menu = document.getElementById("menu")
         btn.classList.toggle("open")
-        menu.classList.toggle("flex")
-        menu.classList.toggle("hidden")
+        if (showMenu) {
+            menu.classList.remove("hidden")
+        } else if (!showMenu) {
+            menu.classList.add("hidden")
+        }
     }
 
     const drop = () => {
@@ -48,15 +63,20 @@ const Navbar = () => {
 
     return (
         <>
-            <nav className="container mx-auto p-5 max-w-full subcateg">
+            <nav className="container mx-auto p-5 subcateg">
                 <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-80">
                         {/* Logo */}
-                        <Link to="/">
-                            <h1 className="font-bold cursor-pointer">STee</h1>
-                        </Link>
+                        <div className="flex flex-row items-center justify-center space-x-1">
+                            <span>{logo()}</span>
+                            <Link to="/">
+                                <h1 className="font-bold cursor-pointer">
+                                    STee
+                                </h1>
+                            </Link>
+                        </div>
                         {/* left Menu */}
-                        <div className="hidden lg:flex font-bold space-x-14">
+                        <div className="hidden lg:flex font-bold space-x-14 text-sm">
                             <Link
                                 to="/"
                                 className="text-zinc-700 hover:text-veryDarkViolet"
@@ -140,7 +160,7 @@ const Navbar = () => {
                                     to="/sign-in"
                                     className="text-zinc-700 hover:text-veryDarkViolet"
                                 >
-                                    SignIn/SignUp
+                                    Login
                                 </Link>
                             )}
                         </div>
@@ -157,6 +177,7 @@ const Navbar = () => {
                     </button>
                 </div>
                 {/* Mobile View */}
+                {/* {showMenu && ( */}
                 <div
                     id="menu"
                     className="absolute hidden p-6 left-6 right-6 top-20 z-40 bg-white"
@@ -200,7 +221,6 @@ const Navbar = () => {
                                             </Link>
 
                                             <a
-                                                href="#"
                                                 className="text-gray-700 block px-4 py-2 text-sm"
                                                 onClick={logoutHandler}
                                             >
@@ -214,12 +234,13 @@ const Navbar = () => {
                                     to="/sign-in"
                                     className="text-zinc-700 hover:text-veryDarkViolet"
                                 >
-                                    SignIn/SignUp
+                                    Login
                                 </Link>
                             )}
                         </div>
                     </div>
                 </div>
+                {/* )} */}
             </nav>
         </>
     )

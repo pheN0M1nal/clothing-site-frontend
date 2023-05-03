@@ -17,33 +17,27 @@ import { Link } from "react-router-dom";
 function Home() {
   return (
     <>
-      <div className="flex items-center justify-center h-72 text-2xl">
-        {" "}
-        This application is in DEVELOPMENT. Sorry for the disturbance but you
-        can use it.
-      </div>
-
       <div className="container flex flex-col min-w-full">
         {/* First Section: Main heading with search bar and Picture */}
         <section className="search">
-          <div className="container flex flex-col mx-0 sm:mx-auto sm:items-start">
+          <div className="container flex flex-col sm:mx-auto sm:items-start search">
             {/* Main Heading with search bar */}
-            <div className="flex flex-col w-80 h-80 search">
-              <span className="capitalize text-4xl font-bold text-zinc-700 mt-5">
+            <div className="flex flex-col w-72 sm:w-80 h-80 search mx-7">
+              <span className="capitalize text-4xl font-bold text-zinc-700 mt-5 w-auto">
                 Create & Wear on demand
               </span>
-              <p className="mt-5 text-zinc-700">
+              <p className="mt-5 text-zinc-700 w-auto">
                 Create & sell custom products with your designs, we'll print and
                 ship them to your customers
               </p>
-              <div className="flex flex-row mt-5 rounded-lg shadow-2xl bg-white">
+              <div className="flex flex-row mt-5 w-[275px] sm:w-auto rounded-lg shadow-2xl bg-white">
                 <form action="">
                   <input
                     type="email"
-                    className="h-14 ml-4 items-center focus:outline-none placeholder:text-zinc-700 transition-all"
+                    className="h-14 ml-1 sm:ml-4 items-center focus:outline-none placeholder:text-zinc-700 transition-all"
                     placeholder="Search product here"
                   />
-                  <div className="inline ml-12 py-2 px-3 rounded-md search searchbtn">
+                  <div className="inline ml-3 sm:ml-12 py-2 px-3 rounded-md search searchbtn">
                     <button className="text-zinc-700">Search</button>
                   </div>
                 </form>
@@ -53,32 +47,25 @@ function Home() {
         </section>
         {/* Best Product Category */}
         <section className="mt-20">
-          <div className="container flex flex-col mx-auto max-w-full sm:flex-row">
-            <div className="flex flex-col w-80 h-40 mx-0 sm:items-start">
-              <span className="capitalize text-4xl font-bold text-zinc-700 ml-7">
-                Best Product Category
-              </span>
-              <div className="allproduct">
-                <button className="text-zinc-700">
-                  <Link to="/allProducts">See all product</Link>
-                  <i className="fa fa-long-arrow-right" aria-hidden="true"></i>
-                </button>
+          <div className="container flex flex-col items-center justify-center w-80 sm:max-w-full">
+            <div className="flex flex-col items-center justify-center">
+              <div className="flex items-center w-80 text-center">
+                <span className="capitalize text-3xl font-bold text-zinc-700 ml-7">
+                  Best Product Category
+                </span>
               </div>
             </div>
-            <div className="container flex flex-col items-end overflow-hidden productadjust sm:w-180 sm:mx-auto ">
+            <div className="container flex flex-col items-end overflow-hidden productadjust sm:w-180 sm:mx-auto mt-7">
               <div className="flex flex-row space-x-2">
                 <img src={img1} className="w-40 h-30" alt="" />
                 <img src={img2} className="w-40 h-30" alt="" />
                 <img src={img3} className="w-40 h-30" alt="" />
                 <img src={img4} className="w-40 h-30" alt="" />
               </div>
-              <div className="arrows space-y-3 space-x-4">
-                <button>
-                  {/* <i className="fa fa-long-arrow-left" aria-hidden="true"></i> */}
-                  <i className="ri-arrow-left-line"></i>
-                </button>
-                <button>
-                  <i className="ri-arrow-right-line"></i>
+              <div className="">
+                <button className="text-zinc-700">
+                  <Link to="/allProducts">See all product</Link>
+                  <i className="fa fa-long-arrow-right" aria-hidden="true"></i>
                 </button>
               </div>
             </div>
@@ -108,15 +95,15 @@ function Home() {
         {/*Sub Categories button*/}
         <div className="flex">
           <div className="flex flex-col items-center space-y-6 space-x-0 subcateg mx-auto text-zinc-700 font-bold sm:flex-row sm:space-x-16 sm:space-y-0">
-            <div className="flex flex-col w-52 h-52 shadow-2xl rounded-2xl space-y-2 items-center justify-center mx-auto ">
+            <div className="flex flex-col w-52 h-52 shadow-2xl rounded-2xl space-y-2 items-center justify-center mx-auto subcategRes">
               <div className="">{sweaterSvg()}</div>
               <div>Sweater Custom</div>
             </div>
-            <div className="flex flex-col w-52 h-52 bg-zinc-700 shadow-2xl rounded-2xl space-y-2 items-center justify-center mx-auto">
+            <div className="flex flex-col w-52 h-52 bg-zinc-700 shadow-2xl rounded-2xl space-y-2 items-center justify-center mx-auto subcategRes">
               <div>{tShirtsvg()}</div>
               <div className="text-white">T-Shirt Custom</div>
             </div>
-            <div className="flex flex-col w-52 h-52 shadow-2xl rounded-2xl space-y-2 items-center justify-center mx-auto">
+            <div className="flex flex-col w-52 h-52 shadow-2xl rounded-2xl space-y-2 items-center justify-center mx-auto subcategRes">
               <div>{jacketsvg()}</div>
               <div>Jacket Custom</div>
             </div>
@@ -131,12 +118,6 @@ function Home() {
             </span>
           </div>
           <div className="container flex flex-col mx-auto max-w-full sm:flex-row">
-            <div className="allproduct">
-              <button className="text-zinc-700">
-                See all product{" "}
-                <i className="fa fa-long-arrow-right" aria-hidden="true"></i>
-              </button>
-            </div>
             <div className="container flex flex-col items-end overflow-hidden productadjust sm:w-180 sm:mx-auto ">
               <div className="flex flex-row space-x-2">
                 <img src={img1} className="w-40 h-30" alt="" />
@@ -144,12 +125,10 @@ function Home() {
                 <img src={img3} className="w-40 h-30" alt="" />
                 <img src={img4} className="w-40 h-30" alt="" />
               </div>
-              <div className="arrows space-y-3 space-x-4">
-                <button>
-                  <i className="ri-arrow-left-line"></i>
-                </button>
-                <button>
-                  <i className="ri-arrow-right-line"></i>
+              <div className="">
+                <button className="text-zinc-700">
+                  See all product
+                  <i className="fa fa-long-arrow-right" aria-hidden="true"></i>
                 </button>
               </div>
             </div>
@@ -185,31 +164,25 @@ function Home() {
         <div className="h-20"></div>
         {/* Best Product Category */}
         <section className="mt-20">
-          <div className="container flex flex-col mx-auto max-w-full sm:flex-row">
-            <div className="flex flex-col w-80 h-40 mx-0 sm:mx- sm:items-start">
-              <span className="capitalize text-4xl font-bold text-zinc-700 ml-7">
-                Sell your designs
-              </span>
-              <div className="allproduct">
-                <button className="text-zinc-700">
-                  See all product{" "}
-                  <i className="fa fa-long-arrow-right" aria-hidden="true"></i>
-                </button>
+          <div className="container flex flex-col items-center justify-center mx-auto w-80 sm:max-w-full">
+            <div className="flex flex-col items-center justify-center">
+              <div className="flex items-center justify-center w-80 text-center">
+                <span className="capitalize text-3xl font-bold text-zinc-700 ml-7">
+                  Sell your Designs
+                </span>
               </div>
             </div>
-            <div className="container flex flex-col items-end overflow-hidden productadjust sm:w-180 sm:mx-auto ">
+            <div className="container flex flex-col items-center productadjust sm:w-180 sm:mx-auto mt-7">
               <div className="flex flex-row space-x-2">
-                <img src={img1} className="w-40 h-30" alt="" />
+                {/* <img src={img1} className="w-40 h-30" alt="" />
                 <img src={img2} className="w-40 h-30" alt="" />
                 <img src={img3} className="w-40 h-30" alt="" />
-                <img src={img4} className="w-40 h-30" alt="" />
+                <img src={img4} className="w-40 h-30" alt="" /> */}
               </div>
-              <div className="arrows space-y-3 space-x-4">
-                <button>
-                  <i className="ri-arrow-left-line"></i>
-                </button>
-                <button>
-                  <i className="ri-arrow-right-line"></i>
+              <div className="">
+                <button className="text-zinc-700">
+                  <Link to="/allProducts">See all product</Link>
+                  <i className="fa fa-long-arrow-right" aria-hidden="true"></i>
                 </button>
               </div>
             </div>
