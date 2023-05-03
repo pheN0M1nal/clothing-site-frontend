@@ -5,8 +5,6 @@ const axiosInstance = () => {
         ? JSON.parse(localStorage.getItem("userInfo"))
         : null
 
-    console.log(userInfo?.token)
-
     //
     const axiosInst = axios.create({
         baseURL:
