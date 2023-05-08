@@ -75,13 +75,12 @@ const Cart = () => {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center space-y-6 space-x-0 mx-auto md:flex-row md:space-x-10 md:space-y-0">
+      <div className="flex flex-col items-center justify-center space-y-6 space-x-0 mx-auto lg:flex-row lg:space-x-10 lg:space-y-0 mt-4">
         {/* Left Side Cart */}
         <div>
           {/* Heading + Back Button */}
           <span className="text-zinc-500">
             <Link to="/">
-              {" "}
               <i className="ri-arrow-left-s-line cursor-pointer"></i>Shopping
               Continue
             </Link>
@@ -107,7 +106,7 @@ const Cart = () => {
           )}
         </div>
         {/* Right Side Payment Info */}
-        <div className="w-[290px] h-[450px] bg-zinc-600 rounded-2xl">
+        <div className="flex items-center justify-center w-[290px] h-[450px] bg-zinc-600 rounded-2xl">
           <Bill bill={bill} placeOrder={placeOrder} />
         </div>
       </div>

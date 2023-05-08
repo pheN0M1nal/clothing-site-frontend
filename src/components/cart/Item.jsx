@@ -2,7 +2,14 @@ import "remixicon/fonts/remixicon.css";
 const Item = ({ item, onDelete, onIncrement, onDecrement }) => {
   return (
     <>
-      <div className="flex flex-row items-center justify-center space-x-24 border border-x-[1px] border-t-[1px] border-b-2  border-zinc-300 rounded-md drop-shadow-lg h-14 mx-auto my-3">
+      <div className="flex flex-row items-center justify-center space-x-24 border border-x-[1px] border-t-[1px] border-b-2  border-zinc-300 rounded-md drop-shadow-lg h-20 mx-auto my-3">
+        <div className="mx-2">
+          <img
+            src={item?.productImage}
+            alt="Error in loading..."
+            className="w-16 h-16"
+          />
+        </div>
         <div className="flex flex-col w-[150px] mx-2">
           <h2 className="text-sm">
             {item.productName.substring(0, 15).concat("...")}

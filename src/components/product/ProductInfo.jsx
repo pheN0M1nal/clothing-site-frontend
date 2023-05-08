@@ -38,6 +38,7 @@ const ProductInfo = ({ product }) => {
 
     var data = {
       _id: product._id.concat(activeBtn),
+      productImage: product.image[0],
       productName: product.productName,
       size: activeBtn,
       quantity: actualQty,
@@ -46,16 +47,22 @@ const ProductInfo = ({ product }) => {
       purchaseQty: 1,
     };
 
-    stock < 1 && toast.error("No stock available");
-    flag
+    // loginInfo === null
+    //   ? toast.error("Please login first.")
+    //   : stock < 1
+    //   ? toast.error("No stock available")
+    //   : flag
+    //   ? toast.error("Already in the cart")
+    //   : stock > 1 && dispatch(addToCart(data));
+
+    // For Testing Purpose
+
+    stock < 1
+      ? toast.error("No stock available")
+      : flag
       ? toast.error("Already in the cart")
       : stock > 1 && dispatch(addToCart(data));
   };
-  // const onClick = () => {
-  //   loginInfo === null && toast.error("Please login first.");
-  //   stock < 1 && toast.error("No stock available");
-  //   stock > 1 && loginInfo !== null && dispatch(addToCart(product));
-  // };
 
   const changeStock = (item, index) => {
     setActiveBtn(item);
