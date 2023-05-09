@@ -13,10 +13,7 @@ import { creator1 } from "../assets/svg/creator1";
 import { creator2 } from "../assets/svg/creator2";
 import { creator3 } from "../assets/svg/creator3";
 
-import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
-import { getAllProducts } from "../store/actions/productActions";
 
 import Carousel from "../components/product/Carousel";
 
@@ -63,8 +60,8 @@ function Home() {
           </div>
           <div className="mt-7">
             {/* allProducts Carousel */}
-            {/* <Carousel /> */}
-            <div className="flex flex-col items-center">
+            <Carousel />
+            <div className="flex flex-col items-center mt-8">
               <button className="text-zinc-700">
                 <Link to="/allProducts">See all product</Link>
                 <i className="fa fa-long-arrow-right" aria-hidden="true"></i>

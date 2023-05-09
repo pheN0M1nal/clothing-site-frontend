@@ -1,5 +1,7 @@
 import React from "react";
 import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
@@ -18,10 +20,12 @@ const Carousel = ({ products }) => {
   const displayedProducts = allProducts?.slice(0, 4);
   const settings = {
     dots: true,
-    infinite: true,
+    infinite: false,
     speed: 500,
-    slidesToShow: displayedProducts?.length,
+    slidesToShow: 2,
     slidesToScroll: 1,
+    initialSlide: 1,
+    arrows: true,
   };
   return (
     <Slider {...settings}>
@@ -30,20 +34,18 @@ const Carousel = ({ products }) => {
           <Spinner />
         </div>
       ) : (
-        <>
-          {displayedProducts?.map((product, index) => (
-            <Link to={`/product/${product._id}`} key={product._id}>
-              <div key={product.id}>
-                <h2>{product.name}</h2>
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="w-3/4 h-64"
-                />
-              </div>
-            </Link>
-          ))}
-        </>
+        displayedProducts?.map((product, index) => (
+          <Link to={`/product/${product._id}`} key={product._id}>
+            <div key={product.id}>
+              <h2>{product.name}</h2>
+              <img
+                src={product.image}
+                alt={product.name}
+                className="w-3/4 h-64"
+              />
+            </div>
+          </Link>
+        ))
       )}
     </Slider>
   );

@@ -75,27 +75,28 @@ const Cart = () => {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center space-y-6 space-x-0 mx-auto lg:flex-row lg:space-x-10 lg:space-y-0 mt-4">
+      <div className="cartInfo">
         {/* Left Side Cart */}
-        <div>
-          {/* Heading + Back Button */}
-          <span className="text-zinc-500">
-            <Link to="/">
-              <i className="ri-arrow-left-s-line cursor-pointer"></i>Shopping
-              Continue
-            </Link>
-          </span>
+        <div className="">
+          <div className="flex flex-col items-center w-72 sm:items-start">
+            {/* Heading + Back Button */}
+            <span className="text-zinc-500">
+              <Link to="/">
+                <i className="ri-arrow-left-s-line cursor-pointer"></i>Shopping
+                Continue
+              </Link>
+            </span>
 
-          {/* Heading Bar */}
+            {/* Heading Bar */}
 
-          <div className="bg-zinc-300 h-[0.10rem] w-full mt-5"></div>
-          <div className="mt-2 text-sm">Shopping cart</div>
-          {/* Total Items in Cart */}
-          <span className="text-xs text-zinc-600">
-            You have {items.length} items in your cart
-          </span>
-          {/* Product Lists & Info in Cart */}
-
+            <div className="bg-zinc-300 h-[0.10rem] w-72 sm:w-full mt-5"></div>
+            <div className="mt-2 text-sm">Shopping cart</div>
+            {/* Total Items in Cart */}
+            <span className="text-xs text-zinc-600">
+              You have {items.length} items in your cart
+            </span>
+            {/* Product Lists & Info in Cart */}
+          </div>
           {items.length > 0 && (
             <Items
               items={items}
@@ -106,7 +107,7 @@ const Cart = () => {
           )}
         </div>
         {/* Right Side Payment Info */}
-        <div className="flex items-center justify-center w-[290px] h-[450px] bg-zinc-600 rounded-2xl">
+        <div className="flex items-center justify-center  w-[288px] h-[450px] bg-zinc-600 rounded-2xl">
           <Bill bill={bill} placeOrder={placeOrder} />
         </div>
       </div>
