@@ -22,9 +22,9 @@ function Home() {
     <>
       <div className="flex flex-col min-w-full">
         {/* First Section: Main heading with search bar and Picture */}
-        <section className="bg-slate-600">
-          <div className="flex flex-col sm:mx-auto sm:items-start bg-slate-600">
-            <div className="flex flex-col w-72 sm:w-80 h-80 bg-slate-600 mx-14">
+        <section className="bg-slate-600 min-w-[320px] sm:w-full ">
+          <div className="flex flex-col sm:mx-auto items-start bg-slate-600 ">
+            <div className="flex flex-col sm:w-80 h-80 bg-slate-600 ml-6 sm:ml-14">
               <span className="capitalize text-4xl font-bold text-white mt-5 w-auto">
                 Create & Wear on demand
               </span>
@@ -58,10 +58,11 @@ function Home() {
             </span>
             {/* </div> */}
           </div>
-          <div className="mt-7">
+          <div className="mt-7 min-w-[310px] sm:w-full">
             {/* allProducts Carousel */}
             <Carousel />
-            <div className="flex flex-col items-center mt-8">
+
+            <div className="flex flex-col items-center mt-11">
               <button className="text-zinc-700">
                 <Link to="/allProducts">See all product</Link>
                 <i className="fa fa-long-arrow-right" aria-hidden="true"></i>

@@ -9,7 +9,7 @@ import SignInAdmin from "./pages/StateManagement/SignInAdmin";
 import SignUp from "./pages/StateManagement/SignUp";
 import ForgotPassword from "./pages/StateManagement/ForgotPassword";
 import Home from "./pages/Home";
-import Navbar from "./Navigation/Navbar";
+import NavBar from "./Navigation/Navbar";
 import Footer from "./Navigation/Footer";
 import Profile from "./pages/StateManagement/Profile";
 import AllProducts from "./pages/Products/AllProducts";
@@ -29,7 +29,7 @@ function App() {
     <>
       <ToastContainer />
       <Router>
-        <Navbar />
+        <NavBar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />

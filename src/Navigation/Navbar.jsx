@@ -78,7 +78,7 @@ const Navbar = () => {
   return (
     <>
       <div className="bg-gray-300 min-w-[320px] sm:w-full">
-        <nav className="mx-8 p-5  nav-bar">
+        <nav className="ml-2 sm:ml-8 p-5 nav-bar">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-80">
               {/* Logo */}
