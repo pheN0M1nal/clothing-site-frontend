@@ -1308,6 +1308,14 @@ video {
   width: 280px;
 }
 
+.w-\[310px\] {
+  width: 310px;
+}
+
+.w-\[270px\] {
+  width: 270px;
+}
+
 .min-w-\[320px\] {
   min-width: 320px;
 }
