@@ -3,6 +3,11 @@ import React from "react";
 const Description = ({ descr }) => {
   return (
     <>
+      <div className="flex items-center w-full h-12 text-white bg-slate-600 rounded-t">
+        <div className="mx-7 space-x-8">
+          <span>Description</span>
+        </div>
+      </div>
       <div className="mx-4 space-y-10">{descr}</div>
       <div className="mx-4 w-180 h-64 border"></div>
       <div className="mx-4">

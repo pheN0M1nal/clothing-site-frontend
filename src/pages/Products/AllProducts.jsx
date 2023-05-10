@@ -21,7 +21,7 @@ function AllProducts() {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center space-y-5 max-w-full subcateg">
+      <div className="flex flex-col items-center justify-center space-y-5 max-w-full subcateg mt-6">
         <div className="flex items-center justify-center mx-auto">
           {/* Search Bar */}
           <FilterBar />

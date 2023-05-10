@@ -26,13 +26,13 @@ const ProductView = () => {
         </div>
       ) : (
         <>
-          <div className="flex flex-col items-center justify-center mx-auto space-y-16">
-            <div className="h-[32rem] w-7/12 border border-zinc-300 rounded-lg">
+          <div className="flex flex-col items-center justify-center mx-auto space-y-16 mt-8">
+            <div className="sm:h-[34rem] min-w-[320px] sm:w-3/4 sm:border sm:border-zinc-300 sm:rounded-lg">
               <ProductInfo product={singleProduct} />
             </div>
-            <div className="w-7/12 border border-zinc-300 rounded-lg">
+            {/* <div className="w-3/4 border border-zinc-300 rounded-lg">
               <DetailInfo descr={singleProduct?.description} />
-            </div>
+            </div> */}
           </div>
         </>
       )}

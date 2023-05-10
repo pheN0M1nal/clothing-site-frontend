@@ -71,9 +71,9 @@ const ProductInfo = ({ product }) => {
 
   return (
     <>
-      <div className="flex">
+      <div className="flex flex-col space-y-10 sm:flex-row sm:space-x-16">
         {/* Image  and Add to Cart Button*/}
-        <div className="flex items-center justify-center h-[19.3rem] w-[19.3rem] border border-zinc-300 mx-4 my-4 rounded-lg ">
+        <div className="flex items-center justify-center h-[19rem] min-w-[19rem] mx-auto border border-zinc-300 sm:mx-4 sm:my-4 rounded-lg ">
           <img
             src={product.image && product.image[0]}
             alt=""
@@ -81,7 +81,7 @@ const ProductInfo = ({ product }) => {
           />
         </div>
         {/* Product Info */}
-        <div className="flex flex-col mx-4 my-4 space-y-2">
+        <div className="flex flex-col items-start mx-8 my-4 space-y-2 w-72">
           {stock > 0 && (
             <div className="flex items-center text-xs text-lime-500">
               <i className="ri-check-line"></i>
@@ -94,11 +94,11 @@ const ProductInfo = ({ product }) => {
               <span className="">Out of stock</span>
             </div>
           )}
-          <span className="w-96">
+          <span className="w-72 sm:w-96">
             Mens Long Sleeve T-shirt Cotton Base Layer Slim Muscle
           </span>
 
-          <div className="flex space-x-8 text-zinc-400">
+          <div className="flex space-x-2 sm:space-x-8 text-zinc-400">
             {/* Rating Starts*/}
             <div className="flex fex-row items-end space-x-2">
               <DynamicStar
@@ -152,7 +152,7 @@ const ProductInfo = ({ product }) => {
             <span className="text-zinc-400 w-40">Price:</span>
             <span className="text-zinc-600 w-44">Negotiable</span>
           </div>
-          <div className="w-96 h-[0.1rem] bg-zinc-300"></div>
+          <div className="w-[300px] sm:w-96 h-[0.1rem] bg-zinc-300"></div>
 
           <div className="flex">
             <span className="text-zinc-400 w-40">Type:</span>
@@ -167,29 +167,30 @@ const ProductInfo = ({ product }) => {
             <span className="text-zinc-600  w-44">Modern nice</span>
           </div>
 
-          <div className="w-96 h-[0.1rem] bg-zinc-300"></div>
+          <div className="w-[300px] sm:w-96 h-[0.1rem] bg-zinc-300"></div>
           <div className="flex">
             <span className="text-zinc-400 w-40">Customization:</span>
-            <span className="text-zinc-600 w-44">
+            <span className="text-zinc-600 w-36 sm:w-44">
               Customized logo and design custom packages
             </span>
           </div>
           <div className="flex">
             <span className="text-zinc-400 w-40">Protection:</span>
-            <span className="text-zinc-600 w-44">Refund Policy</span>
+            <span className="text-zinc-600 w-36 sm:w-44">Refund Policy</span>
           </div>
           <div className="flex">
             <span className="text-zinc-400 w-40">Warranty:</span>
-            <span className="text-zinc-600 w-44">2 years full warranty</span>
+            <span className="text-zinc-600 w-36 sm:w-44">
+              2 years full warranty
+            </span>
           </div>
-
-          <div className="w-96 h-[0.1rem] bg-zinc-300"></div>
+          <div className="w-[300px] sm:w-96 h-[0.1rem] bg-zinc-300"></div>
         </div>
         {/* Shipping Details and Supplier Info */}
         <div className="flex flex-col">
-          <div className="flex flex-col w-80 h-[21rem] border border-zinc-300 rounded-lg m-4">
+          <div className="flex flex-col items-center justify-center mx-auto w-72 sm:w-80 h-[21rem] border border-zinc-300 rounded-lg m-4">
             {/* Supplier Info */}
-            <div className="flex w-96 h-20 m-2">
+            <div className="flex w-72 sm:w-96 h-20 m-2">
               <i className="ri-registered-line fa-3x"></i>
               <div className="flex flex-col text-zinc-500">
                 <span>Supplier</span>
@@ -213,21 +214,23 @@ const ProductInfo = ({ product }) => {
             </div>
             <div className="flex flex-col items-center space-y-3">
               {/* Inquiry Button */}
-              <button className="w-[18.5rem] h-10 text-white bg-blue-600 rounded-md">
+              <button className="w-[275px] sm:w-[18.5rem] h-10 text-[#D2FF28] bg-slate-600 rounded-md hover:bg-slate-800">
                 Send inquiry
               </button>
-              <button className="w-[18.5rem] h-10 text-blue-600 border border-zinc-400 rounded-md">
+              <button className="w-[275px] sm:w-[18.5rem] h-10 text-zinc-600 border border-zinc-400 rounded-md hover:bg-slate-600 hover:text-white">
                 Seller's profile
               </button>
             </div>
           </div>
           {/* Add to cart Button */}
-          <button
-            onClick={onClick}
-            className="w-[18.5rem] h-10 text-white bg-blue-600 rounded-md ml-7 cursor-pointer"
-          >
-            ADD TO CART
-          </button>
+          <div className="mx-3">
+            <button
+              onClick={onClick}
+              className="w-[275px] sm:w-[18.5rem] h-10 text-[#D2FF28] bg-slate-600 rounded-md ml-7 cursor-pointer hover:bg-slate-800"
+            >
+              ADD TO CART
+            </button>
+          </div>
         </div>
       </div>
     </>
