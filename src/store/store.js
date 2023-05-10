@@ -17,6 +17,7 @@ import {
 import thunk from "redux-thunk";
 import { cartReducer } from "./reducers/cartReducers";
 import { billingReducer } from "./reducers/billingReducer";
+import { createShopReducer } from "./reducers/designerReducers";
 
 const reducer = combineReducers({
   userLogin: userLoginReducer,
@@ -31,6 +32,7 @@ const reducer = combineReducers({
   singleProduct: singleproductReducer,
   cartItems: cartReducer,
   billingInfo: billingReducer,
+  createShop: createShopReducer,
 });
 
 // const bindMiddleware = (middleware) => {

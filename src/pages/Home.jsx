@@ -14,19 +14,21 @@ import { creator2 } from "../assets/svg/creator2";
 import { creator3 } from "../assets/svg/creator3";
 
 import { Link } from "react-router-dom";
+
+import Carousel from "../components/product/Carousel";
+
 function Home() {
   return (
     <>
       <div className="flex flex-col min-w-full">
         {/* First Section: Main heading with search bar and Picture */}
-        <section className="search">
-          <div className="flex flex-col sm:mx-auto sm:items-start search">
-            {/* Main Heading with search bar */}
-            <div className="flex flex-col w-72 sm:w-80 h-80 search mx-14">
-              <span className="capitalize text-4xl font-bold text-zinc-700 mt-5 w-auto">
+        <section className="bg-slate-600 min-w-[320px] sm:w-full ">
+          <div className="flex flex-col sm:mx-auto items-start bg-slate-600 ">
+            <div className="flex flex-col sm:w-80 h-80 bg-slate-600 ml-6 sm:ml-14">
+              <span className="capitalize text-4xl font-bold text-white mt-5 w-auto">
                 Create & Wear on demand
               </span>
-              <p className="mt-5 text-zinc-700 w-auto">
+              <p className="mt-5 text-white w-auto">
                 Create & sell custom products with your designs, we'll print and
                 ship them to your customers
               </p>
@@ -37,32 +39,30 @@ function Home() {
                     className="h-14 ml-1 sm:ml-4 items-center focus:outline-none placeholder:text-zinc-700 transition-all"
                     placeholder="Search product here"
                   />
-                  <div className="inline ml-3 sm:ml-12 py-2 px-3 rounded-md search searchbtn">
-                    <button className="text-zinc-700">Search</button>
+                  <div className="inline ml-3 sm:ml-12 py-2 px-3 rounded-md bg-slate-600 searchbtn">
+                    <button className="text-white">Search</button>
                   </div>
                 </form>
               </div>
             </div>
           </div>
         </section>
+
         {/* Best Product Category */}
         <section className="mt-20">
           {/* <div className="container flex flex-col items-center justify-center mx-auto w-80 sm:max-w-full"> */}
           {/* <div className="flex flex-col items-center justify-center"> */}
           <div className="flex items-center mx-auto w-72">
-            <span className="text-center text-3xl font-bold text-zinc-700">
+            <span className="flex flex-row text-center text-3xl font-bold text-zinc-700">
               Best Product Category
             </span>
             {/* </div> */}
           </div>
-          <div className="flex flex-col items-center justify-center sm:w-180 sm:mx-auto mt-7">
-            <div className="flex">
-              {/* <img src={img1} className="w-40 h-30" alt="" />
-                <img src={img2} className="w-40 h-30" alt="" />
-                <img src={img3} className="w-40 h-30" alt="" />
-                <img src={img4} className="w-40 h-30" alt="" /> */}
-            </div>
-            <div className="">
+          <div className="mt-7 min-w-[310px] sm:w-full">
+            {/* allProducts Carousel */}
+            <Carousel />
+
+            <div className="flex flex-col items-center mt-11">
               <button className="text-zinc-700">
                 <Link to="/allProducts">See all product</Link>
                 <i className="fa fa-long-arrow-right" aria-hidden="true"></i>
@@ -136,31 +136,25 @@ function Home() {
         </section>
         <div className="h-16"></div>
         {/* Featured section*/}
-        <section className="search">
+        <section className="flex flex-col items-center bg-slate-600">
           <div className="flex flex-col items-center">
             {/* heading*/}
-            <div className="flex flex-col space-y-4 text-center mx-auto search">
+            <div className="flex flex-col space-y-4 text-center mx-auto bg-slate-600 text-white">
               <div className="w-80 mx-auto mt-5">
-                <span className="text-3xl text-zinc-700 font-bold">
-                  Featured Creators
-                </span>
+                <span className="text-3xl  font-bold">Featured Creators</span>
               </div>
               <div className="text-center">
                 <span>The top rated creators of our designing community</span>
               </div>
             </div>
           </div>
-        </section>
-        {/*Sub Categories button*/}
-        <div className="flex search">
-          <div className="flex flex-col items-center subcateg mx-auto space-y-6 space-x-0 text-zinc-700 font-bold search categ sm:flex-row sm:h-96 sm:space-x-16 sm:space-y-0 sm:mt-0">
-            <div className="shadow-2xl rounded-2xl mt-5 sm:mt-0">
-              {creator1()}
-            </div>
+          {/*Sub Categories button*/}
+          <div className="flex flex-col items-center subcateg mx-auto space-y-6 space-x-0 text-white font-bold bg-slate-600 categ sm:flex-row sm:h-96 sm:space-x-16 sm:space-y-0 sm:mt-0">
+            <div className="shadow-2xl rounded-2xl sm:mt-0">{creator1()}</div>
             <div className="shadow-xl rounded-2xl">{creator2()}</div>
             <div className="shadow-xl rounded-2xl">{creator3()}</div>
           </div>
-        </div>
+        </section>
         <div className="h-20"></div>
         {/* Best Product Category */}
         <section className="mt-20">
