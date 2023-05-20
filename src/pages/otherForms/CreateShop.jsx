@@ -14,29 +14,37 @@ function CreateShop() {
   });
 
   const { shopName, description } = formData;
-  const navigate = useNavigate();
 
-  const loginInfo = useSelector(state => state.userRegister);
-  const { loading, userInfo } = loginInfo;
+  // const loginInfo = useSelector(state => state.userRegister);
+  // const { loading, userInfo } = loginInfo;
 
-  const dispatch = useDispatch();
-
+  //adding input data to form
   const onChange = async e => {
     setFormData(prevState => ({
       ...prevState,
       [e.target.id]: e.target.value,
     }));
   };
+
+  //Calling Api and sending data
+  const dispatch = useDispatch();
   const onSubmit = e => {
     e.preventDefault();
-    try {
-      dispatch(createShop(formData.shopName, formData.description));
-      toast.success("Shop Created Successfully.");
-      navigate("/profile");
-    } catch (error) {
-      toast.error(error);
-    }
+    dispatch(createShop(formData.shopName, formData.description));
   };
+
+  //Indentifying Api response
+  const { loading, error, shopInfo } = useSelector(state => state.createShop);
+
+  //Api error
+  error && toast.error(error);
+
+  //Navigating to Profile on Success
+  const navigate = useNavigate();
+  if (shopInfo) {
+    toast.sucess("Shop Created Successfully.");
+    navigate("/profile");
+  }
 
   return (
     <>

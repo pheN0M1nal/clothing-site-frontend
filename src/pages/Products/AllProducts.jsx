@@ -21,35 +21,34 @@ function AllProducts() {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center space-y-5 max-w-full subcateg mt-6">
-        <div className="flex items-center justify-center mx-auto">
-          {/* Search Bar */}
-          <FilterBar />
-        </div>
-        {/* Navigation Info */}
-        <div className="absolute left-10 top-24 lg:top-32 w-full text-sm text-zinc-400">
-          Home &gt; Best Product Category &gt; Best Product Category &gt;
-        </div>
-
+      <div className="flex flex-col space-y-5 w-full subcateg mt-6">
         {loading ? (
           <div className="flex items-center justify-center w-full h-96">
             <Spinner />
           </div>
         ) : (
           <>
-            <div className="absolute left-16 top-40 text-sm search">
+            <div className="flex items-center justify-center mx-auto">
+              {/* Search Bar */}
+              <FilterBar />
+            </div>
+            {/* Navigation Info */}
+            <div className="flex items-start text-sm text-zinc-400 mx-12">
+              Home &gt; Best Product Category &gt; Best Product Category &gt;
+            </div>
+            <div className="flex justify-center text-sm text-white bg-slate-600 w-64 mx-12">
               <span>{length} items in Best Product Category</span>
             </div>
 
-            <div className="absolute left-16 top-56 text-sm w-4/5">
-              <div className="flex items-center justify-between">
-                <span className="text-zinc-400 border-collapse border border-blue-300">
-                  3-5 stars
-                </span>
-                <button className="cursor-pointer text-blue-400">
-                  Clear all filter
-                </button>
-              </div>
+            <div className="flex items-center justify-between text-sm mx-12">
+              {/* <div className="flex items-center justify-between"> */}
+              <span className="text-zinc-400 border-collapse border border-blue-300">
+                3-5 stars
+              </span>
+              <button className="cursor-pointer text-blue-400">
+                Clear all filter
+              </button>
+              {/* </div> */}
             </div>
 
             <div className="flex flex-wrap gap-7 items-center justify-center p-40">

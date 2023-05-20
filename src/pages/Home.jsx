@@ -23,7 +23,7 @@ function Home() {
       <div className="flex flex-col min-w-full">
         {/* First Section: Main heading with search bar and Picture */}
         <section className="bg-slate-600 min-w-[320px] sm:w-full ">
-          <div className="flex flex-col sm:mx-auto items-start bg-slate-600 ">
+          <div className="flex flex-col sm:mx-auto items-start bg-slate-600">
             <div className="flex flex-col sm:w-80 h-80 bg-slate-600 ml-6 sm:ml-14">
               <span className="capitalize text-4xl font-bold text-white mt-5 w-auto">
                 Create & Wear on demand

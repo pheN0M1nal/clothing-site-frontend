@@ -187,3 +187,9 @@
 .prev-arrow {
   left: 10px;
 }
+
+@media screen and (max-width: 1150px) and (min-width: 1024px) {
+  .prodInfo {
+    @apply flex-col;
+  }
+}
