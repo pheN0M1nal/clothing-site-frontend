@@ -30,7 +30,7 @@ const ProductView = () => {
             <div className="lg:h-auto sm:w-full lg:w-[95%] sm:border sm:border-zinc-300 sm:rounded-lg">
               <ProductInfo product={singleProduct} />
             </div>
-            <div className="w-[300px] sm:w-full lg:w-[95%] border border-zinc-300 rounded-lg">
+            <div className="w-[300px] sm:w-full lg:w-[80%] border border-zinc-300 rounded-lg">
               <DetailInfo descr={singleProduct?.description} />
             </div>
           </div>

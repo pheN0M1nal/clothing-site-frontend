@@ -17,7 +17,7 @@ const Carousel = ({ products }) => {
   const productsInfo = useSelector(state => state.allProducts);
 
   const { loading, allProducts } = productsInfo;
-  const displayedProducts = allProducts?.filter(product => {
+  const displayedProducts = allProducts?.products?.filter(product => {
     return product.avgRating === 4 || product.avgRating === 5;
   });
 

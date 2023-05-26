@@ -131,7 +131,7 @@ const ProductInfo = ({ product }) => {
                       changeStock(item, index);
                     }}
                     className={`w-20 h-10 cursor-pointer text-center border ${
-                      activeBtn === item ? "bg-lightblue" : ""
+                      activeBtn === item ? "bg-slate-300" : ""
                     }`}
                   >
                     {item}
