@@ -5,7 +5,7 @@ import UserDetails from "./UserDetails";
 const Bill = ({ bill, placeOrder }) => {
   return (
     <>
-      <div className="flex items-center justify-center mx-auto mt-3">
+      <div className="flex flex-col items-center">
         <BillHeader />
         <UserDetails />
         <PaymentDetails totalbill={bill} placeOrder={placeOrder} />

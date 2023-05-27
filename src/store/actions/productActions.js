@@ -18,28 +18,33 @@ import axiosInstance from "../../api/axios"
 import axios from "axios"
 
 //Fetch All Products
-export const getAllProducts = () => async (dispatch) => {
+export const getAllProducts =
+  (keyword = "", pageNumber = 1) =>
+  async dispatch => {
     try {
-        dispatch({
-            type: ALL_PRODUCT_REQUEST,
-        })
+      dispatch({
+        type: ALL_PRODUCT_REQUEST,
+      });
 
-        const { data } = await axiosInstance().get(`/products/getAllProducts`)
+      const { data } = await axiosInstance().get(
+        `/products/getAllProducts?keyword=${keyword}`
+      );
 
-        dispatch({
-            type: ALL_PRODUCT_SUCCESS,
-            payload: data,
-        })
+      dispatch({
+        type: ALL_PRODUCT_SUCCESS,
+        payload: data,
+      });
     } catch (error) {
-        dispatch({
-            type: ALL_PRODUCT_FAIL,
-            payload:
-                error.response && error.response.data.message
-                    ? error.response.data.message
-                    : error.message,
-        })
+      dispatch({
+        type: ALL_PRODUCT_FAIL,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      });
     }
-}
+  };
+
 //Get Single Product
 export const getproductById = (single) => async (dispatch) => {
     try {

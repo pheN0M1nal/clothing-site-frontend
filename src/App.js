@@ -25,7 +25,7 @@ import OrderPlace from "./pages/Products/OrderPlace"
 import Dashboard from "./dashboard/pages/Dashboard"
 import NotFound from "./pages/NotFound"
 import { AddProduct } from "./pages/adminPages/AddProduct"
-
+import CreateShop from "./pages/otherForms/CreateShop"
 function App() {
     return (
         <>
@@ -62,6 +62,7 @@ function App() {
                     <Route path="/sign-up" element={<SignUp />} />
                     <Route path="/order-place" element={<OrderPlace />} />
                     <Route exact path="/admin" element={<AdminDashboard />} />
+                    <Route exact path="/create-shop" element={<CreateShop />} />
                     <Route exact path="*" element={<NotFound />} />
                 </Routes>
                 {/* <Footer /> */}

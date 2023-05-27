@@ -3,7 +3,7 @@ import paypal from "../../assets/images/paypal.png";
 const BillHeader = () => {
   return (
     <>
-      <div className=" text-white flex flex-col items-center space-y-4">
+      <div className="flex flex-col items-center space-y-4 text-white ">
         <span>Payment Details</span>
         {/* Paypal */}
         <div className="flex flex-row items-center space-x-2">

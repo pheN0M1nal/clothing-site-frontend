@@ -10,6 +10,8 @@ import {
     addProductReducer,
 } from "./reducers/productReducers"
 
+import { createShopReducer } from "./reducers/designerReducers"
+
 import {
     usersReducer,
     adminsReducer,
@@ -24,17 +26,21 @@ const reducer = combineReducers({
     userLogin: userLoginReducer,
     userRegister: userRegisterReducer,
     userDetails: userDetailsReducer,
+
     allAdmins: adminsReducer,
     allUsers: usersReducer,
     allDesigners: usersReducer,
     allAdmins: adminsReducer,
     allDesigners: designersReducer,
     allProducts: productDetailReducer,
+
     addedProduct: addProductReducer,
     singleProduct: singleproductReducer,
+
     cartItems: cartReducer,
     billingInfo: billingReducer,
     ratedDesigners: ratedDesignersReducer,
+    createShop: createShopReducer,
 })
 
 // const bindMiddleware = (middleware) => {
