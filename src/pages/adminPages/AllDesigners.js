@@ -7,6 +7,7 @@ import {
 import { Spinner } from "../../components/Spinner"
 import styled from "styled-components"
 import { Link } from "react-router-dom"
+import AdminSubNav from "../../components/AdminSubNav"
 
 const Wrapper = styled.div`
     max-width: 1000px;
@@ -96,9 +97,7 @@ const AllDesigners = () => {
 
     return (
         <Wrapper>
-            <Link to="/admin/allAdmins">All Admins</Link>
-            <Link to="/admin/allUsers">All Users</Link>
-            <Link to="/admin/allDesigners">All Designers</Link>
+            <AdminSubNav />
             <h2>All Designers</h2>
             {loading ? (
                 <Spinner />

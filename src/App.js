@@ -12,7 +12,8 @@ import Home from "./pages/Home"
 import Navbar from "./Navigation/Navbar"
 import Footer from "./Navigation/Footer"
 import Profile from "./pages/StateManagement/Profile"
-import AllProducts from "./pages/Products/AllProducts"
+import Products from "./pages/Products/Products"
+import AllProducts from "./pages/adminPages/AllProducts"
 import ProductView from "./pages/Products/ProductView"
 import Cart from "./pages/Products/Cart"
 import AdminDashboard from "./pages/adminPages/AdminDashboard"
@@ -23,6 +24,7 @@ import Billiing from "./pages/Products/Billiing"
 import OrderPlace from "./pages/Products/OrderPlace"
 import Dashboard from "./dashboard/pages/Dashboard"
 import NotFound from "./pages/NotFound"
+import { AddProduct } from "./pages/adminPages/AddProduct"
 
 function App() {
     return (
@@ -37,7 +39,7 @@ function App() {
                         element={<ForgotPassword />}
                     />
                     <Route path="/profile" element={<Profile />} />
-                    <Route path="/allProducts" element={<AllProducts />} />
+                    <Route path="/allProducts" element={<Products />} />
                     <Route path="/product/:id" element={<ProductView />} />
                     <Route path="/cart" element={<Cart />} />
                     {/* <Route path="/admin" element={<AdminDashboard />} /> */}
@@ -47,16 +49,22 @@ function App() {
                         element={<AllDesigners />}
                     />
                     <Route path="/admin/allAdmins" element={<AllAdmins />} />
+                    <Route path="/admin/addProduct" element={<AddProduct />} />
+
+                    <Route path="/admin/products" element={<AllProducts />} />
+
+                    <Route path="/admin/stats" element={<Dashboard />} />
+
                     <Route path="/billing" element={<Billiing />} />
                     <Route path="/sign-in" element={<SignIn />} />
                     <Route path="/admin-sign-in" element={<SignInAdmin />} />
 
                     <Route path="/sign-up" element={<SignUp />} />
                     <Route path="/order-place" element={<OrderPlace />} />
-                    <Route exact path="/admin" element={<Dashboard />} />
+                    <Route exact path="/admin" element={<AdminDashboard />} />
                     <Route exact path="*" element={<NotFound />} />
                 </Routes>
-                <Footer />
+                {/* <Footer /> */}
             </Router>
         </>
     )
