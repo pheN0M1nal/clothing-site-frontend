@@ -26,6 +26,8 @@ import Dashboard from "./dashboard/pages/Dashboard"
 import NotFound from "./pages/NotFound"
 import { AddProduct } from "./pages/adminPages/AddProduct"
 import CreateShop from "./pages/otherForms/CreateShop"
+import RegisterDeisgner from "./pages/otherForms/RegisterDeisgner"
+
 function App() {
     return (
         <>
@@ -62,6 +64,11 @@ function App() {
                     <Route path="/sign-up" element={<SignUp />} />
                     <Route path="/order-place" element={<OrderPlace />} />
                     <Route exact path="/admin" element={<AdminDashboard />} />
+                    <Route
+                        exact
+                        path="/register-designer"
+                        element={<RegisterDeisgner />}
+                    />
                     <Route exact path="/create-shop" element={<CreateShop />} />
                     <Route exact path="*" element={<NotFound />} />
                 </Routes>

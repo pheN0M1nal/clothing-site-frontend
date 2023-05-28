@@ -125,6 +125,8 @@ export const logout = () => async (dispatch) => {
             type: USER_LOGOUT,
         })
 
+        toast.success("Logged out successfully.")
+
         window.localStorage.removeItem("userInfo")
     } catch (error) {}
 }

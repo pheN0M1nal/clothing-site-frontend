@@ -10,7 +10,10 @@ import {
     addProductReducer,
 } from "./reducers/productReducers"
 
-import { createShopReducer } from "./reducers/designerReducers"
+import {
+    createShopReducer,
+    registerDesignerReducer,
+} from "./reducers/designerReducers"
 
 import {
     usersReducer,
@@ -36,6 +39,7 @@ const reducer = combineReducers({
 
     addedProduct: addProductReducer,
     singleProduct: singleproductReducer,
+    registerDesigner: registerDesignerReducer,
 
     cartItems: cartReducer,
     billingInfo: billingReducer,
