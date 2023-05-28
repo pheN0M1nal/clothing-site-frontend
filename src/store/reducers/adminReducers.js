@@ -25,6 +25,9 @@ import {
     FETCH_ALL_USER_FAIL,
     FETCH_ALL_USER_REQUEST,
     FETCH_ALL_USER_SUCCESS,
+    FETCH_RATED_DESIGNERS_FAIL,
+    FETCH_RATED_DESIGNERS_REQUEST,
+    FETCH_RATED_DESIGNERS_SUCCESS,
 } from "../constants/adminConstants"
 
 //Get All admins
@@ -147,6 +150,26 @@ export const designersReducer = (state = { designers: [] }, action) => {
                 designers: state.designers,
                 error: action.payload,
             }
+
+        default:
+            return state
+    }
+}
+
+// RATED DESIGNERS
+export const ratedDesignersReducer = (state = {}, action) => {
+    switch (action.type) {
+        case FETCH_RATED_DESIGNERS_REQUEST:
+            return { loading: true }
+        case FETCH_RATED_DESIGNERS_SUCCESS:
+            return {
+                loading: false,
+                maxRated: action.payload.maxRatingDesigner,
+                maxSales: action.payload.maxSalesDesigner,
+                maxProductsSales: action.payload.maxProductSalesDesigner,
+            }
+        case FETCH_RATED_DESIGNERS_FAIL:
+            return { loading: false, error: action.payload }
 
         default:
             return state

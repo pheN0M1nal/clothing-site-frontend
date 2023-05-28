@@ -4,9 +4,11 @@ import {
     fetchAllAdmins,
     fetchAllDesigners,
     fetchAllUsers,
+    fetchRatedDesigners,
 } from "../../store/actions/adminActions"
 
 import styled from "styled-components"
+import Dashboard from "../../dashboard/pages/Dashboard"
 import { Link } from "react-router-dom"
 
 const Wrapper = styled.div`
@@ -83,18 +85,17 @@ const Wrapper = styled.div`
     }
 `
 const AdminDashboard = () => {
-    // const dispatch = useDispatch()
-    // useEffect(() => {
-    //     dispatch(fetchAllAdmins())
-    //     dispatch(fetchAllDesigners())
-    //     dispatch(fetchAllUsers())
-    // }, [])
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(fetchAllAdmins())
+        dispatch(fetchAllDesigners())
+        dispatch(fetchAllUsers())
+        dispatch(fetchRatedDesigners())
+    }, [])
     return (
         <div>
             {" "}
-            <Link to="/admin/allAdmins">All Admins</Link>
-            <Link to="/admin/allUsers">All Users</Link>
-            <Link to="/admin/allDesigners">All Designers</Link>
+            <Dashboard />
         </div>
     )
 }
