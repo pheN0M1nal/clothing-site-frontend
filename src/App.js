@@ -72,7 +72,7 @@ function App() {
                     <Route exact path="/create-shop" element={<CreateShop />} />
                     <Route exact path="*" element={<NotFound />} />
                 </Routes>
-                {/* <Footer /> */}
+                <Footer />
             </Router>
         </>
     )

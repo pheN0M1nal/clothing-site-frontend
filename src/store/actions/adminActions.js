@@ -27,6 +27,10 @@ import {
 } from "../constants/adminConstants"
 import axiosInstance from "../../api/axios"
 import { toast } from "react-toastify"
+import {
+    USER_DETAILS_SUCCESS,
+    USER_LOGIN_SUCCESS,
+} from "../constants/userConstants"
 
 export const adminLogin = (email, password) => async (dispatch) => {
     try {
@@ -42,12 +46,13 @@ export const adminLogin = (email, password) => async (dispatch) => {
         toast.success("Login Suuccessfull.")
 
         dispatch({
-            type: ADMIN_LOGIN_SUCCESS,
+            type: USER_LOGIN_SUCCESS,
             payload: data,
         })
+        localStorage.setItem("token", data.token)
 
         dispatch({
-            type: ADMIN_DETAILS_SUCCESS,
+            type: USER_DETAILS_SUCCESS,
             payload: data,
         })
 
