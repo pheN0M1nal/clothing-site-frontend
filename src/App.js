@@ -59,7 +59,7 @@ function App() {
 
                     <Route path="/billing" element={<Billiing />} />
                     <Route path="/sign-in" element={<SignIn />} />
-                    <Route path="/admin-sign-in" element={<SignInAdmin />} />
+                    <Route path="/admin-signin" element={<SignInAdmin />} />
 
                     <Route path="/sign-up" element={<SignUp />} />
                     <Route path="/order-place" element={<OrderPlace />} />

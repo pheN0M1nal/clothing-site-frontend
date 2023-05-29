@@ -52,10 +52,6 @@ const reducer = combineReducers({
 //   return composeEnhancers(middleware)
 // }
 
-const userInfoFromStorage = localStorage.getItem("userInfo")
-    ? JSON.parse(localStorage.getItem("userInfo"))
-    : null
-
 const cartItemsFromStorage = localStorage.getItem("cartItems")
     ? JSON.parse(localStorage.getItem("cartItems"))
     : []
@@ -67,8 +63,6 @@ const billingInfoFromStorage = localStorage.getItem("billingInfo")
 const initialState = {
     cartItems: cartItemsFromStorage,
     billingInfo: billingInfoFromStorage,
-    userLogin: { userInfo: userInfoFromStorage },
-    userDetails: { user: userInfoFromStorage },
 }
 
 const middleware = [thunk]

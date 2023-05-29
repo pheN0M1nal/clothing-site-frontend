@@ -110,7 +110,7 @@ const AllUsers = () => {
                         <div className="col col-5"># </div>
                     </li>
 
-                    {!loading && users.length === 0 && <h3>Zero users.</h3>}
+                    {!loading && users?.length === 0 && <h3>Zero users.</h3>}
 
                     {users.map((user) => (
                         <li className="table-row" key={user._id}>

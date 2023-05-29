@@ -1,5 +1,5 @@
 import React, { useEffect } from "react"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import {
     fetchAllAdmins,
     fetchAllDesigners,
@@ -9,7 +9,7 @@ import {
 
 import styled from "styled-components"
 import Dashboard from "../../dashboard/pages/Dashboard"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 const Wrapper = styled.div`
     max-width: 1000px;
@@ -92,6 +92,14 @@ const AdminDashboard = () => {
         dispatch(fetchAllUsers())
         dispatch(fetchRatedDesigners())
     }, [])
+    const navigate = useNavigate()
+    const userDetails = useSelector((state) => state.userDetails)
+    const { user } = userDetails
+
+    useEffect(() => {
+        user?.userType !== "Admin" && navigate("/")
+    }, [user])
+
     return (
         <div>
             {" "}

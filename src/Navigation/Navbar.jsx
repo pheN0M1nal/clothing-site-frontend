@@ -1,12 +1,19 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link, useNavigate } from "react-router-dom"
 
 import "remixicon/fonts/remixicon.css"
 
-import { logout } from "../store/actions/userActions"
+import { fetchUserDetails, logout } from "../store/actions/userActions"
 import { logo } from "../assets/svg/logo"
+import { fetchDesignerInfo } from "../store/actions/designerActions"
 const Navbar = () => {
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(fetchDesignerInfo())
+        dispatch(fetchUserDetails())
+    }, [])
+
     let showMenu = false
 
     //Toggle Mobile Menu
@@ -67,7 +74,10 @@ const Navbar = () => {
     const userDetails = useSelector((state) => state.userDetails)
     const { user } = userDetails
 
-    const dispatch = useDispatch()
+    const { designerInfo } = useSelector((state) => state.registerDesigner)
+
+    const { shopInfo } = useSelector((state) => state.createShop)
+
     const navigate = useNavigate()
 
     const logoutHandler = () => {
@@ -99,15 +109,26 @@ const Navbar = () => {
                                     Category
                                 </Link>
                                 <Link
-                                    to="/create-shop
-"
+                                    to={
+                                        user?.userType === "Designer"
+                                            ? designerInfo && shopInfo
+                                                ? "/designer"
+                                                : "/register-designer"
+                                            : "/register-designer"
+                                    }
                                     className="nav-link"
                                 >
-                                    Start Creating
+                                    {user?.userType === "Designer"
+                                        ? designerInfo && shopInfo
+                                            ? "Designer"
+                                            : "Start Creating"
+                                        : "Start Creating"}
                                 </Link>
-                                <Link to="/admin" className="nav-link">
-                                    Admin Panel
-                                </Link>
+                                {user?.userType === "Admin" && (
+                                    <Link to="/admin" className="nav-link">
+                                        Admin Panel
+                                    </Link>
+                                )}
                             </div>
                         </div>
 

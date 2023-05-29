@@ -5,7 +5,10 @@ import { useDispatch, useSelector } from "react-redux"
 import { Spinner } from "../../components/Spinner"
 import { logo } from "../../assets/svg/logo"
 import { toast } from "react-toastify"
-import { createShop } from "../../store/actions/designerActions"
+import {
+    createShop,
+    registerDesigner,
+} from "../../store/actions/designerActions"
 
 function RegisterDeisgner() {
     const [formData, setFormData] = useState({})
@@ -16,7 +19,7 @@ function RegisterDeisgner() {
         setFormData({
             myName: "",
             accountName: "",
-            email: user.email,
+            email: user?.email,
             bankName: "",
             accountNo: "",
         })
@@ -34,23 +37,26 @@ function RegisterDeisgner() {
     const dispatch = useDispatch()
     const onSubmit = (e) => {
         e.preventDefault()
-        // dispatch(registerDesigner(formData))
+        dispatch(registerDesigner(formData))
     }
 
     //Indentifying Api response
     const { loading, error, designerInfo } = useSelector(
         (state) => state.registerDesigner
     )
-
-    //Api error
-    error && toast.error(error)
-
     //Navigating to Profile on Success
     const navigate = useNavigate()
-    if (designerInfo) {
-        toast.success("Designer registered successfully.")
-        navigate("/create-shop")
-    }
+    designerInfo?.email && navigate("/create-shop")
+    //Api error
+    useEffect(() => {
+        designerInfo?.email && navigate("/create-shop")
+
+        error && toast.error(error)
+        if (designerInfo) {
+            toast.success("Designer registered.")
+            navigate("/create-shop")
+        }
+    }, [designerInfo, error])
 
     return (
         <>
@@ -140,20 +146,20 @@ function RegisterDeisgner() {
                                         </div>
 
                                         <div className="flex items-center justify-center mt-5 ">
-                                            <div className="flex items-center justify-center bg-slate-600 w-56 rounded-3xl">
-                                                {loading ? (
-                                                    <Spinner />
-                                                ) : (
+                                            {loading ? (
+                                                <Spinner />
+                                            ) : (
+                                                <div className="flex items-center justify-center bg-slate-600 w-56 rounded-3xl">
                                                     <button
                                                         type="submit"
                                                         className="p-2 text-[#D2FF28] transition-all duration-200"
                                                     >
                                                         Continue to shop
                                                     </button>
-                                                )}
 
-                                                <i className="ri-arrow-right-line text-[#D2FF28]"></i>
-                                            </div>
+                                                    <i className="ri-arrow-right-line text-[#D2FF28]"></i>
+                                                </div>
+                                            )}
                                         </div>
                                     </form>
 

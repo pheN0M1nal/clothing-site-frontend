@@ -111,7 +111,7 @@ const AllDesigners = () => {
                         <div className="col col-5"># </div>
                     </li>
 
-                    {!loading && designers.length === 0 && (
+                    {!loading && designers?.length === 0 && (
                         <h3>Zero designers.</h3>
                     )}
 

@@ -12,6 +12,11 @@ import {
     USER_REGISTER_REQUEST,
     USER_REGISTER_SUCCESS,
 } from "../constants/userConstants"
+import {
+    CREATE_SHOP_RESET,
+    REGISTER_DESIGNER_RESET,
+    REGISTER_DESIGNER_SUCCESS,
+} from "../constants/designerConstants"
 
 export const login = (email, password) => async (dispatch) => {
     try {
@@ -24,7 +29,8 @@ export const login = (email, password) => async (dispatch) => {
             password,
         })
 
-        toast.success("Login Suuccessfull.")
+        toast.success("Login successful.")
+        localStorage.setItem("token", data.token)
 
         dispatch({
             type: USER_LOGIN_SUCCESS,
@@ -36,7 +42,12 @@ export const login = (email, password) => async (dispatch) => {
             payload: data,
         })
 
-        localStorage.setItem("userInfo", JSON.stringify(data))
+        if (data.userType === "Designer") {
+            dispatch({
+                type: REGISTER_DESIGNER_SUCCESS,
+                payload: data,
+            })
+        }
     } catch (error) {
         dispatch({
             type: USER_LOGIN_FAIL,
@@ -59,6 +70,7 @@ export const register = (name, email, password) => async (dispatch) => {
             email,
             password,
         })
+        localStorage.setItem("token", data.token)
 
         dispatch({
             type: USER_REGISTER_SUCCESS,
@@ -74,8 +86,6 @@ export const register = (name, email, password) => async (dispatch) => {
             type: USER_DETAILS_SUCCESS,
             payload: data,
         })
-
-        localStorage.setItem("userInfo", JSON.stringify(data))
     } catch (error) {
         dispatch({
             type: USER_REGISTER_FAIL,
@@ -108,6 +118,43 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
             type: USER_DETAILS_SUCCESS,
             payload: data,
         })
+
+        dispatch({
+            type: USER_REGISTER_SUCCESS,
+            payload: data,
+        })
+
+        dispatch({
+            type: USER_LOGIN_SUCCESS,
+            payload: data,
+        })
+    } catch (error) {
+        dispatch({
+            type: USER_DETAILS_FAIL,
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message,
+        })
+    }
+}
+
+export const fetchUserDetails = () => async (dispatch) => {
+    try {
+        dispatch({
+            type: USER_DETAILS_REQUEST,
+        })
+
+        const { data } = await axiosInstance().get(`/users/`)
+
+        if (data) {
+            localStorage.setItem("token", data.token)
+
+            dispatch({
+                type: USER_DETAILS_SUCCESS,
+                payload: data,
+            })
+        }
     } catch (error) {
         dispatch({
             type: USER_DETAILS_FAIL,
@@ -125,8 +172,16 @@ export const logout = () => async (dispatch) => {
             type: USER_LOGOUT,
         })
 
+        dispatch({
+            type: REGISTER_DESIGNER_RESET,
+        })
+
+        dispatch({
+            type: CREATE_SHOP_RESET,
+        })
+
         toast.success("Logged out successfully.")
 
-        window.localStorage.removeItem("userInfo")
+        window.localStorage.removeItem("token")
     } catch (error) {}
 }

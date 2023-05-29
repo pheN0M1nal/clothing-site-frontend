@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
@@ -25,8 +25,11 @@ function SignIn() {
     const loginInfo = useSelector((state) => state.userLogin)
     const { loading, userInfo, error } = loginInfo
 
-    userInfo?.email && navigate("/")
-    error && toast.error(error)
+    useEffect(() => {
+        userInfo?.email && navigate("/")
+
+        error && toast.error(error)
+    }, [userInfo, error])
 
     const dispatch = useDispatch()
 

@@ -1,9 +1,7 @@
 import axios from "axios"
 
 const axiosInstance = () => {
-    const userInfo = localStorage.getItem("userInfo")
-        ? JSON.parse(localStorage.getItem("userInfo"))
-        : null
+    const token = localStorage.getItem("token")
 
     //
     const axiosInst = axios.create({
@@ -13,7 +11,7 @@ const axiosInstance = () => {
                 : `${process.env.REACT_APP_MAIN_SERVER_URL_DEVELOPMENT}/api`,
         timeout: 99999999999999999999,
         headers: {
-            Authorization: userInfo ? `Bearer ${userInfo?.token}` : null,
+            Authorization: token ? `Bearer ${token}` : null,
             "Content-Type": "application/json",
             accept: "application/json",
         },
