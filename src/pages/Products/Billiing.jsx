@@ -69,6 +69,7 @@ const Billiing = () => {
                           id="number"
                           value={number}
                           onChange={onChange}
+                          required
                         />
                       </div>
                       {/* {emailerror && (
@@ -91,6 +92,7 @@ const Billiing = () => {
                           id="address"
                           value={address}
                           onChange={onChange}
+                          required
                         />
                       </div>
                       <div className="relative mt-3">
@@ -103,6 +105,7 @@ const Billiing = () => {
                           id="city"
                           value={city}
                           onChange={onChange}
+                          required
                         />
                       </div>
                       <div className="relative mt-3">
@@ -115,6 +118,7 @@ const Billiing = () => {
                           id="state"
                           value={state}
                           onChange={onChange}
+                          required
                         />
                       </div>
                       <div className="relative mt-3">
@@ -127,6 +131,7 @@ const Billiing = () => {
                           id="postalCode"
                           value={postalCode}
                           onChange={onChange}
+                          required
                         />
                       </div>
 

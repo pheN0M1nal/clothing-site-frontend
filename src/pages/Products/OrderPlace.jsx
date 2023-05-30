@@ -1,18 +1,36 @@
 import React from "react";
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { logo } from "../../assets/svg/logo";
+
+import { placeOrderAction } from "../../store/actions/billingActions";
+
 const OrderPlace = () => {
-  const billingInfo = useSelector(state => state.billingInfo);
+  const shippingDetails = useSelector(state => state.billingInfo);
 
-  const userInfo = useSelector(state => state.userInfo);
-
+  const userDetails = useSelector(state => state.userDetails);
+  const { user } = userDetails;
+  const cartItems = useSelector(state => state.cartItems);
   const totalBill = localStorage.getItem("userBill")
     ? JSON.parse(localStorage.getItem("userBill"))
     : 0;
 
-  console.log(billingInfo);
+  const orderDetails = {
+    id: user.id,
+    name: user.myName,
+    email: user.email,
+    phNum: shippingDetails.number,
+    address: shippingDetails.address,
+    state: shippingDetails.state,
+    city: shippingDetails.city,
+    postalCode: shippingDetails.postalCode,
+    products: cartItems, //array of products
+  };
+  const dispatch = useDispatch();
+  const verifyPayment = () => {
+    dispatch(placeOrderAction(orderDetails));
+  };
 
   return (
     <>
@@ -40,7 +58,7 @@ const OrderPlace = () => {
                       </label>
 
                       <div className="mt-2 w-full h-8 rounded-md text-zinc-500  text-sm">
-                        {userInfo?.name}
+                        {user?.myName}
                       </div>
                     </div>
 
@@ -50,7 +68,7 @@ const OrderPlace = () => {
                       </label>
 
                       <div className="mt-2 w-full h-8 rounded-md text-zinc-500  text-sm">
-                        {userInfo?.email}
+                        {user?.email}
                       </div>
                     </div>
 
@@ -60,7 +78,7 @@ const OrderPlace = () => {
                       </label>
 
                       <div className="mt-2 w-full h-8 rounded-md text-zinc-500 text-sm">
-                        {billingInfo[0]?.number}
+                        {shippingDetails?.number}
                       </div>
                     </div>
 
@@ -70,7 +88,7 @@ const OrderPlace = () => {
                       </label>
 
                       <div className="flex items-center mt-2 w-full h-8 rounded-md text-zinc-500 text-sm">
-                        {billingInfo[0]?.address}
+                        {shippingDetails?.address}
                       </div>
                     </div>
 
@@ -80,8 +98,8 @@ const OrderPlace = () => {
                       </label>
 
                       <div className="mt-2 w-full h-8 rounded-md text-zinc-500 text-sm">
-                        {billingInfo[0]?.state?.concat(
-                          "," + billingInfo[0]?.city
+                        {shippingDetails?.state?.concat(
+                          ", " + shippingDetails?.city
                         )}
                       </div>
                     </div>
@@ -92,7 +110,7 @@ const OrderPlace = () => {
                       </label>
 
                       <div className="mt-2 w-full h-8 rounded-md text-zinc-500  text-sm">
-                        {billingInfo[0]?.postalCode}
+                        {shippingDetails?.postalCode}
                       </div>
                     </div>
                   </div>
@@ -105,13 +123,12 @@ const OrderPlace = () => {
 
       <div className="flex items-center justify-center">
         <div className="flex items-center justify-center bg-slate-600 w-40 rounded-3xl">
-          <Link
-            to="#"
+          <button
             className="p-2 text-xs text-[#D2FF28] transition-all duration-200"
+            onClick={verifyPayment}
           >
-            {" "}
             Confirm Order <br /> Total: ${totalBill}
-          </Link>
+          </button>
         </div>
       </div>
     </>

@@ -1,5 +1,5 @@
 import React from "react";
-import paypal from "../../assets/images/paypal.png";
+import stripe from "../../assets/images/stripe.png";
 const BillHeader = () => {
   return (
     <>
@@ -7,7 +7,7 @@ const BillHeader = () => {
         <span>Payment Details</span>
         {/* Paypal */}
         <div className="flex flex-row items-center space-x-2">
-          <img src={paypal} alt="" className="h-8 w-8" />
+          <img src={stripe} alt="" className="h-12 w-12" />
           <span className="text-xs">is our Official Payment Partner.</span>
         </div>
       </div>
