@@ -6,12 +6,16 @@ import "remixicon/fonts/remixicon.css"
 
 import { fetchUserDetails, logout } from "../store/actions/userActions"
 import { logo } from "../assets/svg/logo"
-import { fetchDesignerInfo } from "../store/actions/designerActions"
+import {
+    fetchDesignerInfo,
+    fetchShopDetails,
+} from "../store/actions/designerActions"
 const Navbar = () => {
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(fetchDesignerInfo())
         dispatch(fetchUserDetails())
+        dispatch(fetchShopDetails())
     }, [])
 
     let showMenu = false
@@ -241,9 +245,27 @@ const Navbar = () => {
                             <Link to="/" className="nav-links">
                                 Category
                             </Link>
-                            <Link to="/create-shop" className="nav-links">
-                                Start Creating
+                            <Link
+                                to={
+                                    user?.userType === "Designer"
+                                        ? designerInfo && shopInfo
+                                            ? "/designer"
+                                            : "/register-designer"
+                                        : "/register-designer"
+                                }
+                                className="nav-link"
+                            >
+                                {user?.userType === "Designer"
+                                    ? designerInfo && shopInfo
+                                        ? "Designer"
+                                        : "Start Creating"
+                                    : "Start Creating"}
                             </Link>
+                            {user?.userType === "Admin" && (
+                                <Link to="/admin" className="nav-link">
+                                    Admin Panel
+                                </Link>
+                            )}
                             <Link to="/admin" className="nav-links">
                                 Admin Panel
                             </Link>

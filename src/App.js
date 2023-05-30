@@ -13,7 +13,7 @@ import Navbar from "./Navigation/Navbar"
 import Footer from "./Navigation/Footer"
 import Profile from "./pages/StateManagement/Profile"
 import Products from "./pages/Products/Products"
-import AllProducts from "./pages/adminPages/AllProducts"
+
 import ProductView from "./pages/Products/ProductView"
 import Cart from "./pages/Products/Cart"
 import AdminDashboard from "./pages/adminPages/AdminDashboard"
@@ -24,9 +24,11 @@ import Billiing from "./pages/Products/Billiing"
 import OrderPlace from "./pages/Products/OrderPlace"
 import Dashboard from "./dashboard/pages/Dashboard"
 import NotFound from "./pages/NotFound"
-import { AddProduct } from "./pages/adminPages/AddProduct"
+import { AddProduct } from "./pages/AddProduct"
 import CreateShop from "./pages/otherForms/CreateShop"
 import RegisterDeisgner from "./pages/otherForms/RegisterDeisgner"
+import DesignerDasboard from "./pages/DesignerDasboard"
+import DesignerProducts from "./pages/DesignerProducts"
 
 function App() {
     return (
@@ -51,9 +53,15 @@ function App() {
                         element={<AllDesigners />}
                     />
                     <Route path="/admin/allAdmins" element={<AllAdmins />} />
-                    <Route path="/admin/addProduct" element={<AddProduct />} />
+                    <Route
+                        path="/designer/addProduct"
+                        element={<AddProduct />}
+                    />
 
-                    <Route path="/admin/products" element={<AllProducts />} />
+                    <Route
+                        path="/designer/products"
+                        element={<DesignerProducts />}
+                    />
 
                     <Route path="/admin/stats" element={<Dashboard />} />
 
@@ -68,6 +76,11 @@ function App() {
                         exact
                         path="/register-designer"
                         element={<RegisterDeisgner />}
+                    />
+                    <Route
+                        exact
+                        path="/designer"
+                        element={<DesignerDasboard />}
                     />
                     <Route exact path="/create-shop" element={<CreateShop />} />
                     <Route exact path="*" element={<NotFound />} />

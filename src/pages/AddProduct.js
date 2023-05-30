@@ -1,18 +1,18 @@
 import styled from "styled-components"
 
 import { useCallback, useEffect, useState } from "react"
-import { FormComponent } from "../../components/Authentication/FormElement"
-import { InputComponent } from "../../components/Authentication/InputELement"
-import { Button } from "../../components/Button"
-import { Spinner } from "../../components/Spinner"
-import { HandleOnChangeInput } from "../../components/helpers/formInput/HandleOnChangeInput"
+import { FormComponent } from "../components/Authentication/FormElement"
+import { InputComponent } from "../components/Authentication/InputELement"
+import { Button } from "../components/Button"
+import { Spinner } from "../components/Spinner"
+import { HandleOnChangeInput } from "../components/helpers/formInput/HandleOnChangeInput"
 import { useDispatch, useSelector } from "react-redux"
-import { notifyFailure } from "../../components/helpers/notifications/notifyFailure"
+import { notifyFailure } from "../components/helpers/notifications/notifyFailure"
 // import { editProfile } from "../../store/actions/userActions"
 
-import { ImagePickerComponent } from "../../components/helpers/fileManagement/ProfilePicturePickerComponent"
-import { createProduct } from "../../store/actions/productActions"
-import AdminSubNav from "../../components/AdminSubNav"
+import { ImagePickerComponent } from "../components/helpers/fileManagement/ProfilePicturePickerComponent"
+import { createProduct } from "../store/actions/productActions"
+import DesignerSubNav from "../components/DesignerSubNav"
 import { toast } from "react-toastify"
 
 const StyledComponent = styled.div`
@@ -78,6 +78,7 @@ export const AddProduct = () => {
     const { addedProduct, error, loading } = useSelector(
         (state) => state.addedProduct
     )
+    const { user } = useSelector((state) => state.userDetails)
 
     useEffect(() => {
         addedProduct && toast.success("Product added successfully.")
@@ -125,7 +126,6 @@ export const AddProduct = () => {
             "description",
             "size",
             "quantity",
-            "designerID",
         ]
         for (let field of fields) {
             if (!data[field]) {
@@ -138,6 +138,8 @@ export const AddProduct = () => {
 
     // handling sign up button
     const handleUpdateProfile = async (e) => {
+        setData({ ...data, designerID: user?._id })
+
         e.preventDefault()
         if (!validateFields()) {
             return
@@ -156,22 +158,18 @@ export const AddProduct = () => {
         }
 
         formData.append("image", files)
-
-        console.log("data", data)
-        console.log("images", files)
+        formData.append("designerID", user?._id)
 
         dispatch(createProduct(formData))
     }
     return (
         <StyledComponent>
-            <AdminSubNav />
+            <DesignerSubNav />
             <FormComponent className="formFieldWrapper" autocomplete="off">
                 <div className="profileimagePickerWrapper">
                     <ImagePickerComponent
-                        image={files?.image?.url_on_server}
+                        image={files}
                         field_name={"image"}
-                        purpose={"product image"}
-                        label={"image"}
                         setFiles={setFiles}
                     />
                 </div>
@@ -179,8 +177,9 @@ export const AddProduct = () => {
                     <label>Designer Id</label>
                     <InputComponent
                         type="text"
+                        disabled
                         height={40}
-                        value={data?.designerID}
+                        value={user?._id}
                         onChange={(e) =>
                             HandleOnChangeInput(e, "designerID", setData, data)
                         }

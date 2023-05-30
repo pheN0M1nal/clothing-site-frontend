@@ -1,5 +1,5 @@
 import { Button } from "../../Button"
-import { useEffect, useState } from "react"
+import default_product from "../../../assets/images/default_product.png"
 import styled from "styled-components"
 
 const StyledComponent = styled.div`
@@ -54,47 +54,21 @@ const StyledComponent = styled.div`
     }
 `
 
-export const ImagePickerComponent = ({
-    image,
-    setFiles,
-    field_name,
-    label,
-    purpose,
-}) => {
-    const [tempImage, setTempImage] = useState(null)
-    const [tempImageData, setTempImageData] = useState(null)
-
-    // useEffect(() => {
-    //     if (tempImage) {
-    //         const fileReader = new FileReader()
-    //         fileReader.addEventListener(
-    //             "load",
-    //             () => {
-    //                 setTempImageData(fileReader.result)
-    //             },
-    //             false
-    //         )
-    //         fileReader.readAsDataURL(tempImage)
-    //         // setFiles((files) => {
-    //         //     const temp = { ...files }
-    //         //     temp[field_name] = {
-    //         //         ...(temp[field_name] || {}),
-    //         //         to_be_uploaded_buffer: tempImage,
-    //         //         purpose,
-    //         //     }
-    //         //     return temp
-    //         // })
-    //     }
-    // }, [tempImage])
+export const ImagePickerComponent = ({ image, setFiles }) => {
+    const imageURL = image[0]?.name
+        ? URL.createObjectURL(image[0])
+        : image?.name
+        ? URL.createObjectURL(image)
+        : null
 
     return (
         <StyledComponent>
             <div className="imageWrapper">
-                <img src={tempImageData || image} alt={""} />
+                <img src={imageURL ? imageURL : default_product} alt={""} />
             </div>
             <div className="controlsWrapperImage">
                 <span className="text">
-                    {tempImage?.name || "Select profile image"}
+                    {image?.name || "Select profile image"}
                 </span>
 
                 <div className="chooseImageButtonWrapper">

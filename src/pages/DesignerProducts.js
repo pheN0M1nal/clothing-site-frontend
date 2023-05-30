@@ -1,14 +1,15 @@
 import React, { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Spinner } from "../../components/Spinner"
+import { Spinner } from "../components/Spinner"
 import styled from "styled-components"
 
-import AdminSubNav from "../../components/AdminSubNav"
+import DesignerSubNav from "../components/DesignerSubNav"
 import {
     deleteProduct,
-    getAllProducts,
-} from "../../store/actions/productActions"
+    getdesignerProducts,
+} from "../store/actions/productActions"
 import { useNavigate } from "react-router-dom"
+import { fetchDesignerProducts } from "../store/actions/designerActions"
 
 const Wrapper = styled.div`
     max-width: 1000px;
@@ -114,20 +115,23 @@ const Wrapper = styled.div`
         }
     }
 `
-const AllProducts = () => {
+const DesignerProducts = () => {
     const dispatch = useDispatch()
-    const { loading, loading_delete, allProducts } = useSelector(
-        (state) => state.allProducts
+    const { loading, loading_delete, designerProducts } = useSelector(
+        (state) => state.designerProducts
     )
+
+    const userDetails = useSelector((state) => state.userDetails)
+    const { user } = userDetails
 
     const navigate = useNavigate()
 
     useEffect(() => {
-        dispatch(getAllProducts())
+        dispatch(fetchDesignerProducts(user._id))
     }, [])
 
     const addProduct = () => {
-        navigate("/admin/addProduct")
+        navigate("/designer/addProduct")
     }
 
     const navigateToProduct = (id) => {
@@ -136,10 +140,10 @@ const AllProducts = () => {
 
     return (
         <Wrapper>
-            <AdminSubNav />
+            <DesignerSubNav />
             <div className="section1">
                 {" "}
-                <h2>All Products</h2>
+                <h2>Your Products</h2>
                 <button onClick={addProduct}>Add Product</button>{" "}
             </div>
 
@@ -157,11 +161,11 @@ const AllProducts = () => {
                         <div className="col col-7">#</div>
                     </li>
 
-                    {!loading && allProducts?.products?.length === 0 && (
+                    {!loading && designerProducts?.products?.length === 0 && (
                         <h3>Zero products.</h3>
                     )}
 
-                    {allProducts?.products?.map((item) => (
+                    {designerProducts?.products?.map((item) => (
                         <li className="table-row" key={item._id}>
                             <div className="col col-1" data-label="Id">
                                 <img src={item.image[0]} />
@@ -210,4 +214,4 @@ const AllProducts = () => {
     )
 }
 
-export default AllProducts
+export default DesignerProducts

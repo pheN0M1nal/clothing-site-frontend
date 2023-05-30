@@ -12,6 +12,7 @@ import {
 
 import {
     createShopReducer,
+    designerProductsReducer,
     registerDesignerReducer,
 } from "./reducers/designerReducers"
 
@@ -40,7 +41,7 @@ const reducer = combineReducers({
     addedProduct: addProductReducer,
     singleProduct: singleproductReducer,
     registerDesigner: registerDesignerReducer,
-
+    designerProducts: designerProductsReducer,
     cartItems: cartReducer,
     billingInfo: billingReducer,
     ratedDesigners: ratedDesignersReducer,

@@ -5,6 +5,9 @@ import {
     REGISTER_DESIGNER_REQUEST,
     REGISTER_DESIGNER_SUCCESS,
     REGISTER_DESIGNER_FAIL,
+    FETCH_DESIGNER_PRODUCT_SUCCESS,
+    FETCH_DESIGNER_PRODUCT_FAIL,
+    FETCH_DESIGNER_PRODUCT_REQUEST,
 } from "../constants/designerConstants"
 import axiosInstance from "../../api/axios"
 import {
@@ -23,6 +26,54 @@ export const createShop = (formData, id) => async (dispatch) => {
             `/shops/createShop?designerID=${id}`,
             formData
         )
+
+        dispatch({
+            type: CREATE_SHOP_SUCCESS,
+            payload: data,
+        })
+    } catch (error) {
+        dispatch({
+            type: CREATE_SHOP_FAIL,
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message,
+        })
+    }
+}
+
+export const fetchDesignerProducts = (id) => async (dispatch) => {
+    try {
+        dispatch({
+            type: FETCH_DESIGNER_PRODUCT_REQUEST,
+        })
+
+        const { data } = await axiosInstance().get(
+            `/products/getProductsByDesignerID/${id}`
+        )
+
+        dispatch({
+            type: FETCH_DESIGNER_PRODUCT_SUCCESS,
+            payload: data,
+        })
+    } catch (error) {
+        dispatch({
+            type: FETCH_DESIGNER_PRODUCT_FAIL,
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message,
+        })
+    }
+}
+
+export const fetchShopDetails = () => async (dispatch) => {
+    try {
+        dispatch({
+            type: CREATE_SHOP_REQUEST,
+        })
+
+        const { data } = await axiosInstance().get(`/shops`)
 
         dispatch({
             type: CREATE_SHOP_SUCCESS,
