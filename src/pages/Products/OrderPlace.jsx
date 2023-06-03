@@ -8,6 +8,7 @@ import { placeAnOrder } from "../../store/actions/billingActions"
 import axiosInstance from "../../api/axios"
 import { toast } from "react-toastify"
 import { fetchUserOrders } from "../../store/actions/userActions"
+console.log(process.env.REACT_APP_LOCAL_SITE_URL)
 
 const OrderPlace = () => {
     const shippingDetails = useSelector((state) => state.billingInfo)
@@ -48,8 +49,8 @@ const OrderPlace = () => {
 
     const url =
         process.env.REACT_APP_NODE_ENV === "development"
-            ? process.env.LOCAL_SITE_URL
-            : process.env.LIVE_SITE_URL
+            ? process.env.REACT_APP_LOCAL_SITE_URL
+            : process.env.REACT_APP_LIVE_SITE_URL
 
     const verifyPayment = () => {
         axiosInstance()
