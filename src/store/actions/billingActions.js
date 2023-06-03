@@ -5,6 +5,7 @@ import {
     PLACE_ORDER_SUCCESS,
 } from "../constants/billingConstant"
 import axiosInstance from "../../api/axios"
+import { fetchUserOrders } from "./userActions"
 
 export const addBillingInfo = (billInfo) => async (dispatch) => {
     dispatch({
@@ -14,13 +15,15 @@ export const addBillingInfo = (billInfo) => async (dispatch) => {
     localStorage.setItem("billingInfo", JSON.stringify(billInfo))
 }
 
-export const placeAnOrder = (order) => async (dispatch) => {
+export const placeAnOrder = (order, id) => async (dispatch) => {
     try {
         dispatch({
             type: PLACE_ORDER_REQUEST,
         })
 
         const { data } = await axiosInstance().post(`/orders/placeOrder`, order)
+
+        dispatch(fetchUserOrders(id))
 
         dispatch({
             type: PLACE_ORDER_SUCCESS,

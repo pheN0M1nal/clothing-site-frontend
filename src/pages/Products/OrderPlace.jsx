@@ -31,21 +31,31 @@ const OrderPlace = () => {
     const { pathname } = useLocation()
     const navigate = useNavigate()
 
+    const { placedOrder } = useSelector((state) => state.placeOrder)
+
+    useEffect(() => {
+        if (pathname.split("/")[2] === "payment-verified" && user._id) {
+            toast.success("Payment successful.")
+        }
+    }, [user])
+
     useEffect(() => {
         if (pathname.split("/")[2] === "payment-verified" && user?._id) {
-            toast.success("Payment successful.")
-            dispatch(placeAnOrder(orderDetails))
+            user?._id && dispatch(placeAnOrder(orderDetails, user?._id))
             navigate("/profile")
-            dispatch(fetchUserOrders(user?._id))
         }
     }, [user?._id])
+
+    const url =
+        process.env.REACT_APP_NODE_ENV === "development"
+            ? process.env.LOCAL_SITE_URL
+            : process.env.LIVE_SITE_URL
 
     const verifyPayment = () => {
         axiosInstance()
             .post("/stripe/create-checkout-session", {
                 cartItems,
-                success_url:
-                    "http://localhost:3000/order-place/payment-verified",
+                success_url: `${url}/order-place/payment-verified`,
                 cancel_url: "http://localhost:3000/order-place/cancel-success",
             })
             .then(({ data }) => {
