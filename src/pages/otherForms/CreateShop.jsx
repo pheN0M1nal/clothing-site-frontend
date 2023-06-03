@@ -35,7 +35,7 @@ function CreateShop() {
     const dispatch = useDispatch()
     const onSubmit = (e) => {
         e.preventDefault()
-        dispatch(createShop(formData, designerInfo.id))
+        dispatch(createShop(formData, designerInfo._id))
     }
 
     //Indentifying Api response

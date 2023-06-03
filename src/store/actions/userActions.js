@@ -8,6 +8,9 @@ import {
     USER_LOGIN_REQUEST,
     USER_LOGIN_SUCCESS,
     USER_LOGOUT,
+    USER_ORDERS_FAIL,
+    USER_ORDERS_REQUEST,
+    USER_ORDERS_SUCCESS,
     USER_REGISTER_FAIL,
     USER_REGISTER_REQUEST,
     USER_REGISTER_SUCCESS,
@@ -30,7 +33,7 @@ export const login = (email, password) => async (dispatch) => {
         })
 
         toast.success("Login successful.")
-        localStorage.setItem("token", data.token)
+        data?.token && localStorage.setItem("token", data.token)
 
         dispatch({
             type: USER_LOGIN_SUCCESS,
@@ -70,7 +73,7 @@ export const register = (name, email, password) => async (dispatch) => {
             email,
             password,
         })
-        localStorage.setItem("token", data.token)
+        data?.token && localStorage.setItem("token", data.token)
 
         dispatch({
             type: USER_REGISTER_SUCCESS,
@@ -148,7 +151,7 @@ export const fetchUserDetails = () => async (dispatch) => {
         const { data } = await axiosInstance().get(`/users/`)
 
         if (data) {
-            localStorage.setItem("token", data.token)
+            data?.token && localStorage.setItem("token", data.token)
 
             dispatch({
                 type: USER_DETAILS_SUCCESS,
@@ -158,6 +161,31 @@ export const fetchUserDetails = () => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: USER_DETAILS_FAIL,
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message,
+        })
+    }
+}
+
+export const fetchUserOrders = (id) => async (dispatch) => {
+    try {
+        dispatch({
+            type: USER_ORDERS_REQUEST,
+        })
+
+        const { data } = await axiosInstance().get(
+            `/orders/usersAllOrder?id=${id}`
+        )
+
+        dispatch({
+            type: USER_ORDERS_SUCCESS,
+            payload: data?.orders,
+        })
+    } catch (error) {
+        dispatch({
+            type: USER_ORDERS_FAIL,
             payload:
                 error.response && error.response.data.message
                     ? error.response.data.message

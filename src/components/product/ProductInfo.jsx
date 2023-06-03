@@ -1,36 +1,10 @@
-import React, { useEffect } from "react"
+import React from "react"
 import { useState } from "react"
-import styled from "styled-components"
 import { DynamicStar } from "react-dynamic-star"
 import { useDispatch, useSelector } from "react-redux"
 import { toast } from "react-toastify"
 import { addToCart } from "../../store/actions/cartActions"
-
-const ZoomStyling = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    figure {
-        background-repeat: no-repeat;
-        width: 300px;
-        height: 300px;
-        /* width: 500px;
-        height: 500px; */
-    }
-
-    figure:hover img {
-        opacity: 0;
-    }
-
-    img {
-        display: block;
-        width: 300px;
-        height: 300px;
-        pointer-events: none;
-        object-fit: cover;
-    }
-`
+import ProductImage from "./ProductImage"
 
 const ProductInfo = ({ product }) => {
     const [stock, setStock] = useState(
@@ -41,15 +15,6 @@ const ProductInfo = ({ product }) => {
     const loginInfo = useSelector((state) => state.userLogin.userInfo)
     const items = useSelector((state) => state.cartItems)
     const dispatch = useDispatch()
-
-    const [zoom, setZoom] = useState({})
-
-    useEffect(() => {
-        setZoom({
-            backgroundImage: `url(${product?.image && product?.image[0]})`,
-            backgroundPosition: "0% 0%",
-        })
-    }, [product])
 
     const onClick = () => {
         var flag = false
@@ -72,14 +37,14 @@ const ProductInfo = ({ product }) => {
         }
 
         var data = {
-            _id: product._id.concat(activeBtn),
+            _id: product._id,
             productImage: product.image[0],
             productName: product.productName,
             size: activeBtn,
-            quantity: actualQty,
             price: product.price,
             rating: product && product?.rating,
-            purchaseQty: 1,
+            designerID: product.designerID,
+            quantity: 1,
         }
 
         stock < 1
@@ -94,34 +59,13 @@ const ProductInfo = ({ product }) => {
         setStock(product.quantity && product.quantity[index])
     }
 
-    const handleMouseMove = (e) => {
-        const { left, top, width, height } = e.target.getBoundingClientRect()
-        const x = ((e.pageY - left) / width) * 100
-        const y = ((e.pageY - top) / height) * 100
-
-        console.log(x, y)
-
-        setZoom({
-            backgroundPosition: `${x}% ${y}%`,
-            backgroundImage: `url(${product?.image && product?.image[0]})`,
-        })
-    }
-
     return (
         <>
             <div className="flex flex-col items-center justify-center mx-auto space-y-10 lg:flex-row sm:space-x-4 sm:space-y-0 w-[288px] sm:w-full my-2 lg:w-[98%]">
                 <div className="flex flex-col sm:flex-row space-x-2 lg:w-[70%]">
                     {/* Image and Add to Cart Button */}
-                    <div className="flex items-center justify-center h-[19rem] min-w-[300px] sm:w-64 sm:h-64 lg:h-[19rem] lg:w-[20%] border border-zinc-300 lg:mx-4 lg:my-4 rounded-lg">
-                        <ZoomStyling>
-                            <figure onMouseMove={handleMouseMove} style={zoom}>
-                                <img
-                                    src={product.image && product.image[0]}
-                                    alt=""
-                                    //className="h-72 w-72 sm:w-60 sm:h-60 lg:h-[95%] lg:w-[95%] rounded-lg"
-                                />
-                            </figure>
-                        </ZoomStyling>
+                    <div className="flex justify-center h-[19rem] min-w-[300px] sm:w-64 sm:h-64 lg:h-[19rem] lg:w-[20%] border border-zinc-300 rounded-lg">
+                        <ProductImage product={product} />
                     </div>
 
                     {/* Product Info */}

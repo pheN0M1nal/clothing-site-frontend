@@ -11,6 +11,9 @@ import {
     USER_LOGIN_REQUEST,
     USER_LOGIN_SUCCESS,
     USER_LOGOUT,
+    USER_ORDERS_FAIL,
+    USER_ORDERS_REQUEST,
+    USER_ORDERS_SUCCESS,
     USER_REGISTER_FAIL,
     USER_REGISTER_REQUEST,
     USER_REGISTER_SUCCESS,
@@ -58,6 +61,24 @@ export const userDetailsReducer = (state = { user: {} }, action) => {
             return { loading: false, userInfo: {} }
         case USER_LOGOUT:
             return { loading: false, userInfo: {} }
+        default:
+            return state
+    }
+}
+
+export const userOrdersReducer = (state = { orders: [] }, action) => {
+    switch (action.type) {
+        case USER_ORDERS_REQUEST:
+            return { loading: true }
+        case USER_ORDERS_SUCCESS:
+            return { loading: false, orders: action.payload }
+        case USER_ORDERS_FAIL:
+            return {
+                loading: false,
+                orders: state.orders,
+                error: action.payload,
+            }
+
         default:
             return state
     }

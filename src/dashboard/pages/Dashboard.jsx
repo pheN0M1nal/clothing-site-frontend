@@ -50,6 +50,14 @@ function Dashboard() {
                         <div className="grid grid-cols-12 gap-6">
                             {/* Table (Top Channels) */}
                             <TopRatedDesigners />
+                            <DashboardCard01 />
+                            <DashboardCard02 />
+                            <DashboardCard03 />
+                            <DashboardCard04 />
+                            <DashboardCard05 />
+                            <DashboardCard06 />
+
+                            <DashboardCard08 />
                         </div>
                     </div>
                 </main>

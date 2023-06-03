@@ -83,8 +83,9 @@ export const ImagePickerComponent = ({ image, setFiles }) => {
                     </Button>
                     <input
                         type="file"
+                        multiple
                         onChange={(e) => {
-                            setFiles(e.target.files[0])
+                            setFiles(e.target.files)
                         }}
                     />
                 </div>

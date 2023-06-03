@@ -3,6 +3,7 @@ import {
     userLoginReducer,
     userRegisterReducer,
     userDetailsReducer,
+    userOrdersReducer,
 } from "./reducers/userReducers"
 import {
     productDetailReducer,
@@ -24,7 +25,7 @@ import {
 } from "./reducers/adminReducers"
 import thunk from "redux-thunk"
 import { cartReducer } from "./reducers/cartReducers"
-import { billingReducer } from "./reducers/billingReducer"
+import { billingReducer, placeOrderReducer } from "./reducers/billingReducer"
 
 const reducer = combineReducers({
     userLogin: userLoginReducer,
@@ -38,6 +39,8 @@ const reducer = combineReducers({
     allDesigners: designersReducer,
     allProducts: productDetailReducer,
 
+    userOrders: userOrdersReducer,
+
     addedProduct: addProductReducer,
     singleProduct: singleproductReducer,
     registerDesigner: registerDesignerReducer,
@@ -46,6 +49,7 @@ const reducer = combineReducers({
     billingInfo: billingReducer,
     ratedDesigners: ratedDesignersReducer,
     createShop: createShopReducer,
+    placeOrder: placeOrderReducer,
 })
 
 // const bindMiddleware = (middleware) => {

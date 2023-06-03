@@ -71,6 +71,11 @@ function App() {
 
                     <Route path="/sign-up" element={<SignUp />} />
                     <Route path="/order-place" element={<OrderPlace />} />
+                    <Route
+                        path="/order-place/payment-verified"
+                        element={<OrderPlace />}
+                    />
+
                     <Route exact path="/admin" element={<AdminDashboard />} />
                     <Route
                         exact

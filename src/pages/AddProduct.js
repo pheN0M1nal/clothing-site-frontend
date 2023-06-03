@@ -69,15 +69,36 @@ const StyledComponent = styled.div`
         }
     }
 `
+const sizes = ["S", "M", "L"]
+
 export const AddProduct = () => {
+    //
+    const [checkedState, setCheckedState] = useState([])
+
+    const [size, setSize] = useState(0)
+
+    const handleOnChange = (item) => {
+        checkedState.includes(item)
+            ? setCheckedState(checkedState.filter((i) => i !== item))
+            : setCheckedState([...checkedState, item])
+    }
+    //
     const [files, setFiles] = useState({})
-    const [data, setData] = useState({})
+    const [data, setData] = useState({
+        size: checkedState,
+    })
+
+    useEffect(() => {
+        setData({ ...data, size: checkedState })
+    }, [checkedState])
+
     const dispatch = useDispatch()
 
     // checking if user gets registered
     const { addedProduct, error, loading } = useSelector(
         (state) => state.addedProduct
     )
+    console.log(checkedState)
     const { user } = useSelector((state) => state.userDetails)
 
     useEffect(() => {
@@ -151,6 +172,8 @@ export const AddProduct = () => {
         //     price: parseInt(data.price),
         // }
 
+        console.log(data)
+
         const formData = new FormData()
 
         for (let field in data) {
@@ -209,14 +232,36 @@ export const AddProduct = () => {
                 </div>
                 <div className="inputOuter">
                     <label>Size</label>
-                    <InputComponent
-                        type="text"
-                        height={40}
-                        value={data?.size}
-                        onChange={(e) =>
-                            HandleOnChangeInput(e, "size", setData, data)
-                        }
-                    />
+
+                    <ul className="toppings-list">
+                        {sizes.map((item, index) => {
+                            return (
+                                <li key={index}>
+                                    <div className="toppings-list-item">
+                                        <div className="left-section">
+                                            <input
+                                                type="checkbox"
+                                                id={`custom-checkbox-${index}`}
+                                                value={item}
+                                                name={item}
+                                                checked={checkedState.includes(
+                                                    item
+                                                )}
+                                                onChange={() =>
+                                                    handleOnChange(item)
+                                                }
+                                            />
+                                            <label
+                                                htmlFor={`custom-checkbox-${index}`}
+                                            >
+                                                {item}
+                                            </label>
+                                        </div>
+                                    </div>
+                                </li>
+                            )
+                        })}
+                    </ul>
                 </div>
 
                 <div className="inputOuter">
