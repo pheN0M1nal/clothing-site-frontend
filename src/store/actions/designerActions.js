@@ -140,6 +140,11 @@ export const fetchDesignerInfo = () => async (dispatch) => {
 
         const { data } = await axiosInstance().get("/designers")
 
+        dispatch(fetchShopDetails())
+        if (data.userType === "Designer") {
+            dispatch(fetchDesignerProducts(data._id))
+        }
+
         dispatch({
             type: REGISTER_DESIGNER_SUCCESS,
             payload: data,

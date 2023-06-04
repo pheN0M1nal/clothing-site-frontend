@@ -19,31 +19,32 @@ import axios from "axios"
 
 //Fetch All Products
 export const getAllProducts =
-  (keyword = "", pageNumber = 1) =>
-  async dispatch => {
-    try {
-      dispatch({
-        type: ALL_PRODUCT_REQUEST,
-      });
+    (formData, pageNumber = 1) =>
+    async (dispatch) => {
+        try {
+            dispatch({
+                type: ALL_PRODUCT_REQUEST,
+            })
 
-      const { data } = await axiosInstance().get(
-        `/products/getAllProducts?keyword=${keyword}`
-      );
+            const { data } = await axiosInstance().get(
+                `/products/getAllProducts?keyword=${formData?.keyword}&maxPrice=${formData?.maxPrice}&minPrice=${formData?.minPrice}&category=${formData?.category}&avgRating=${formData?.avgRating}`
+            )
+            //
 
-      dispatch({
-        type: ALL_PRODUCT_SUCCESS,
-        payload: data,
-      });
-    } catch (error) {
-      dispatch({
-        type: ALL_PRODUCT_FAIL,
-        payload:
-          error.response && error.response.data.message
-            ? error.response.data.message
-            : error.message,
-      });
+            dispatch({
+                type: ALL_PRODUCT_SUCCESS,
+                payload: data,
+            })
+        } catch (error) {
+            dispatch({
+                type: ALL_PRODUCT_FAIL,
+                payload:
+                    error.response && error.response.data.message
+                        ? error.response.data.message
+                        : error.message,
+            })
+        }
     }
-  };
 
 //Get Single Product
 export const getproductById = (single) => async (dispatch) => {
@@ -78,8 +79,13 @@ export const createProduct = (product) => async (dispatch) => {
             type: ADD_PRODUCT_REQUEST,
         })
 
+        const url =
+            process.env.REACT_APP_NODE_ENV === "development"
+                ? process.env.REACT_APP_MAIN_SERVER_URL_DEVELOPMENT
+                : process.env.REACT_APP_MAIN_SERVER_URL_PRODUCTION
+
         const { data } = await axios.post(
-            `http://127.0.0.1:5000/api/products/createProduct`,
+            `${url}/api/products/createProduct`,
             product,
             {
                 headers: {

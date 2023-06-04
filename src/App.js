@@ -62,6 +62,14 @@ function App() {
                         path="/designer/products"
                         element={<DesignerProducts />}
                     />
+                    <Route
+                        path="/designer/products/payment-cancelled"
+                        element={<DesignerProducts />}
+                    />
+                    <Route
+                        path="/designer/products/payment-verified"
+                        element={<DesignerProducts />}
+                    />
 
                     <Route path="/admin/stats" element={<Dashboard />} />
 

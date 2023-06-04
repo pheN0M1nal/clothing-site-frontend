@@ -20,6 +20,11 @@ import {
     REGISTER_DESIGNER_RESET,
     REGISTER_DESIGNER_SUCCESS,
 } from "../constants/designerConstants"
+import {
+    fetchDesignerInfo,
+    fetchDesignerProducts,
+    fetchShopDetails,
+} from "./designerActions"
 
 export const login = (email, password) => async (dispatch) => {
     try {
@@ -149,6 +154,12 @@ export const fetchUserDetails = () => async (dispatch) => {
         })
 
         const { data } = await axiosInstance().get(`/users/`)
+
+        dispatch(fetchDesignerInfo())
+        dispatch(fetchShopDetails())
+        if (data.userType === "Designer") {
+            dispatch(fetchDesignerProducts(data._id))
+        }
 
         if (data) {
             data?.token && localStorage.setItem("token", data.token)

@@ -75,8 +75,6 @@ export const AddProduct = () => {
     //
     const [checkedState, setCheckedState] = useState([])
 
-    const [size, setSize] = useState(0)
-
     const handleOnChange = (item) => {
         checkedState.includes(item)
             ? setCheckedState(checkedState.filter((i) => i !== item))
@@ -84,13 +82,7 @@ export const AddProduct = () => {
     }
     //
     const [files, setFiles] = useState({})
-    const [data, setData] = useState({
-        size: checkedState,
-    })
-
-    useEffect(() => {
-        setData({ ...data, size: checkedState })
-    }, [checkedState])
+    const [data, setData] = useState({})
 
     const dispatch = useDispatch()
 
@@ -145,7 +137,7 @@ export const AddProduct = () => {
             "category",
             "price",
             "description",
-            "size",
+
             "quantity",
         ]
         for (let field of fields) {
@@ -182,6 +174,11 @@ export const AddProduct = () => {
 
         formData.append("image", files)
         formData.append("designerID", user?._id)
+        formData.append("designerID", user?._id)
+
+        checkedState.forEach((size) => {
+            formData.append("size", size)
+        })
 
         dispatch(createProduct(formData))
     }
