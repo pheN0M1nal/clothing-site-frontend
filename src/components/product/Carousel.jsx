@@ -5,13 +5,16 @@ import "slick-carousel/slick/slick-theme.css";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
-import { getAllProducts } from "../../store/actions/productActions";
+import {
+  getAllProducts,
+  getTopProducts,
+} from "../../store/actions/productActions";
 import { Spinner } from "../Spinner";
 const Carousel = ({ products }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getAllProducts());
+    dispatch(getTopProducts());
   }, []);
 
   const productsInfo = useSelector(state => state.allProducts);

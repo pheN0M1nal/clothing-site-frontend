@@ -61,7 +61,6 @@ function Home() {
           <div className="mt-7 min-w-[310px] sm:w-full">
             {/* allProducts Carousel */}
             <Carousel />
-
             <div className="flex flex-col items-center mt-11">
               <button className="text-zinc-700">
                 <Link to="/allProducts">See all product</Link>
