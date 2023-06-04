@@ -44,7 +44,8 @@ const ProductInfo = ({ product }) => {
             price: product.price,
             rating: product && product?.rating,
             designerID: product.designerID,
-            quantity: 1,
+            quantity: actualQty,
+            purchaseQty: 1,
         }
 
         stock < 1

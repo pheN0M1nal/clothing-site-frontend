@@ -45,10 +45,28 @@ const StyledComponent = styled.div`
             border-radius: 10px;
         }
 
-        .inputOuter {
+        .quantity {
+            display: flex;
+            text-align: center;
+            justify-content: space-around;
+            margin: 20px 0;
+            div {
+                padding-left: 20px;
+            }
             input {
                 background-color: aliceblue;
                 margin-bottom: 0.3rem;
+                width: 10%;
+            }
+            label {
+                padding-top: 15px;
+            }
+        }
+
+        .inputOuter {
+            input {
+                background-color: aliceblue;
+                margin: 0.7rem 0;
                 max-width: 100%;
             }
             label {
@@ -69,20 +87,16 @@ const StyledComponent = styled.div`
         }
     }
 `
-const sizes = ["S", "M", "L"]
 
 export const AddProduct = () => {
     //
-    const [checkedState, setCheckedState] = useState([])
 
-    const handleOnChange = (item) => {
-        checkedState.includes(item)
-            ? setCheckedState(checkedState.filter((i) => i !== item))
-            : setCheckedState([...checkedState, item])
-    }
     //
     const [files, setFiles] = useState({})
-    const [data, setData] = useState({})
+    const [data, setData] = useState({
+        quantity: [0, 0, 0],
+        size: ["S", "M", "L"],
+    })
 
     const dispatch = useDispatch()
 
@@ -90,7 +104,7 @@ export const AddProduct = () => {
     const { addedProduct, error, loading } = useSelector(
         (state) => state.addedProduct
     )
-    console.log(checkedState)
+
     const { user } = useSelector((state) => state.userDetails)
 
     useEffect(() => {
@@ -99,35 +113,6 @@ export const AddProduct = () => {
 
     // notifying if error from reducer state
     error && notifyFailure(error)
-
-    // useEffect(() => {
-    //     setData(profile)
-    //     const pictureData = {
-    //         url_on_server: profile && profile?.image?.file,
-    //     }
-
-    //     setFiles({
-    //         ...files,
-    //         image: pictureData,
-    //     })
-    // }, [profile?.image?.file, setFiles, profile])
-    // const uploadFile = useCallback(async () => {
-    //     if (files?.image) {
-    //         const temp = {
-    //             ...files?.image,
-    //             to_be_deleted_file_id: profile && profile?.image?.id,
-    //         }
-
-    //         if (temp?.to_be_uploaded_buffer) {
-    //             let tempData = { ...data }
-    //             tempData["image"] = files?.image.to_be_uploaded_buffer
-    //             setData(tempData)
-    //         }
-    //     }
-    // }, [files?.image, setData, profile])
-    // useEffect(() => {
-    //     uploadFile()
-    // }, [uploadFile])
 
     //validating feilds
     const validateFields = () => {
@@ -158,29 +143,45 @@ export const AddProduct = () => {
             return
         }
 
-        // var final = {
-        //     ...data,
-        //     quantity: parseInt(data.quantity),
-        //     price: parseInt(data.price),
-        // }
-
         console.log(data)
+        console.log(files)
 
         const formData = new FormData()
 
         for (let field in data) {
-            formData.append(field, data[field])
+            field !== "size" &&
+                field !== "quantity" &&
+                formData.append(field, data[field])
         }
 
-        formData.append("image", files)
-        formData.append("designerID", user?._id)
         formData.append("designerID", user?._id)
 
-        checkedState.forEach((size) => {
+        Object.keys(files).forEach((i) => {
+            formData.append("image", files[i])
+        })
+
+        data.size.forEach((size) => {
             formData.append("size", size)
         })
 
+        data.quantity.forEach((quantity) => {
+            formData.append("quantity", quantity)
+        })
+
         dispatch(createProduct(formData))
+    }
+
+    const handleQuantityChange = (e, v) => {
+        setData({
+            ...data,
+            quantity: data.quantity.map((item, i) => {
+                return i === v
+                    ? parseInt(e.target.value)
+                        ? parseInt(e.target.value)
+                        : 0
+                    : item
+            }),
+        })
     }
     return (
         <StyledComponent>
@@ -227,7 +228,7 @@ export const AddProduct = () => {
                         }
                     />
                 </div>
-                <div className="inputOuter">
+                {/* <div className="inputOuter">
                     <label>Size</label>
 
                     <ul className="toppings-list">
@@ -259,7 +260,7 @@ export const AddProduct = () => {
                             )
                         })}
                     </ul>
-                </div>
+                </div> */}
 
                 <div className="inputOuter">
                     <label>Price</label>
@@ -275,14 +276,33 @@ export const AddProduct = () => {
 
                 <div className="inputOuter">
                     <label>Quantity</label>
-                    <InputComponent
-                        type="number"
-                        height={40}
-                        value={data?.quantity}
-                        onChange={(e) =>
-                            HandleOnChangeInput(e, "quantity", setData, data)
-                        }
-                    />
+                    <div className="quantity">
+                        <label>Small</label>
+
+                        <InputComponent
+                            type="number"
+                            height={40}
+                            value={data?.quantity[0]}
+                            onChange={(e) => handleQuantityChange(e, 0)}
+                        />
+
+                        <label>Medium</label>
+
+                        <InputComponent
+                            type="number"
+                            height={40}
+                            value={data?.quantity[1]}
+                            onChange={(e) => handleQuantityChange(e, 1)}
+                        />
+
+                        <label>Large</label>
+                        <InputComponent
+                            type="number"
+                            height={40}
+                            value={data?.quantity[2]}
+                            onChange={(e) => handleQuantityChange(e, 2)}
+                        />
+                    </div>
                 </div>
                 <div className="inputOuter">
                     <label>Discription</label>
@@ -308,7 +328,7 @@ export const AddProduct = () => {
                             height={41}
                             onClick={handleUpdateProfile}
                         >
-                            UPDATE
+                            Create Product
                         </Button>
                     )}
                 </div>

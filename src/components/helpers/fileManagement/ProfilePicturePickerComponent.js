@@ -5,19 +5,21 @@ import styled from "styled-components"
 const StyledComponent = styled.div`
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     gap: 1.5rem;
+    margin-bottom: 20px;
 
     .imageWrapper {
-        min-width: 5.5rem;
-        height: 5.5rem;
-
+        width: 10rem;
+        height: 10rem;
+        border-radius: 50%;
         margin-bottom: 15px;
+        overflow: hidden;
+
         img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 50%;
         }
     }
 

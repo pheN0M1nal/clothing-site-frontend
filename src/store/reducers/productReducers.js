@@ -23,27 +23,6 @@ export const productDetailReducer = (state = { allProducts: [] }, action) => {
         case ALL_PRODUCT_FAIL:
             return { loading: false, error: action.payload }
 
-        case DELETE_PRODUCT_START:
-            return {
-                loading_delete: action.payload,
-                allProducts: state.allProducts,
-            }
-        case DELETE_PRODUCT_SUCCESS:
-            return {
-                loading_delete: "",
-                allProducts: {
-                    ...state.allProducts,
-                    products: state.allProducts.products.filter(
-                        (item) => item._id !== action.payload
-                    ),
-                },
-            }
-        case DELETE_PRODUCT_FAIL:
-            return {
-                loading_delete: false,
-                allProducts: state.allProducts,
-                error: action.payload,
-            }
         default:
             return state
     }

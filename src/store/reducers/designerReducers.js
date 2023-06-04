@@ -11,6 +11,11 @@ import {
     FETCH_DESIGNER_PRODUCT_FAIL,
     FETCH_DESIGNER_PRODUCT_REQUEST,
 } from "../constants/designerConstants"
+import {
+    DELETE_PRODUCT_FAIL,
+    DELETE_PRODUCT_START,
+    DELETE_PRODUCT_SUCCESS,
+} from "../constants/productConstants"
 
 export const createShopReducer = (state = {}, action) => {
     switch (action.type) {
@@ -54,6 +59,28 @@ export const designerProductsReducer = (state = {}, action) => {
             return { loading: false, designerProducts: action.payload }
         case FETCH_DESIGNER_PRODUCT_FAIL:
             return { loading: false, error: action.payload }
+
+        case DELETE_PRODUCT_START:
+            return {
+                loading_delete: action.payload,
+                designerProducts: state.designerProducts,
+            }
+        case DELETE_PRODUCT_SUCCESS:
+            return {
+                loading_delete: "",
+                designerProducts: {
+                    ...state.designerProducts,
+                    products: state.designerProducts.products.filter(
+                        (item) => item._id !== action.payload
+                    ),
+                },
+            }
+        case DELETE_PRODUCT_FAIL:
+            return {
+                loading_delete: false,
+                designerProducts: state.designerProducts,
+                error: action.payload,
+            }
 
         default:
             return state

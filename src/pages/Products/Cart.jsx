@@ -65,6 +65,7 @@ const Cart = () => {
             return i
         })
         setItems(updatedItems)
+        console.log(updatedItems)
         dispatch(incQty(updatedItems))
     }
 
