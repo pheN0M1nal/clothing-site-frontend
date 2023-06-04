@@ -88,4 +88,18 @@ export const topProductsReducer = (state = {}, action) => {
       return state;
   }
 };
+
+//Feature Products
+export const featureProductsReducer = (state = {}, action) => {
+  switch (action.type) {
+    case ADD_PRODUCT_REQUEST:
+      return { loading: true };
+    case ADD_PRODUCT_SUCCESS:
+      return { loading: false, featureProducts: action.payload };
+    case ADD_PRODUCT_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
 //

@@ -10,6 +10,7 @@ import {
   singleproductReducer,
   addProductReducer,
   topProductsReducer,
+  featureProductsReducer,
 } from "./reducers/productReducers";
 
 import {
@@ -40,6 +41,7 @@ const reducer = combineReducers({
   allDesigners: designersReducer,
   allProducts: productDetailReducer,
   topProducts: topProductsReducer,
+  featureProducts: featureProductsReducer,
 
   userOrders: userOrdersReducer,
 
