@@ -11,6 +11,12 @@ import {
   DELETE_PRODUCT_START,
   DELETE_PRODUCT_SUCCESS,
   DELETE_PRODUCT_FAIL,
+  TOP_PRODUCTS_REQUEST,
+  TOP_PRODUCTS_SUCCESS,
+  TOP_PRODUCTS_FAIL,
+  FEATURE_PRODUCTS_REQUEST,
+  FEATURE_PRODUCTS_SUCCESS,
+  FEATURE_PRODUCTS_FAIL,
 } from "../constants/productConstants";
 
 //Get All Products
@@ -78,11 +84,11 @@ export const addProductReducer = (state = {}, action) => {
 //Top Products
 export const topProductsReducer = (state = {}, action) => {
   switch (action.type) {
-    case ADD_PRODUCT_REQUEST:
+    case TOP_PRODUCTS_REQUEST:
       return { loading: true };
-    case ADD_PRODUCT_SUCCESS:
+    case TOP_PRODUCTS_SUCCESS:
       return { loading: false, topProducts: action.payload };
-    case ADD_PRODUCT_FAIL:
+    case TOP_PRODUCTS_FAIL:
       return { loading: false, error: action.payload };
     default:
       return state;
@@ -92,14 +98,13 @@ export const topProductsReducer = (state = {}, action) => {
 //Feature Products
 export const featureProductsReducer = (state = {}, action) => {
   switch (action.type) {
-    case ADD_PRODUCT_REQUEST:
+    case FEATURE_PRODUCTS_REQUEST:
       return { loading: true };
-    case ADD_PRODUCT_SUCCESS:
+    case FEATURE_PRODUCTS_SUCCESS:
       return { loading: false, featureProducts: action.payload };
-    case ADD_PRODUCT_FAIL:
+    case FEATURE_PRODUCTS_FAIL:
       return { loading: false, error: action.payload };
     default:
       return state;
   }
 };
-//

@@ -13,9 +13,8 @@ import {
 const Navbar = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchDesignerInfo());
     dispatch(fetchUserDetails());
-    dispatch(fetchShopDetails());
+    dispatch(fetchDesignerInfo());
   }, []);
 
   let showMenu = false;

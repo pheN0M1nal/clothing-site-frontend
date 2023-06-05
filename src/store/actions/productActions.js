@@ -14,6 +14,9 @@ import {
   TOP_PRODUCTS_REQUEST,
   TOP_PRODUCTS_SUCCESS,
   TOP_PRODUCTS_FAIL,
+  FEATURE_PRODUCTS_REQUEST,
+  FEATURE_PRODUCTS_SUCCESS,
+  FEATURE_PRODUCTS_FAIL,
 } from "../constants/productConstants";
 import { toast } from "react-toastify";
 
@@ -22,7 +25,7 @@ import axios from "axios";
 
 //Fetch All Products
 export const getAllProducts =
-  (keyword = "", pageNumber = 1) =>
+  (formData, pageNumber = 1) =>
   async dispatch => {
     try {
       dispatch({
@@ -30,8 +33,9 @@ export const getAllProducts =
       });
 
       const { data } = await axiosInstance().get(
-        `/products/getAllProducts?keyword=${keyword}`
+        `/products/getAllProducts?keyword=${formData?.keyword}&maxPrice=${formData?.maxPrice}&minPrice=${formData?.minPrice}&category=${formData?.category}&avgRating=${formData?.avgRating}`
       );
+      //
 
       dispatch({
         type: ALL_PRODUCT_SUCCESS,
@@ -81,8 +85,13 @@ export const createProduct = product => async dispatch => {
       type: ADD_PRODUCT_REQUEST,
     });
 
+    const url =
+      process.env.REACT_APP_NODE_ENV === "development"
+        ? process.env.REACT_APP_MAIN_SERVER_URL_DEVELOPMENT
+        : process.env.REACT_APP_MAIN_SERVER_URL_PRODUCTION;
+
     const { data } = await axios.post(
-      `http://127.0.0.1:5000/api/products/createProduct`,
+      `${url}/api/products/createProduct`,
       product,
       {
         headers: {
@@ -133,7 +142,7 @@ export const deleteProduct = id => async dispatch => {
     });
   }
 };
-//Fetch All Products
+//Fetch Top Products
 export const getTopProducts = () => async dispatch => {
   try {
     dispatch({
@@ -149,6 +158,31 @@ export const getTopProducts = () => async dispatch => {
   } catch (error) {
     dispatch({
       type: TOP_PRODUCTS_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+//Fetch Feature Products
+export const getFeatureProducts = () => async dispatch => {
+  try {
+    dispatch({
+      type: FEATURE_PRODUCTS_REQUEST,
+    });
+
+    const { data } = await axiosInstance().get(
+      `/products/getAllFeatureProduct`
+    );
+
+    dispatch({
+      type: FEATURE_PRODUCTS_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: FEATURE_PRODUCTS_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

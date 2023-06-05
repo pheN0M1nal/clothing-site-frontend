@@ -17,6 +17,8 @@ import { Link } from "react-router-dom";
 
 import Carousel from "../components/product/Carousel";
 
+import FeatureCarousel from "../components/product/FeatureCarousel";
+
 function Home() {
   return (
     <>
@@ -113,23 +115,18 @@ function Home() {
         <section className="mt-20 space-y-16">
           <div className="flex items-center mx-auto w-80">
             <span className="text-center capitalize textsize font-bold text-zinc-700">
-              start creating your designs from scratch
+              You want to know about Feature Products
             </span>
           </div>
-          <div className="container flex flex-col mx-auto max-w-full sm:flex-row">
-            <div className="container flex flex-col items-end overflow-hidden productadjust sm:w-180 sm:mx-auto ">
-              <div className="flex flex-row space-x-2">
-                <img src={img1} className="w-40 h-30" alt="" />
-                <img src={img2} className="w-40 h-30" alt="" />
-                <img src={img3} className="w-40 h-30" alt="" />
-                <img src={img4} className="w-40 h-30" alt="" />
-              </div>
-              <div className="">
-                <button className="text-zinc-700">
-                  See all product
-                  <i className="fa fa-long-arrow-right" aria-hidden="true"></i>
-                </button>
-              </div>
+
+          <div className="mt-7 min-w-[310px] sm:w-full">
+            {/* allProducts Carousel */}
+            <FeatureCarousel />
+            <div className="flex flex-col items-center mt-11">
+              <button className="text-zinc-700">
+                <Link to="/allProducts">See all product</Link>
+                <i className="fa fa-long-arrow-right" aria-hidden="true"></i>
+              </button>
             </div>
           </div>
         </section>

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ProductCard from "../../components/product/ProductCard";
 import { Spinner } from "../../components/Spinner";
 import { getAllProducts } from "../../store/actions/productActions";
+import { min } from "moment/moment";
 
 function Products() {
   const dispatch = useDispatch();
@@ -10,20 +11,27 @@ function Products() {
     searchParam: "",
   });
   const [price, setPrice] = useState({
-    minPrice: "",
-    maxPrice: "",
+    minPrice: 0,
+    maxPrice: 999999,
   });
 
   const { minPrice, maxPrice } = price;
   const [ratingSearch, setRatingSearch] = useState({
-    rating: "",
+    rating: 0,
   });
   const { rating } = ratingSearch;
   const [searchList, setSearchList] = useState([]);
-  const [gen, setGen] = useState(true);
+  const [gen, setGen] = useState("");
 
   useEffect(() => {
-    dispatch(getAllProducts());
+    const data = {
+      avgRating: rating,
+      minPrice,
+      maxPrice,
+      category: gen,
+      keyword: formData.searchParam,
+    };
+    dispatch(getAllProducts(data));
   }, [dispatch]);
 
   const productsInfo = useSelector(state => state.allProducts);
@@ -42,8 +50,20 @@ function Products() {
   const [clear, setClear] = useState("");
   const onSubmit = e => {
     e.preventDefault();
+
+    const data = {
+      avgRating: rating,
+      minPrice,
+      maxPrice,
+      category: gen,
+      keyword: formData.searchParam,
+    };
+
+    console.log(data);
+
     setClear(formData.searchParam);
-    dispatch(getAllProducts(formData.searchParam));
+
+    dispatch(getAllProducts(data));
   };
 
   const priceSearch = e => {
@@ -105,9 +125,22 @@ function Products() {
 
   const clearFilter = () => {
     setSearchList([]);
-    setPrice({ price: "" });
-    setRatingSearch({ rating: "" });
-    dispatch(getAllProducts());
+    setPrice({
+      minPrice: 0,
+      maxPrice: 999999,
+    });
+    setRatingSearch({ rating: 0 });
+
+    setGen("");
+
+    const data = {
+      avgRating: rating,
+      minPrice,
+      maxPrice,
+      category: gen,
+      keyword: formData.searchParam,
+    };
+    dispatch(getAllProducts(data));
   };
 
   return (
@@ -148,13 +181,13 @@ function Products() {
                   <span className="">Filter By:</span>
                   <button
                     className="text-sm sm:text-base w-16 border border-zinc-400 rounded-2xl hover:text-white hover:bg-slate-600"
-                    onClick={() => setGen(true)}
+                    onClick={() => setGen("man")}
                   >
                     Men's
                   </button>
                   <button
                     className="text-sm sm:text-base w-20 border border-zinc-400 rounded-2xl hover:text-white hover:bg-slate-600"
-                    onClick={() => setGen(false)}
+                    onClick={() => setGen("woman")}
                   >
                     Women's
                   </button>

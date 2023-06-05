@@ -38,6 +38,9 @@ const OrderPlace = () => {
         if (pathname.split("/")[2] === "payment-verified" && user._id) {
             toast.success("Payment successful.")
         }
+        if (pathname.split("/")[2] === "payment-cancelled" && user._id) {
+            toast.error("Payment unsuccessful! Please try again.")
+        }
     }, [user])
 
     useEffect(() => {
@@ -57,13 +60,13 @@ const OrderPlace = () => {
             .post("/stripe/create-checkout-session", {
                 cartItems,
                 success_url: `${url}/order-place/payment-verified`,
-                cancel_url: "http://localhost:3000/order-place/cancel-success",
+                cancel_url: `${url}/order-place/payment-cancelled`,
             })
             .then(({ data }) => {
-                console.log(data)
                 window.location.replace(data.url)
             })
             .catch((err) => {
+                toast.error("Error in order placement.")
                 console.log(err)
             })
     }
