@@ -10,7 +10,7 @@ const ProductInfo = ({ product }) => {
     const [stock, setStock] = useState(
         product?.quantity && product?.quantity[0]
     )
-    const [activeBtn, setActiveBtn] = useState("L")
+    const [activeBtn, setActiveBtn] = useState("S")
 
     const loginInfo = useSelector((state) => state.userLogin.userInfo)
     const items = useSelector((state) => state.cartItems)
@@ -26,13 +26,13 @@ const ProductInfo = ({ product }) => {
         })
 
         var actualQty = 0
-        if (activeBtn === "L") {
+        if (activeBtn === "S") {
             actualQty = product.quantity && product?.quantity[0]
         }
         if (activeBtn === "M") {
             actualQty = product.quantity && product?.quantity[1]
         }
-        if (activeBtn === "S") {
+        if (activeBtn === "L") {
             actualQty = product.quantity && product?.quantity[2]
         }
 

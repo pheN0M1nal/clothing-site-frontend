@@ -40,6 +40,11 @@ export const login = (email, password) => async (dispatch) => {
         toast.success("Login successful.")
         data?.token && localStorage.setItem("token", data.token)
 
+        if (data.userType === "Designer") {
+            dispatch(fetchDesignerProducts(data._id))
+            dispatch(fetchShopDetails())
+        }
+
         dispatch({
             type: USER_LOGIN_SUCCESS,
             payload: data,
@@ -156,7 +161,7 @@ export const fetchUserDetails = () => async (dispatch) => {
         const { data } = await axiosInstance().get(`/users/`)
 
         dispatch(fetchDesignerInfo())
-        dispatch(fetchShopDetails())
+
         if (data.userType === "Designer") {
             dispatch(fetchDesignerProducts(data._id))
         }

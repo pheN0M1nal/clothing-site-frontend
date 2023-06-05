@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 
 import { useDispatch, useSelector } from "react-redux"
 import { Link, useLocation, useNavigate } from "react-router-dom"
@@ -8,6 +8,7 @@ import { placeAnOrder } from "../../store/actions/billingActions"
 import axiosInstance from "../../api/axios"
 import { toast } from "react-toastify"
 import { fetchUserOrders } from "../../store/actions/userActions"
+import { Spinner } from "../../components/Spinner"
 console.log(process.env.REACT_APP_LOCAL_SITE_URL)
 
 const OrderPlace = () => {
@@ -58,7 +59,11 @@ const OrderPlace = () => {
             ? process.env.REACT_APP_LOCAL_SITE_URL
             : process.env.REACT_APP_LIVE_SITE_URL
 
+    const [loader, setLoader] = useState(false)
+
     const verifyPayment = () => {
+        setLoader(true)
+
         axiosInstance()
             .post("/stripe/create-checkout-session", {
                 cartItems: cartItems.map((item) => ({
@@ -167,14 +172,18 @@ const OrderPlace = () => {
             </div>
 
             <div className="flex items-center justify-center">
-                <div className="flex items-center justify-center bg-slate-600 w-40 rounded-3xl">
-                    <button
-                        className="p-2 text-xs text-[#D2FF28] transition-all duration-200"
-                        onClick={() => verifyPayment()}
-                    >
-                        Confirm Order <br /> Total: ${totalBill}
-                    </button>
-                </div>
+                {loader ? (
+                    <Spinner />
+                ) : (
+                    <div className="flex items-center justify-center bg-slate-600 w-40 rounded-3xl">
+                        <button
+                            className="p-2 text-xs text-[#D2FF28] transition-all duration-200"
+                            onClick={() => verifyPayment()}
+                        >
+                            Confirm Order <br /> Total: ${totalBill}
+                        </button>
+                    </div>
+                )}
             </div>
         </>
     )

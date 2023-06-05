@@ -10,6 +10,7 @@ import TopRatedDesigners from "../dashboard/partials/dashboard/TopRatedDesigners
 
 import DesignerSubNav from "../components/DesignerSubNav"
 import { useEffect } from "react"
+import DashboardCard06 from "../dashboard/partials/dashboard/DashboardCard06"
 
 const Wrapper = styled.div`
     max-width: 1000px;
@@ -114,6 +115,7 @@ const DesignerDasboard = () => {
                         <div className="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
                             {/* Welcome banner */}
                             <WelcomeBanner />
+                            <DashboardCard06 />
 
                             {/* Cards */}
                             <div className="grid grid-cols-12 gap-6">
