@@ -1,8 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import DetailInfo from "../../components/product/DetailInfo";
 import ProductInfo from "../../components/product/ProductInfo";
-
+import Reviews from "../../components/product/Reviews";
 import { getproductById } from "../../store/actions/productActions";
 import { useDispatch, useSelector } from "react-redux";
 import { Spinner } from "../../components/Spinner";
@@ -31,7 +30,7 @@ const ProductView = () => {
               <ProductInfo product={singleProduct} />
             </div>
             <div className="w-[300px] sm:w-full lg:w-[80%] border border-zinc-300 rounded-lg">
-              <DetailInfo descr={singleProduct?.description} />
+              <Reviews />
             </div>
           </div>
         </>

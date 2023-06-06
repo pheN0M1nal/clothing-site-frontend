@@ -13,7 +13,16 @@ import {
   TOP_DESIGNERS_REQUEST,
   TOP_DESIGNERS_SUCCESS,
   TOP_DESIGNERS_FAIL,
+  GET_DESIGNER_BY_ID_REQUEST,
+  GET_DESIGNER_BY_ID_SUCCESS,
+  GET_DESIGNER_BY_ID_FAIL,
 } from "../constants/designerConstants";
+
+import {
+  DELETE_PRODUCT_FAIL,
+  DELETE_PRODUCT_START,
+  DELETE_PRODUCT_SUCCESS,
+} from "../constants/productConstants";
 
 export const createShopReducer = (state = {}, action) => {
   switch (action.type) {
@@ -58,6 +67,28 @@ export const designerProductsReducer = (state = {}, action) => {
     case FETCH_DESIGNER_PRODUCT_FAIL:
       return { loading: false, error: action.payload };
 
+    case DELETE_PRODUCT_START:
+      return {
+        loading_delete: action.payload,
+        designerProducts: state.designerProducts,
+      };
+    case DELETE_PRODUCT_SUCCESS:
+      return {
+        loading_delete: "",
+        designerProducts: {
+          ...state.designerProducts,
+          products: state.designerProducts.products.filter(
+            item => item._id !== action.payload
+          ),
+        },
+      };
+    case DELETE_PRODUCT_FAIL:
+      return {
+        loading_delete: false,
+        designerProducts: state.designerProducts,
+        error: action.payload,
+      };
+
     default:
       return state;
   }
@@ -70,6 +101,19 @@ export const topDesignersReducer = (state = {}, action) => {
     case TOP_DESIGNERS_SUCCESS:
       return { loading: false, topDesigners: action.payload };
     case TOP_DESIGNERS_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+// Get Designer By Id
+export const getDesignerDetailsReducer = (state = {}, action) => {
+  switch (action.type) {
+    case GET_DESIGNER_BY_ID_REQUEST:
+      return { loading: true };
+    case GET_DESIGNER_BY_ID_SUCCESS:
+      return { loading: false, supplierInfo: action.payload };
+    case GET_DESIGNER_BY_ID_FAIL:
       return { loading: false, error: action.payload };
     default:
       return state;

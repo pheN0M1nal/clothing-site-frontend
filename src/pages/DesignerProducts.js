@@ -60,11 +60,17 @@ const Wrapper = styled.div`
             background-color: #ffffff;
             box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
         }
+        .col {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
         .col-1 {
             flex-basis: 10%;
         }
         .col-2 {
-            flex-basis: 20%;
+            flex-basis: 25%;
             cursor: pointer;
             font-weight: 500;
         }
@@ -72,7 +78,7 @@ const Wrapper = styled.div`
             text-decoration: underline;
         }
         .col-3 {
-            flex-basis: 30%;
+            flex-basis: 15%;
         }
         .col-4 {
             flex-basis: 10%;
@@ -83,8 +89,8 @@ const Wrapper = styled.div`
         .col-6 {
             flex-basis: 8%;
             svg {
-                height: 25px;
-                width: 25 px;
+                height: 20px;
+                width: 20 px;
                 cursor: pointer;
             }
         }
@@ -224,7 +230,7 @@ const DesignerProducts = () => {
                                 {item.category}
                             </div>
                             <div className="col col-5" data-label="Email">
-                                {item.price}$
+                                {item.price} Rs
                             </div>
                             <div
                                 className="col col-6"

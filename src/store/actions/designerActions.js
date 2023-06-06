@@ -11,6 +11,9 @@ import {
   TOP_DESIGNERS_REQUEST,
   TOP_DESIGNERS_SUCCESS,
   TOP_DESIGNERS_FAIL,
+  GET_DESIGNER_BY_ID_REQUEST,
+  GET_DESIGNER_BY_ID_SUCCESS,
+  GET_DESIGNER_BY_ID_FAIL,
 } from "../constants/designerConstants";
 import axiosInstance from "../../api/axios";
 import {
@@ -169,6 +172,54 @@ export const fetchDesignerInfo = () => async dispatch => {
   } catch (error) {
     dispatch({
       type: REGISTER_DESIGNER_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+//Get Designer Id
+export const getDesignerById = id => async dispatch => {
+  try {
+    dispatch({
+      type: GET_DESIGNER_BY_ID_REQUEST,
+    });
+
+    const { data } = await axiosInstance().get(`/designers/${id}`);
+
+    dispatch({
+      type: GET_DESIGNER_BY_ID_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: GET_DESIGNER_BY_ID_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+//Get Top rated Designers
+export const topRatedDesigners = () => async dispatch => {
+  try {
+    dispatch({
+      type: TOP_DESIGNERS_REQUEST,
+    });
+
+    const { data } = await axiosInstance().get("/designers/topRatedDesigners");
+
+    dispatch({
+      type: TOP_DESIGNERS_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: TOP_DESIGNERS_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

@@ -16,7 +16,9 @@ import {
 import {
   createShopReducer,
   designerProductsReducer,
+  getDesignerDetailsReducer,
   registerDesignerReducer,
+  topDesignersReducer,
 } from "./reducers/designerReducers";
 
 import {
@@ -49,6 +51,9 @@ const reducer = combineReducers({
   singleProduct: singleproductReducer,
   registerDesigner: registerDesignerReducer,
   designerProducts: designerProductsReducer,
+  topDesigners: topDesignersReducer,
+  supplierInfo: getDesignerDetailsReducer,
+
   cartItems: cartReducer,
   billingInfo: billingReducer,
   ratedDesigners: ratedDesignersReducer,

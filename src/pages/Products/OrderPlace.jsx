@@ -27,7 +27,10 @@ const OrderPlace = () => {
         address: shippingDetails.address,
         fullName: shippingDetails.fullname,
         postalCode: shippingDetails.postalCode,
-        cartItems: cartItems, //array of products
+        cartItems: cartItems.map((item) => ({
+            ...item,
+            quantity: item.purchaseQty,
+        })), //array of products
     }
     const { pathname } = useLocation()
     const navigate = useNavigate()
@@ -58,7 +61,10 @@ const OrderPlace = () => {
     const verifyPayment = () => {
         axiosInstance()
             .post("/stripe/create-checkout-session", {
-                cartItems,
+                cartItems: cartItems.map((item) => ({
+                    ...item,
+                    quantity: item.purchaseQty,
+                })),
                 success_url: `${url}/order-place/payment-verified`,
                 cancel_url: `${url}/order-place/payment-cancelled`,
             })

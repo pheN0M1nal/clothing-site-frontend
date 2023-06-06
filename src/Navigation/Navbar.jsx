@@ -133,23 +133,15 @@ const Navbar = () => {
               </div>
             </div>
 
-            <div className="space-x-4">
+            {/* Right Menu */}
+
+            <div className="items-center hidden lg:flex font-boldh ">
               <Link to="/cart">
                 <i
                   className="ri-shopping-cart-line cursor-pointer nav-link"
                   title="Cart"
                 ></i>
               </Link>
-              <Link to="/cart">
-                <i
-                  className="ri-notification-line cursor-pointer nav-link"
-                  title="Notification"
-                ></i>
-              </Link>
-            </div>
-            {/* Right Menu */}
-
-            <div className="items-center hidden lg:flex font-boldh ">
               <div className="px-7 py-3">
                 {user?.myName ? (
                   <div className="relative inline-block text-left">
@@ -215,15 +207,23 @@ const Navbar = () => {
               </div>
             </div>
             {/* HamBurger */}
-            <button
-              id="menu-btn"
-              className="block hamburger mr-0 lg:hidden focus:outline-none"
-              onClick={onClick}
-            >
-              <span className="hamburger-top"></span>
-              <span className="hamburger-middle"></span>
-              <span className="hamburger-bottom"></span>
-            </button>
+            <div className="flex mr-0 lg:hidden focus:outline-none">
+              <Link to="/cart">
+                <i
+                  className="ri-shopping-cart-line cursor-pointer nav-link mr-2"
+                  title="Cart"
+                ></i>
+              </Link>
+              <button
+                id="menu-btn"
+                className="block hamburger focus:outline-none"
+                onClick={onClick}
+              >
+                <span className="hamburger-top"></span>
+                <span className="hamburger-middle"></span>
+                <span className="hamburger-bottom"></span>
+              </button>
+            </div>
           </div>
           {/* Mobile View */}
           {/* {showMenu && ( */}
