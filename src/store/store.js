@@ -9,13 +9,17 @@ import {
     productDetailReducer,
     singleproductReducer,
     addProductReducer,
+    topProductsReducer,
+    featureProductsReducer,
 } from "./reducers/productReducers"
 
 import {
     createShopReducer,
     designerDataReducer,
     designerProductsReducer,
+    getDesignerDetailsReducer,
     registerDesignerReducer,
+    topDesignersReducer,
 } from "./reducers/designerReducers"
 
 import {
@@ -36,14 +40,13 @@ const reducer = combineReducers({
     allAdmins: adminsReducer,
     allUsers: usersReducer,
     allDesigners: usersReducer,
-    allAdmins: adminsReducer,
+
     allDesigners: designersReducer,
     allProducts: productDetailReducer,
-
+    topProducts: topProductsReducer,
+    featureProducts: featureProductsReducer,
     userOrders: userOrdersReducer,
-
     designerData: designerDataReducer,
-
     addedProduct: addProductReducer,
     singleProduct: singleproductReducer,
     registerDesigner: registerDesignerReducer,
@@ -52,6 +55,10 @@ const reducer = combineReducers({
     billingInfo: billingReducer,
     ratedDesigners: ratedDesignersReducer,
     createShop: createShopReducer,
+
+    topDesigners: topDesignersReducer,
+    supplierInfo: getDesignerDetailsReducer,
+
     placeOrder: placeOrderReducer,
 })
 

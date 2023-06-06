@@ -161,7 +161,7 @@ export const fetchUserDetails = () => async (dispatch) => {
         const { data } = await axiosInstance().get(`/users/`)
 
         dispatch(fetchDesignerInfo())
-
+        dispatch(fetchShopDetails())
         if (data.userType === "Designer") {
             dispatch(fetchDesignerProducts(data._id))
         }

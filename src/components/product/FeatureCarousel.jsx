@@ -10,7 +10,7 @@ import {
   getTopProducts,
 } from "../../store/actions/productActions";
 import { Spinner } from "../Spinner";
-const Carousel = () => {
+const FeatureCarousel = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -94,4 +94,4 @@ const Carousel = () => {
   );
 };
 
-export default Carousel;
+export default FeatureCarousel;

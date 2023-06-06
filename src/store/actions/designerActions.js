@@ -11,6 +11,10 @@ import {
     DESIGNER_PRODUCT_DATA_REQUEST,
     DESIGNER_PRODUCT_DATA_SUCCESS,
     DESIGNER_PRODUCT_DATA_FAIL,
+    TOP_DESIGNERS_REQUEST,
+    GET_DESIGNER_BY_ID_REQUEST,
+    GET_DESIGNER_BY_ID_SUCCESS,
+    GET_DESIGNER_BY_ID_FAIL,
 } from "../constants/designerConstants"
 import axiosInstance from "../../api/axios"
 import {
@@ -135,32 +139,6 @@ export const registerDesigner = (formData) => async (dispatch) => {
     }
 }
 
-export const fetchDesignerProductsData =
-    (id, month, year) => async (dispatch) => {
-        try {
-            dispatch({
-                type: DESIGNER_PRODUCT_DATA_REQUEST,
-            })
-
-            const { data } = await axiosInstance().get(
-                `/designers/designerMonthlyData?month=${month}&year=${year}&id=${id}`
-            )
-
-            dispatch({
-                type: DESIGNER_PRODUCT_DATA_SUCCESS,
-                payload: data.designer,
-            })
-        } catch (error) {
-            dispatch({
-                type: DESIGNER_PRODUCT_DATA_FAIL,
-                payload:
-                    error.response && error.response.data.message
-                        ? error.response.data.message
-                        : error.message,
-            })
-        }
-    }
-
 export const fetchDesignerInfo = () => async (dispatch) => {
     try {
         dispatch({
@@ -169,9 +147,9 @@ export const fetchDesignerInfo = () => async (dispatch) => {
 
         const { data } = await axiosInstance().get("/designers")
 
+        dispatch(fetchShopDetails())
         if (data.userType === "Designer") {
             dispatch(fetchDesignerProducts(data._id))
-            dispatch(fetchShopDetails())
         }
 
         dispatch({
@@ -202,3 +180,94 @@ export const fetchDesignerInfo = () => async (dispatch) => {
         })
     }
 }
+
+//Get Designer Id
+export const getDesignerById = (id) => async (dispatch) => {
+    try {
+        dispatch({
+            type: GET_DESIGNER_BY_ID_REQUEST,
+        })
+
+        const { data } = await axiosInstance().get(`/designers/${id}`)
+
+        dispatch({
+            type: GET_DESIGNER_BY_ID_SUCCESS,
+            payload: data,
+        })
+    } catch (error) {
+        dispatch({
+            type: GET_DESIGNER_BY_ID_FAIL,
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message,
+        })
+    }
+}
+
+//Get Top rated Designers
+export const topRatedDesigners = () => async (dispatch) => {
+    try {
+        dispatch({
+            type: TOP_DESIGNERS_REQUEST,
+        })
+
+        const { data } = await axiosInstance().get(
+            "/designers/topRatedDesigners"
+        )
+
+        dispatch({
+            type: REGISTER_DESIGNER_SUCCESS,
+            payload: data,
+        })
+
+        dispatch({
+            type: USER_REGISTER_SUCCESS,
+            payload: data,
+        })
+
+        dispatch({
+            type: USER_LOGIN_SUCCESS,
+            payload: data,
+        })
+
+        dispatch({
+            type: USER_DETAILS_SUCCESS,
+            payload: data,
+        })
+    } catch (error) {
+        dispatch({
+            type: REGISTER_DESIGNER_FAIL,
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message,
+        })
+    }
+}
+
+export const fetchDesignerProductsData =
+    (id, month, year) => async (dispatch) => {
+        try {
+            dispatch({
+                type: DESIGNER_PRODUCT_DATA_REQUEST,
+            })
+
+            const { data } = await axiosInstance().get(
+                `/designers/designerMonthlyData?month=${month}&year=${year}&id=${id}`
+            )
+
+            dispatch({
+                type: DESIGNER_PRODUCT_DATA_SUCCESS,
+                payload: data.designer,
+            })
+        } catch (error) {
+            dispatch({
+                type: DESIGNER_PRODUCT_DATA_FAIL,
+                payload:
+                    error.response && error.response.data.message
+                        ? error.response.data.message
+                        : error.message,
+            })
+        }
+    }
