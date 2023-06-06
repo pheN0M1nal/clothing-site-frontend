@@ -83,6 +83,10 @@ function App() {
                         path="/order-place/payment-verified"
                         element={<OrderPlace />}
                     />
+                    <Route
+                        path="/order-place/payment-cancelled"
+                        element={<OrderPlace />}
+                    />
 
                     <Route exact path="/admin" element={<AdminDashboard />} />
                     <Route

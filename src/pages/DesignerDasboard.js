@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 
 import styled from "styled-components"
 
@@ -11,6 +11,7 @@ import TopRatedDesigners from "../dashboard/partials/dashboard/TopRatedDesigners
 import DesignerSubNav from "../components/DesignerSubNav"
 import { useEffect } from "react"
 import DashboardCard06 from "../dashboard/partials/dashboard/DashboardCard06"
+import { fetchDesignerProductsData } from "../store/actions/designerActions"
 
 const Wrapper = styled.div`
     max-width: 1000px;
@@ -90,8 +91,12 @@ const DesignerDasboard = () => {
     const userDetails = useSelector((state) => state.userDetails)
     const { user } = userDetails
 
+    const dispatch = useDispatch()
+
     useEffect(() => {
-        user?.userType !== "Designer" && navigate("/")
+        user?.userType !== "Designer"
+            ? navigate("/")
+            : dispatch(fetchDesignerProductsData(user._id, 6, 2023))
     }, [user])
 
     return (
@@ -120,7 +125,7 @@ const DesignerDasboard = () => {
                             {/* Cards */}
                             <div className="grid grid-cols-12 gap-6">
                                 {/* Table (Top Channels) */}
-                                <TopRatedDesigners />
+                                {/* <TopRatedDesigners /> */}
                             </div>
                         </div>
                     </main>

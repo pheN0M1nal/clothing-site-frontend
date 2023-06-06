@@ -13,6 +13,7 @@ import {
 
 import {
     createShopReducer,
+    designerDataReducer,
     designerProductsReducer,
     registerDesignerReducer,
 } from "./reducers/designerReducers"
@@ -40,6 +41,8 @@ const reducer = combineReducers({
     allProducts: productDetailReducer,
 
     userOrders: userOrdersReducer,
+
+    designerData: designerDataReducer,
 
     addedProduct: addProductReducer,
     singleProduct: singleproductReducer,

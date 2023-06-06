@@ -44,6 +44,7 @@ const OrderPlace = () => {
         }
         if (pathname.split("/")[2] === "payment-cancelled" && user._id) {
             toast.error("Payment unsuccessful! Please try again.")
+            navigate("/order-place")
         }
     }, [user])
 

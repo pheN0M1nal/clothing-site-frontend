@@ -8,6 +8,9 @@ import {
     FETCH_DESIGNER_PRODUCT_SUCCESS,
     FETCH_DESIGNER_PRODUCT_FAIL,
     FETCH_DESIGNER_PRODUCT_REQUEST,
+    DESIGNER_PRODUCT_DATA_REQUEST,
+    DESIGNER_PRODUCT_DATA_SUCCESS,
+    DESIGNER_PRODUCT_DATA_FAIL,
 } from "../constants/designerConstants"
 import axiosInstance from "../../api/axios"
 import {
@@ -131,6 +134,32 @@ export const registerDesigner = (formData) => async (dispatch) => {
         })
     }
 }
+
+export const fetchDesignerProductsData =
+    (id, month, year) => async (dispatch) => {
+        try {
+            dispatch({
+                type: DESIGNER_PRODUCT_DATA_REQUEST,
+            })
+
+            const { data } = await axiosInstance().get(
+                `/designers/designerMonthlyData?month=${month}&year=${year}&id=${id}`
+            )
+
+            dispatch({
+                type: DESIGNER_PRODUCT_DATA_SUCCESS,
+                payload: data.designer,
+            })
+        } catch (error) {
+            dispatch({
+                type: DESIGNER_PRODUCT_DATA_FAIL,
+                payload:
+                    error.response && error.response.data.message
+                        ? error.response.data.message
+                        : error.message,
+            })
+        }
+    }
 
 export const fetchDesignerInfo = () => async (dispatch) => {
     try {

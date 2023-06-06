@@ -10,6 +10,10 @@ import {
     FETCH_DESIGNER_PRODUCT_SUCCESS,
     FETCH_DESIGNER_PRODUCT_FAIL,
     FETCH_DESIGNER_PRODUCT_REQUEST,
+    DESIGNER_PRODUCT_DATA_REQUEST,
+    DESIGNER_PRODUCT_DATA_SUCCESS,
+    DESIGNER_PRODUCT_DATA_FAIL,
+    DESIGNER_PRODUCT_DATA_RESET,
 } from "../constants/designerConstants"
 import {
     DELETE_PRODUCT_FAIL,
@@ -30,6 +34,21 @@ export const createShopReducer = (state = {}, action) => {
                 error: action.payload,
             }
         case CREATE_SHOP_RESET:
+            return {}
+        default:
+            return state
+    }
+}
+
+export const designerDataReducer = (state = {}, action) => {
+    switch (action.type) {
+        case DESIGNER_PRODUCT_DATA_REQUEST:
+            return { loading: true }
+        case DESIGNER_PRODUCT_DATA_SUCCESS:
+            return { loading: false, designerProductsInfo: action.payload }
+        case DESIGNER_PRODUCT_DATA_FAIL:
+            return { loading: false, error: action.payload }
+        case DESIGNER_PRODUCT_DATA_RESET:
             return {}
         default:
             return state
