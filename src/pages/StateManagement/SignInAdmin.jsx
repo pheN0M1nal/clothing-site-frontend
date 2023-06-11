@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
@@ -26,8 +26,17 @@ function SignIn() {
         (state) => state.userLogin
     )
 
-    adminInfo && navigate("/")
-    error && toast.error(error)
+    // useEffect(() => {
+    //     adminInfo?._id && navigate("/")
+    //     error && toast.error(error)
+    // }, [adminInfo?._id, error])
+
+    const userDetails = useSelector((state) => state.userDetails)
+    const { user } = userDetails
+
+    useEffect(() => {
+        user?.userType === "Admin" && navigate("/")
+    }, [user])
 
     const dispatch = useDispatch()
 

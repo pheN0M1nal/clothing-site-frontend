@@ -41,19 +41,16 @@ const Wrapper = styled.div`
             box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
         }
         .col-1 {
-            flex-basis: 30%;
+            flex-basis: 35%;
         }
         .col-2 {
-            flex-basis: 20%;
+            flex-basis: 25%;
         }
         .col-3 {
             flex-basis: 25%;
         }
         .col-4 {
             flex-basis: 4%;
-        }
-        .col-5 {
-            flex-basis: 10%;
         }
 
         @media all and (max-width: 767px) {
@@ -107,12 +104,13 @@ const AllUsers = () => {
                         <div className="col col-2">Name</div>
                         <div className="col col-3">Email</div>
                         <div className="col col-4">#</div>
-                        <div className="col col-5"># </div>
                     </li>
 
-                    {!loading && users?.length === 0 && <h3>Zero users.</h3>}
+                    {!loading && users && users?.length === 0 && (
+                        <h3>Zero users.</h3>
+                    )}
 
-                    {users.map((user) => (
+                    {users?.map((user) => (
                         <li className="table-row" key={user._id}>
                             <div className="col col-1" data-label="Id">
                                 {user._id}
@@ -137,10 +135,6 @@ const AllUsers = () => {
                                         className="ri-delete-bin-line w-[20px] cursor-pointer mx-2"
                                     ></i>
                                 )}
-                            </div>
-
-                            <div className="col col-5" data-label="# #">
-                                <i className="ri-edit-box-line cursor-pointer mx-2"></i>
                             </div>
                         </li>
                     ))}

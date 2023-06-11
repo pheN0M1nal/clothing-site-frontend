@@ -20,7 +20,6 @@ const AdminSubNav = () => {
             <Link to="/admin/allUsers">Users</Link>
             <Link to="/admin/allDesigners">Designers</Link>
             <Link to="/admin/stats">Statistics</Link>
-            <Link to="/admin/products">Products</Link>
         </Container>
     )
 }

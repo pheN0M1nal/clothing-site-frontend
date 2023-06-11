@@ -28,9 +28,47 @@ import {
 import axiosInstance from "../../api/axios"
 import { toast } from "react-toastify"
 import {
+    USER_DETAILS_FAIL,
     USER_DETAILS_SUCCESS,
+    USER_LOGIN_FAIL,
+    USER_LOGIN_REQUEST,
     USER_LOGIN_SUCCESS,
 } from "../constants/userConstants"
+
+export const fetchAdminInfo = () => async (dispatch) => {
+    try {
+        dispatch({
+            type: USER_LOGIN_REQUEST,
+        })
+
+        const { data } = await axiosInstance().get("/admins/")
+
+        //dispatch(fetchShopDetails())
+        if (data.userType === "Admin") {
+            // dispatch(fetchDesignerProducts(data._id))
+        }
+
+        toast.success("Login Suuccessfull.")
+
+        dispatch({
+            type: USER_LOGIN_SUCCESS,
+            payload: data,
+        })
+
+        dispatch({
+            type: USER_DETAILS_SUCCESS,
+            payload: data,
+        })
+    } catch (error) {
+        dispatch({
+            type: USER_LOGIN_FAIL,
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message,
+        })
+    }
+}
 
 export const adminLogin = (email, password) => async (dispatch) => {
     try {

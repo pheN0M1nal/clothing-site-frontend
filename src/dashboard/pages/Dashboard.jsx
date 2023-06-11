@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 
 import Sidebar from "../partials/Sidebar"
 import Header from "../partials/Header"
@@ -25,6 +25,10 @@ import { useDispatch } from "react-redux"
 import AdminSubNav from "../../components/AdminSubNav"
 
 function Dashboard() {
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(fetchRatedDesigners())
+    }, [])
     return (
         <div className="flex h-screen overflow-hidden">
             {/* Sidebar */}
@@ -50,14 +54,8 @@ function Dashboard() {
                         <div className="grid grid-cols-12 gap-6">
                             {/* Table (Top Channels) */}
                             <TopRatedDesigners />
-                            <DashboardCard01 />
-                            <DashboardCard02 />
-                            <DashboardCard03 />
-                            <DashboardCard04 />
-                            <DashboardCard05 />
-                            <DashboardCard06 />
 
-                            <DashboardCard08 />
+                            {/* <DashboardCard04 /> */}
                         </div>
                     </div>
                 </main>

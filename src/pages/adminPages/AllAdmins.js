@@ -8,8 +8,10 @@ import { deleteAdmin } from "../../store/actions/adminActions"
 import "remixicon/fonts/remixicon.css"
 import AdminSubNav from "../../components/AdminSubNav"
 
+import RegisterAdmin from "./RegisterAdmin"
+
 const Wrapper = styled.div`
-    max-width: 1000px;
+    max-width: 100%;
     margin-left: auto;
     margin-right: auto;
     padding-left: 10px;
@@ -25,6 +27,7 @@ const Wrapper = styled.div`
     }
 
     .responsive-table {
+        min-width: 50%;
         li {
             border-radius: 3px;
             padding: 25px 30px;
@@ -43,19 +46,16 @@ const Wrapper = styled.div`
             box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
         }
         .col-1 {
-            flex-basis: 30%;
+            flex-basis: 35%;
         }
         .col-2 {
-            flex-basis: 20%;
+            flex-basis: 25%;
         }
         .col-3 {
             flex-basis: 25%;
         }
         .col-4 {
             flex-basis: 4%;
-        }
-        .col-5 {
-            flex-basis: 10%;
         }
 
         @media all and (max-width: 767px) {
@@ -84,6 +84,11 @@ const Wrapper = styled.div`
         }
     }
 `
+const SubWrapper = styled.div`
+    display: flex;
+    justify-content: center;
+`
+
 const AllAdmins = () => {
     const dispatch = useDispatch()
     const { loading_delete, loading, admins } = useSelector(
@@ -97,57 +102,56 @@ const AllAdmins = () => {
     return (
         <Wrapper>
             <AdminSubNav />
+
             <h2>All Admins</h2>
-            {loading ? (
-                <Spinner />
-            ) : (
-                <ul className="responsive-table">
-                    <li className="table-header">
-                        <div className="col col-1">Id</div>
-                        <div className="col col-2">Name</div>
-                        <div className="col col-3">Email</div>
-                        <div className="col col-4">#</div>
-                        <div className="col col-5"># </div>
-                    </li>
-
-                    {!loading && admins?.length === 0 && (
-                        <h3>Zero Admin users.</h3>
-                    )}
-
-                    {admins?.map((user) => (
-                        <li className="table-row" key={user._id}>
-                            <div className="col col-1" data-label="Id">
-                                {user._id}
-                            </div>
-                            <div className="col col-2" data-label="Name">
-                                {user.myName}
-                            </div>
-                            <div className="col col-3" data-label="Email">
-                                {user.email}
-                            </div>
-
-                            {}
-
-                            <div className="col col-4" data-label="# #">
-                                {loading_delete === user._id ? (
-                                    <Spinner />
-                                ) : (
-                                    <i
-                                        onClick={() =>
-                                            dispatch(deleteAdmin(user._id))
-                                        }
-                                        className="ri-delete-bin-line w-[20px] cursor-pointer mx-2"
-                                    ></i>
-                                )}
-                            </div>
-
-                            <div className="col col-5" data-label="# #">
-                                <i className="ri-edit-box-line cursor-pointer mx-2"></i>
-                            </div>
+            <SubWrapper>
+                <RegisterAdmin />
+                {loading ? (
+                    <Spinner />
+                ) : (
+                    <ul className="responsive-table">
+                        <li className="table-header">
+                            <div className="col col-1">Id</div>
+                            <div className="col col-2">Name</div>
+                            <div className="col col-3">Email</div>
+                            <div className="col col-4">#</div>
                         </li>
-                    ))}
-                </ul>
-            )}
+
+                        {!loading && admins?.length === 0 && (
+                            <h3>Zero Admin users.</h3>
+                        )}
+
+                        {admins?.map((user) => (
+                            <li className="table-row" key={user._id}>
+                                <div className="col col-1" data-label="Id">
+                                    {user._id}
+                                </div>
+                                <div className="col col-2" data-label="Name">
+                                    {user.myName}
+                                </div>
+                                <div className="col col-3" data-label="Email">
+                                    {user.email}
+                                </div>
+
+                                {}
+
+                                <div className="col col-4" data-label="# #">
+                                    {loading_delete === user._id ? (
+                                        <Spinner />
+                                    ) : (
+                                        <i
+                                            onClick={() =>
+                                                dispatch(deleteAdmin(user._id))
+                                            }
+                                            className="ri-delete-bin-line w-[20px] cursor-pointer mx-2"
+                                        ></i>
+                                    )}
+                                </div>
+                            </li>
+                        ))}
+                    </ul>
+                )}
+            </SubWrapper>
         </Wrapper>
     )
 }

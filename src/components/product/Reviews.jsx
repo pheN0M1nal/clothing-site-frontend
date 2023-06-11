@@ -64,7 +64,7 @@ const Reviews = ({ productId }) => {
                 </div>
             </div>
 
-            {!user ? (
+            {!user?._id ? (
                 <div className="flex items-center justify-center w-80 h-40 border border-zinc-300 mt-5">
                     <span className="text-base text-center text-zinc-400">
                         Please Login First to place a review

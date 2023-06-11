@@ -47,6 +47,7 @@ function Home() {
                     rating: "",
                     category: "",
                     avgRating: "",
+                    featured: null,
                 })
             )
         }
@@ -100,7 +101,7 @@ function Home() {
                         </span>
                         {/* </div> */}
                     </div>
-                    <div className="mt-7 min-w-[310px] sm:w-full">
+                    <div className="mt-7 min-w-[310px] sm:w-[80%] m-auto ">
                         {/* allProducts Carousel */}
                         <Carousel />
                         <div className="flex flex-col items-center mt-11">

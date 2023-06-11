@@ -27,35 +27,33 @@ import axiosInstance from "../../api/axios"
 import axios from "axios"
 
 //Fetch All Products
-export const getAllProducts =
-    (formData, pageNumber = 1) =>
-    async (dispatch) => {
-        try {
-            dispatch({
-                type: ALL_PRODUCT_REQUEST,
-            })
+export const getAllProducts = (formData) => async (dispatch) => {
+    try {
+        dispatch({
+            type: ALL_PRODUCT_REQUEST,
+        })
 
-            const { data } = await axiosInstance().get(
-                formData.featured
-                    ? `/products/getAllProducts?featured=${formData?.featured}&keyword=${formData?.keyword}&maxPrice=${formData?.maxPrice}&minPrice=${formData?.minPrice}&category=${formData?.category}&avgRating=${formData?.avgRating}`
-                    : `/products/getAllProducts?keyword=${formData?.keyword}&maxPrice=${formData?.maxPrice}&minPrice=${formData?.minPrice}&category=${formData?.category}&avgRating=${formData?.avgRating}`
-            )
-            //
+        const { data } = await axiosInstance().get(
+            formData.featured
+                ? `/products/getAllProducts?featured=${formData?.featured}&keyword=${formData?.keyword}&maxPrice=${formData?.maxPrice}&minPrice=${formData?.minPrice}&category=${formData?.category}&avgRating=${formData?.avgRating}`
+                : `/products/getAllProducts?keyword=${formData?.keyword}&maxPrice=${formData?.maxPrice}&minPrice=${formData?.minPrice}&category=${formData?.category}&avgRating=${formData?.avgRating}`
+        )
+        //
 
-            dispatch({
-                type: ALL_PRODUCT_SUCCESS,
-                payload: data,
-            })
-        } catch (error) {
-            dispatch({
-                type: ALL_PRODUCT_FAIL,
-                payload:
-                    error.response && error.response.data.message
-                        ? error.response.data.message
-                        : error.message,
-            })
-        }
+        dispatch({
+            type: ALL_PRODUCT_SUCCESS,
+            payload: data,
+        })
+    } catch (error) {
+        dispatch({
+            type: ALL_PRODUCT_FAIL,
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message,
+        })
     }
+}
 
 //Get Single Product
 export const getproductById = (single) => async (dispatch) => {
