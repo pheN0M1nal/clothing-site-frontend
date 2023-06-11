@@ -1,55 +1,60 @@
-import React from "react";
-import styled from "styled-components";
-import { useEffect, useState } from "react";
+import React from "react"
+import styled from "styled-components"
+import { useEffect, useState } from "react"
+import ReactImageZoom from "react-image-zoom"
 const ProductImage = ({ image }) => {
-  // const ZoomStyling = styled.div`
-  //   display: flex;
-  //   justify-content: center;
-  //   align-items: center;
+    const ZoomStyling = styled.div`
+        height: 500px;
+        .mainImg {
+            display: block;
+            width: 300px;
+            height: 300px;
+            pointer-events: none;
+            object-fit: cover;
+            border-radius: 0.5rem;
+        }
+        .images {
+            display: flex;
+            width: 70px;
+            height: 70px;
+            margin-top: 50px;
+            img {
+                padding: 4px;
+                cursor: pointer;
+            }
+        }
 
-  //   ${
-  //     "" /* img {
-  //     display: block;
-  //     width: 300px;
-  //     height: 300px;
-  //     pointer-events: none;
-  //     object-fit: cover;
-  //     border-radius: 0.5rem;
-  //   } */
-  //   }
-  // `;
+        .js-image-zoom__zoomed-image {
+            position: relative;
 
-  // const [zoom, setZoom] = useState({});
+            border: 5px black dotted;
+        }
+    `
 
-  // useEffect(() => {
-  //   setZoom({
-  //     backgroundImage: `url(${product?.image && product?.image[0]})`,
-  //     backgroundPosition: "0% 0%",
-  //   });
-  // }, [product]);
+    const [mainImage, setMainImage] = useState("favico.png")
 
-  // const handleMouseMove = e => {
-  //   const { left, top, width, height } = e.target.getBoundingClientRect();
-  //   const x = ((e.pageY - left) / width) * 100;
-  //   const y = ((e.pageY - top) / height) * 100;
+    useEffect(() => {
+        if (Array.isArray(image)) {
+            setMainImage(image[0])
+        }
+    }, [image])
 
-  //   setZoom({
-  //     backgroundPosition: `${x}% ${y}%`,
-  //     backgroundImage: `url(${product?.image && product?.image[0]})`,
-  //   });
-  // };
+    const props = { width: 300, height: 300, zoomWidth: 500, img: mainImage }
 
-  return (
-    // <ZoomStyling>
-    //   <figure onMouseMove={handleMouseMove} style={zoom}>
-    <img
-      src={image}
-      alt=""
-      className="h-72 w-72 sm:w-60 sm:h-60 lg:h-[100%] lg:w-[100%] rounded-lg pointer-events-none object-cover"
-    />
-    //   </figure>
-    // </ZoomStyling>
-  );
-};
+    return (
+        <ZoomStyling>
+            <ReactImageZoom {...props} />
+            <div className="images">
+                {Array.isArray(image) ? (
+                    image.map((item, i) => (
+                        <img onClick={() => setMainImage(item)} src={item} />
+                    ))
+                ) : (
+                    <img src={image} />
+                )}
+            </div>
+        </ZoomStyling>
+    )
+}
 
-export default ProductImage;
+export default ProductImage

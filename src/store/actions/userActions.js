@@ -1,6 +1,9 @@
 import axiosInstance from "../../api/axios"
 import { toast } from "react-toastify"
 import {
+    REVIEWS_FAIL,
+    REVIEWS_REQUEST,
+    REVIEWS_SUCCESS,
     USER_DETAILS_FAIL,
     USER_DETAILS_REQUEST,
     USER_DETAILS_SUCCESS,
@@ -202,6 +205,31 @@ export const fetchUserOrders = (id) => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: USER_ORDERS_FAIL,
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message,
+        })
+    }
+}
+
+export const fetchReviews = (id) => async (dispatch) => {
+    try {
+        dispatch({
+            type: REVIEWS_REQUEST,
+        })
+
+        const { data } = await axiosInstance().get(
+            `/reviews/allReviewsOfProduct?id=${id}`
+        )
+
+        dispatch({
+            type: REVIEWS_SUCCESS,
+            payload: data,
+        })
+    } catch (error) {
+        dispatch({
+            type: REVIEWS_FAIL,
             payload:
                 error.response && error.response.data.message
                     ? error.response.data.message

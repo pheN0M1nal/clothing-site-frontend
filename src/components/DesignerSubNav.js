@@ -13,7 +13,7 @@ const Container = styled.div`
 
 const AdminSubNav = () => {
     return (
-        <Container>
+        <Container prop="red">
             {" "}
             <Link to="/designer">Statistics</Link>
             <Link to="/designer/products">Products</Link>

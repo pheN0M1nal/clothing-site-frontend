@@ -6,7 +6,7 @@ import { toast } from "react-toastify"
 import { addToCart } from "../../store/actions/cartActions"
 import ProductImage from "./ProductImage"
 
-const ProductInfo = ({ product }) => {
+const ProductInfo = ({ product, supplierInfo }) => {
     const [stock, setStock] = useState(
         product?.quantity && product?.quantity[0]
     )
@@ -66,7 +66,7 @@ const ProductInfo = ({ product }) => {
                 <div className="flex flex-col sm:flex-row space-x-2 lg:w-[70%]">
                     {/* Image and Add to Cart Button */}
                     <div className="flex justify-center h-[19rem] min-w-[300px] sm:w-64 sm:h-64 lg:h-[19rem] lg:w-[20%] border border-zinc-300 rounded-lg">
-                        <ProductImage product={product} />
+                        <ProductImage image={product?.image} />
                     </div>
 
                     {/* Product Info */}
@@ -84,8 +84,7 @@ const ProductInfo = ({ product }) => {
                             </div>
                         )}
                         <span className="w-72 sm:w-full lg:w-72">
-                            Mens Long Sleeve T-shirt Cotton Base Layer Slim
-                            Muscle
+                            {product?.productName}
                         </span>
 
                         <div className="flex space-x-2 sm:space-x-4 lg:space-x-2 text-zinc-400 lg:w-full">
@@ -158,25 +157,16 @@ const ProductInfo = ({ product }) => {
                                 Type:
                             </span>
                             <span className="text-zinc-600 w-44 lg:w-auto">
-                                Classic shoes
+                                {product?.category}
                             </span>
                         </div>
 
                         <div className="flex space-x-2">
                             <span className="text-zinc-400 w-40 lg:w-auto">
-                                Material:
+                                Featured:
                             </span>
                             <span className="text-zinc-600 w-44 lg:w-auto">
-                                Plastic material
-                            </span>
-                        </div>
-
-                        <div className="flex space-x-2">
-                            <span className="text-zinc-400 w-40 lg:w-auto">
-                                Design:
-                            </span>
-                            <span className="text-zinc-600 w-44 lg:w-auto">
-                                Modern nice
+                                {product?.featured ? "Yes" : "No"}
                             </span>
                         </div>
 
@@ -185,10 +175,10 @@ const ProductInfo = ({ product }) => {
                         {/* Customization, Protection, Warranty */}
                         <div className="flex space-x-2">
                             <span className="text-zinc-400 w-40 lg:w-auto">
-                                Customization:
+                                Description:
                             </span>
                             <span className="text-zinc-600 w-36 sm:w-44 lg:w-auto">
-                                Customized logo and design custom packages
+                                {product?.description}
                             </span>
                         </div>
 
@@ -218,10 +208,9 @@ const ProductInfo = ({ product }) => {
                     <div className="flex flex-col items-center justify-center mx-auto min-w-[288px] sm:w-80 h-[21rem] lg:flex-wrap border border-zinc-300 rounded-lg">
                         {/* Supplier Info */}
                         <div className="flex items-center w-72 sm:w-72 h-20 lg:w-auto">
-                            <i className="ri-registered-line fa-3x"></i>
                             <div className="flex flex-col text-zinc-500">
-                                <span>Supplier</span>
-                                <span>Guanjoi Trading LLC</span>
+                                <span>Designer: {supplierInfo?.myName}</span>
+                                <span>Sales:{supplierInfo?.totalSales}</span>
                             </div>
                         </div>
                         <div className="flex flex-col space-y-3 h-28 m-2">
@@ -229,25 +218,22 @@ const ProductInfo = ({ product }) => {
                             <div className="flex text-zinc-500">
                                 <i className="ri-global-line w-7"></i>
                                 <span className="text-zinc-500">
-                                    Germany, Berlin
+                                    Orders: {supplierInfo?.totalNoOfOrders}
                                 </span>
                             </div>
                             <div className="flex text-zinc-500">
                                 <i className="ri-shield-check-line w-7"></i>
                                 <span>Verified Seller</span>
                             </div>
-                            <div className="flex text-zinc-500">
-                                <i className="ri-global-line w-7"></i>
-                                <span>Worldwide Shipping</span>
-                            </div>
                         </div>
                         <div className="flex flex-col items-center space-y-3">
                             {/* Inquiry Button */}
                             <button className="w-[275px] sm:w-[18.5rem] h-10 text-[#D2FF28] bg-slate-600 rounded-md hover:bg-slate-800">
-                                Send inquiry
-                            </button>
-                            <button className="w-[275px] sm:w-[18.5rem] h-10 text-zinc-600 border border-zinc-400 rounded-md hover:bg-slate-600 hover:text-white">
-                                Seller's profile
+                                <p>
+                                    <a href={`mailto:${supplierInfo?.email}`}>
+                                        Send email
+                                    </a>
+                                </p>
                             </button>
                         </div>
                     </div>

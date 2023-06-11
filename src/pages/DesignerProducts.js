@@ -8,7 +8,7 @@ import {
     deleteProduct,
     getdesignerProducts,
 } from "../store/actions/productActions"
-import { useNavigate, useLocation } from "react-router-dom"
+import { useNavigate, useLocation, Link } from "react-router-dom"
 import { fetchDesignerProducts } from "../store/actions/designerActions"
 import axiosInstance from "../api/axios"
 import { toast } from "react-toastify"
@@ -270,7 +270,9 @@ const DesignerProducts = () => {
                             </div>
 
                             <div className="col col-8" data-label="# #">
-                                <i className="ri-edit-box-line cursor-pointer mx-2"></i>
+                                <Link to={`/update-product/${item._id}`}>
+                                    <i className="ri-edit-box-line cursor-pointer mx-2"></i>
+                                </Link>
                             </div>
                         </li>
                     ))}

@@ -4,6 +4,7 @@ import {
     userRegisterReducer,
     userDetailsReducer,
     userOrdersReducer,
+    reviewsReducer,
 } from "./reducers/userReducers"
 import {
     productDetailReducer,
@@ -11,6 +12,7 @@ import {
     addProductReducer,
     topProductsReducer,
     featureProductsReducer,
+    updateProductReducer,
 } from "./reducers/productReducers"
 
 import {
@@ -48,6 +50,8 @@ const reducer = combineReducers({
     userOrders: userOrdersReducer,
     designerData: designerDataReducer,
     addedProduct: addProductReducer,
+    updatedProduct: updateProductReducer,
+
     singleProduct: singleproductReducer,
     registerDesigner: registerDesignerReducer,
     designerProducts: designerProductsReducer,
@@ -55,7 +59,7 @@ const reducer = combineReducers({
     billingInfo: billingReducer,
     ratedDesigners: ratedDesignersReducer,
     createShop: createShopReducer,
-
+    reviews: reviewsReducer,
     topDesigners: topDesignersReducer,
     supplierInfo: getDesignerDetailsReducer,
 

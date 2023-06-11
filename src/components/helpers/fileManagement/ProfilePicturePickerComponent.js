@@ -57,11 +57,14 @@ const StyledComponent = styled.div`
 `
 
 export const ImagePickerComponent = ({ image, setFiles }) => {
-    const imageURL = image[0]?.name
-        ? URL.createObjectURL(image[0])
-        : image?.name
-        ? URL.createObjectURL(image)
-        : null
+    const imageURL =
+        typeof image[0] === "string" && image[0].includes("http")
+            ? image[0]
+            : image[0]?.name
+            ? URL.createObjectURL(image[0])
+            : image?.name
+            ? URL.createObjectURL(image)
+            : null
 
     return (
         <StyledComponent>

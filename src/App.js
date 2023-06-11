@@ -29,6 +29,7 @@ import CreateShop from "./pages/otherForms/CreateShop"
 import RegisterDeisgner from "./pages/otherForms/RegisterDeisgner"
 import DesignerDasboard from "./pages/DesignerDasboard"
 import DesignerProducts from "./pages/DesignerProducts"
+import { UpdateProduct } from "./pages/UpdateProduct"
 
 function App() {
     return (
@@ -45,9 +46,19 @@ function App() {
                                 element={<ForgotPassword />}
                             />
                             <Route path="/profile" element={<Profile />} />
+
                             <Route path="/allProducts" element={<Products />} />
                             <Route
-                                path="/product/:id"
+                                path="/allProducts/:search"
+                                element={<Products />}
+                            />
+
+                            <Route
+                                path="/update-product/:id"
+                                element={<UpdateProduct />}
+                            />
+                            <Route
+                                path="product/:id"
                                 element={<ProductView />}
                             />
                             <Route path="/cart" element={<Cart />} />
@@ -137,4 +148,5 @@ function App() {
         </>
     )
 }
+
 export default App
