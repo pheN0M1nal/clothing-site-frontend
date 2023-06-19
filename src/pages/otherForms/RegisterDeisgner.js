@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from "react-redux"
 import { Spinner } from "../../components/Spinner"
 import { logo } from "../../assets/svg/logo"
 import { toast } from "react-toastify"
+import signInMain from "../../assets/images/signInMain.svg"
+
 import {
     createShop,
     registerDesigner,
@@ -51,7 +53,13 @@ function RegisterDeisgner() {
     useEffect(() => {
         designerInfo?.email && navigate("/create-shop")
 
-        error && toast.error(error)
+        if (error && !user?.userType === "Customer") {
+            toast.info(error)
+            if (error === "Please login to continue.") {
+                navigate("/sign-in")
+            }
+        }
+
         if (designerInfo) {
             toast.success("Designer registered.")
             navigate("/create-shop")
@@ -177,7 +185,7 @@ function RegisterDeisgner() {
                     </div>
                 </div>
                 <div className="hidden dis md:block">
-                    <div className="w-96 h-full search"></div>
+                    <img src={signInMain} alt="" />
                 </div>
             </div>
         </>

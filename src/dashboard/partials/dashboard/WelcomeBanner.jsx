@@ -5,7 +5,7 @@ function WelcomeBanner() {
     const { user } = useSelector((state) => state.userDetails)
 
     return (
-        <div className="relative bg-indigo-200 p-4 sm:p-6 rounded-sm overflow-hidden mb-8">
+        <div className="relative bg-stee p-4 sm:p-6 rounded-sm overflow-hidden mb-8">
             {/* Background illustration */}
             <div
                 className="absolute right-0 top-0 -mt-4 mr-16 pointer-events-none hidden xl:block"
@@ -27,8 +27,8 @@ function WelcomeBanner() {
                             y2="100%"
                             id="welcome-b"
                         >
-                            <stop stopColor="#A5B4FC" offset="0%" />
-                            <stop stopColor="#818CF8" offset="100%" />
+                            <stop stopColor="#bac690" offset="0%" />
+                            <stop stopColor="#8d9868" offset="100%" />
                         </linearGradient>
                         <linearGradient
                             x1="50%"
@@ -37,9 +37,9 @@ function WelcomeBanner() {
                             y2="100%"
                             id="welcome-c"
                         >
-                            <stop stopColor="#4338CA" offset="0%" />
+                            <stop stopColor="#D2FF28" offset="0%" />
                             <stop
-                                stopColor="#6366F1"
+                                stopColor="#9aa379"
                                 stopOpacity="0"
                                 offset="100%"
                             />
@@ -97,7 +97,7 @@ function WelcomeBanner() {
                 <h1 className="text-2xl md:text-3xl text-slate-800 font-bold mb-1">
                     Good afternoon, {user?.myName} 👋
                 </h1>
-                <p>Here is what’s happening with your projects today:</p>
+                <p>Here is what’s happening with your products this month.</p>
             </div>
         </div>
     )

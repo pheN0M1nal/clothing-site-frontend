@@ -81,7 +81,7 @@ export const adminLogin = (email, password) => async (dispatch) => {
             password,
         })
 
-        toast.success("Login Suuccessfull.")
+        toast.success("Login Successfull.")
 
         dispatch({
             type: USER_LOGIN_SUCCESS,

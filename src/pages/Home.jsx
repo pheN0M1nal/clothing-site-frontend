@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import img1 from "../assets/images/snowman-cute-doll-plush-toys-winter-5k-6000x4001-8676.jpg"
 import img2 from "../assets/images/snowman-snow-covered-winter-snow-4608x3456-9163.jpg"
 import img3 from "../assets/images/sydney-sweeney-7680x4320-9661.jpg"
@@ -13,6 +13,11 @@ import { creator1 } from "../assets/svg/creator1"
 import { creator2 } from "../assets/svg/creator2"
 import { creator3 } from "../assets/svg/creator3"
 
+import hero1 from "../assets/images/0.svg"
+import hero2 from "../assets/images/1.svg"
+import hero3 from "../assets/images/2.svg"
+import hero4 from "../assets/images/3.svg"
+
 import { Link, useNavigate } from "react-router-dom"
 
 import Carousel from "../components/product/Carousel"
@@ -20,6 +25,9 @@ import Carousel from "../components/product/Carousel"
 import FeatureCarousel from "../components/product/FeatureCarousel"
 import { useDispatch } from "react-redux"
 import { getAllProducts } from "../store/actions/productActions"
+import { icons } from "react-icons"
+import { fetchUserDetails } from "../store/actions/userActions"
+import { fetchDesignerInfo } from "../store/actions/designerActions"
 
 function Home() {
     const updateForm = (e) => {
@@ -36,6 +44,19 @@ function Home() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
+    useEffect(() => {
+        dispatch(
+            getAllProducts({
+                keyword: "",
+                minPrice: 0,
+                maxPrice: 99999999,
+                rating: "",
+                category: "",
+                avgRating: "",
+            })
+        )
+    }, [dispatch])
+
     const search = () => {
         if (formData.search !== "") {
             navigate(`/allProducts/search`)
@@ -47,7 +68,6 @@ function Home() {
                     rating: "",
                     category: "",
                     avgRating: "",
-                    featured: null,
                 })
             )
         }
@@ -57,13 +77,55 @@ function Home() {
         <>
             <div className="flex flex-col min-w-full">
                 {/* First Section: Main heading with search bar and Picture */}
-                <section className="bg-slate-600 min-w-[320px] sm:w-full ">
-                    <div className="flex flex-col sm:mx-auto items-start bg-slate-600">
-                        <div className="flex flex-col sm:w-80 h-80 bg-slate-600 ml-6 sm:ml-14">
-                            <span className="capitalize text-4xl font-bold text-white mt-5 w-auto">
+                <section className="bg-stee min-w-[320px] sm:w-full ">
+                    <div className="flex flex-col sm:mx-auto items-start bg-stee">
+                        <div className="invisible lg:visible">
+                            <img
+                                src={hero1}
+                                alt=""
+                                className=" w-20 h-20 absolute right-56 top-32"
+                            />
+                            <img
+                                src={hero2}
+                                alt=""
+                                className=" w-20 h-20 absolute right-72 top-72"
+                            />{" "}
+                            <img
+                                src={hero3}
+                                alt=""
+                                className=" w-20 h-20 absolute left-2/4 top-64"
+                            />{" "}
+                            <img
+                                src={hero4}
+                                alt=""
+                                className=" w-20 h-20 absolute right-96 top-32"
+                            />
+                            <img
+                                src={hero1}
+                                alt=""
+                                className=" w-20 h-20 absolute left-2/4 top-44"
+                            />
+                            <img
+                                src={hero2}
+                                alt=""
+                                className=" w-20 h-20 absolute right-36 top-44"
+                            />{" "}
+                            <img
+                                src={hero3}
+                                alt=""
+                                className=" w-20 h-20 absolute left-3/4 top-60"
+                            />{" "}
+                            <img
+                                src={hero4}
+                                alt=""
+                                className=" w-20 h-20 absolute right-80 top-56"
+                            />
+                        </div>
+                        <div className="flex flex-col sm:w-80 h-80 bg-stee ml-6 sm:ml-14">
+                            <span className="capitalize text-primary text-4xl font-bold mt-5 w-auto">
                                 Create & Wear on demand
                             </span>
-                            <p className="mt-5 text-white w-auto">
+                            <p className="mt-5 text-primary w-auto">
                                 Create & sell custom products with your designs,
                                 we'll print and ship them to your customers
                             </p>
@@ -77,9 +139,9 @@ function Home() {
                                         value={formData.search}
                                         onChange={updateForm}
                                     />
-                                    <div className="inline ml-3 sm:ml-12 py-2 px-3 rounded-md bg-slate-600 searchbtn">
+                                    <div className="inline ml-3 sm:ml-12 py-2 px-3 rounded-md bg-stee searchbtn">
                                         <button
-                                            className="text-white"
+                                            className="text-primary"
                                             onClick={search}
                                         >
                                             Search
@@ -96,8 +158,11 @@ function Home() {
                     {/* <div className="container flex flex-col items-center justify-center mx-auto w-80 sm:max-w-full"> */}
                     {/* <div className="flex flex-col items-center justify-center"> */}
                     <div className="flex items-center mx-auto w-72">
-                        <span className="flex flex-row text-center text-3xl font-bold text-zinc-700">
-                            Best Product Category
+                        <span className="bg-stee flex flex-row text-center text-2xl font-bold text-zinc-700  mr-1">
+                            Best{" "}
+                        </span>
+                        <span className="flex flex-row text-center text-2xl font-bold text-zinc-700">
+                            Product Category
                         </span>
                         {/* </div> */}
                     </div>
@@ -123,8 +188,11 @@ function Home() {
                         {/* heading*/}
                         <div className="flex flex-col space-y-4 text-center w-80 mx-auto">
                             <div>
+                                <span className="bg-stee text-center text-3xl font-bold text-zinc-700  mr-1">
+                                    Trendy{" "}
+                                </span>
                                 <span className="text-3xl text-zinc-700 font-bold">
-                                    Trendy Categories
+                                    Categories
                                 </span>
                             </div>
                             <div className="text-center">
@@ -147,7 +215,7 @@ function Home() {
                         </div>
                         <div className="flex flex-col w-52 h-52 bg-zinc-700 shadow-2xl rounded-2xl space-y-2 items-center justify-center mx-auto subcategRes">
                             <div>{tShirtsvg()}</div>
-                            <div className="text-white">T-Shirt Custom</div>
+                            <div className="text-primary">T-Shirt Custom</div>
                         </div>
                         <div className="flex flex-col w-52 h-52 shadow-2xl rounded-2xl space-y-2 items-center justify-center mx-auto subcategRes">
                             <div>{jacketsvg()}</div>
@@ -158,15 +226,18 @@ function Home() {
                 <div className="h-20"></div>
                 {/* Best Product Category */}
                 <section className="mt-20 space-y-16">
-                    <div className="flex items-center mx-auto w-80">
+                    <div className="items-center text-center mx-auto w-80">
                         <span className="text-center capitalize textsize font-bold text-zinc-700">
-                            You want to know about Feature Products
+                            You want to know about
+                        </span>
+                        <span className="ml-1 text-center capitalize textsize font-bold text-zinc-700 bg-stee">
+                            Feature Products
                         </span>
                     </div>
 
                     <div className="mt-7 min-w-[310px] sm:w-full">
                         {/* allProducts Carousel */}
-                        <FeatureCarousel />
+                        <Carousel />
                         <div className="flex flex-col items-center mt-11">
                             <button className="text-zinc-700">
                                 <Link to="/allProducts">See all product</Link>
@@ -179,11 +250,11 @@ function Home() {
                     </div>
                 </section>
                 <div className="h-16"></div>
-                {/* Featured section*/}
-                <section className="flex flex-col items-center bg-slate-600">
+                {/* 
+                <section className="flex flex-col items-center bg-stee">
                     <div className="flex flex-col items-center">
-                        {/* heading*/}
-                        <div className="flex flex-col space-y-4 text-center mx-auto bg-slate-600 text-white">
+                 
+                        <div className="flex flex-col space-y-4 text-center mx-auto bg-stee text-primary">
                             <div className="w-80 mx-auto mt-5">
                                 <span className="text-3xl  font-bold">
                                     Featured Creators
@@ -197,8 +268,8 @@ function Home() {
                             </div>
                         </div>
                     </div>
-                    {/*Sub Categories button*/}
-                    <div className="flex flex-col items-center subcateg mx-auto space-y-6 space-x-0 text-white font-bold bg-slate-600 categ sm:flex-row sm:h-96 sm:space-x-16 sm:space-y-0 sm:mt-0">
+
+                    <div className="flex flex-col items-center subcateg mx-auto space-y-6 space-x-0 text-primary font-bold bg-stee categ sm:flex-row sm:h-96 sm:space-x-16 sm:space-y-0 sm:mt-0">
                         <div className="shadow-2xl rounded-2xl sm:mt-0">
                             {creator1()}
                         </div>
@@ -209,10 +280,10 @@ function Home() {
                             {creator3()}
                         </div>
                     </div>
-                </section>
+                </section> */}
                 <div className="h-20"></div>
                 {/* Best Product Category */}
-                <section className="mt-20">
+                {/* <section className="mt-20">
                     <div className="container flex flex-col items-center justify-center mx-auto w-80 sm:max-w-full">
                         <div className="flex flex-col items-center justify-center">
                             <div className="flex items-center justify-center w-80 text-center">
@@ -223,10 +294,7 @@ function Home() {
                         </div>
                         <div className="container flex flex-col items-center productadjust sm:w-180 sm:mx-auto mt-7">
                             <div className="flex flex-row space-x-2">
-                                {/* <img src={img1} className="w-40 h-30" alt="" />
-                <img src={img2} className="w-40 h-30" alt="" />
-                <img src={img3} className="w-40 h-30" alt="" />
-                <img src={img4} className="w-40 h-30" alt="" /> */}
+  
                             </div>
                             <div className="">
                                 <button className="text-zinc-700">
@@ -241,7 +309,7 @@ function Home() {
                             </div>
                         </div>
                     </div>
-                </section>
+                </section> */}
                 <div className="h-20"></div>
             </div>
         </>

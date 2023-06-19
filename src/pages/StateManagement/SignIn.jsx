@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { login } from "../../store/actions/userActions"
 import { Spinner } from "../../components/Spinner"
 import { logo } from "../../assets/svg/logo"
+import signInMain from "../../assets/images/signInMain.svg"
 import { toast } from "react-toastify"
 
 function SignIn() {
@@ -16,20 +17,23 @@ function SignIn() {
     })
 
     const { email, password } = formData
-    const navigate = useNavigate()
 
     // function isValidEmail(mail) {
     //   return /\S+@\S+\. \S+/.test(mail)
     // }
 
-    const loginInfo = useSelector((state) => state.userLogin)
-    const { loading, userInfo, error } = loginInfo
+    const navigate = useNavigate()
 
-    //   useEffect(() => {
-    //     userInfo?.email && navigate("/");
+    const { loading, userInfo, error } = useSelector((state) => state.userLogin)
+    useEffect(() => {
+        userInfo?._id && navigate("/")
+    }, [userInfo?._id])
 
-    //     error && toast.error(error);
-    //   }, [userInfo, error]);
+    useEffect(() => {
+        userInfo?.email && navigate("/")
+
+        error && toast.error(error)
+    }, [userInfo?._email, error])
 
     const dispatch = useDispatch()
 
@@ -151,16 +155,20 @@ function SignIn() {
                                         </div>
 
                                         <div className="flex items-center justify-center mt-5 ">
-                                            <div className="flex items-center justify-center bg-slate-600 w-36 rounded-3xl">
-                                                <button
-                                                    type="submit"
-                                                    className="p-2 text-[#D2FF28] transition-all duration-200"
-                                                >
-                                                    SIGN IN
-                                                </button>
+                                            {loading ? (
+                                                <Spinner />
+                                            ) : (
+                                                <div className="flex items-center justify-center bg-slate-600 w-36 rounded-3xl">
+                                                    <button
+                                                        type="submit"
+                                                        className="p-2 text-[#D2FF28] transition-all duration-200"
+                                                    >
+                                                        SIGN IN
+                                                    </button>
 
-                                                <i className="ri-arrow-right-line text-[#D2FF28]"></i>
-                                            </div>
+                                                    <i className="ri-arrow-right-line text-[#D2FF28]"></i>
+                                                </div>
+                                            )}
                                         </div>
                                     </form>
 
@@ -181,7 +189,7 @@ function SignIn() {
                     </div>
                 </div>
                 <div className="hidden dis md:block">
-                    <div className="w-96 h-full search"></div>
+                    <img src={signInMain} alt="" />
                 </div>
             </div>
         </>

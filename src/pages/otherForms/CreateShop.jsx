@@ -2,6 +2,8 @@ import React, { useEffect } from "react"
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
+import signInMain from "../../assets/images/signInMain.svg"
+
 import { Spinner } from "../../components/Spinner"
 import { logo } from "../../assets/svg/logo"
 import { toast } from "react-toastify"
@@ -135,7 +137,7 @@ function CreateShop() {
                     </div>
                 </div>
                 <div className="hidden dis md:block">
-                    <div className="w-96 h-full search"></div>
+                    <img src={signInMain} alt="" />
                 </div>
             </div>
         </>

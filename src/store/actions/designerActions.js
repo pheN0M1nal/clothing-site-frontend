@@ -20,6 +20,9 @@ import axiosInstance from "../../api/axios"
 import {
     USER_DETAILS_SUCCESS,
     USER_LOGIN_SUCCESS,
+    USER_ORDERS_FAIL,
+    USER_ORDERS_REQUEST,
+    USER_ORDERS_SUCCESS,
     USER_REGISTER_SUCCESS,
 } from "../constants/userConstants"
 
@@ -271,3 +274,28 @@ export const fetchDesignerProductsData =
             })
         }
     }
+
+export const fetchDesignerOrder = (id) => async (dispatch) => {
+    try {
+        dispatch({
+            type: USER_ORDERS_REQUEST,
+        })
+
+        const { data } = await axiosInstance().get(
+            `/orders/designersAllOrders?id=${id}`
+        )
+
+        dispatch({
+            type: USER_ORDERS_SUCCESS,
+            payload: data.orders,
+        })
+    } catch (error) {
+        dispatch({
+            type: USER_ORDERS_FAIL,
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message,
+        })
+    }
+}

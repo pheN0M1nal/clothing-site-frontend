@@ -1,5 +1,6 @@
 import React from "react"
 import { useSelector } from "react-redux"
+import HighestOrdersDesignersChart from "./HighestOrdersDesignersChart"
 
 function TopRatedDesigners() {
     const { maxRated, maxSales, maxProductsSales } = useSelector(
@@ -10,8 +11,8 @@ function TopRatedDesigners() {
         <>
             {" "}
             <div className="col-span-full xl:col-span-8 bg-white shadow-lg rounded-sm border border-slate-200">
-                <header className="px-5 py-4 border-b border-slate-100">
-                    <h2 className="font-semibold text-slate-800">
+                <header className="px-5 py-4 border-b border-slate-100 w-full">
+                    <h2 className="font-semibold text-slate-800 ">
                         Highest Orders Designers
                     </h2>
                 </header>
@@ -47,7 +48,7 @@ function TopRatedDesigners() {
                             </thead>
                             {/* Table body */}
 
-                            <tbody className="text-sm font-medium divide-y divide-slate-100">
+                            <tbody className="text-sm font-medium divide-y divide-slate-100 w-full">
                                 {maxRated?.map((item) => {
                                     return (
                                         <>
@@ -84,6 +85,33 @@ function TopRatedDesigners() {
                             </tbody>
                         </table>
                     </div>
+                </div>
+                <div className="flex w-full">
+                    {maxRated && (
+                        <HighestOrdersDesignersChart
+                            maxRated={maxRated}
+                            text={"Orders"}
+                            values={maxRated.map(
+                                (item) => item.totalNoOfOrders
+                            )}
+                        />
+                    )}
+                    {maxRated && (
+                        <HighestOrdersDesignersChart
+                            maxRated={maxRated}
+                            text={"Sales"}
+                            values={maxRated.map((item) => item.totalSales)}
+                        />
+                    )}{" "}
+                    {maxRated && (
+                        <HighestOrdersDesignersChart
+                            maxRated={maxRated}
+                            text={"Rating"}
+                            values={maxRated.map(
+                                (item) => item.avgRatingOfProducts
+                            )}
+                        />
+                    )}
                 </div>
             </div>
             <div className="col-span-full xl:col-span-8 bg-white shadow-lg rounded-sm border border-slate-200">
@@ -162,6 +190,33 @@ function TopRatedDesigners() {
                         </table>
                     </div>
                 </div>
+                <div className="flex w-full">
+                    {maxSales && (
+                        <HighestOrdersDesignersChart
+                            maxRated={maxRated}
+                            text={"Orders"}
+                            values={maxRated.map(
+                                (item) => item.totalNoOfOrders
+                            )}
+                        />
+                    )}
+                    {maxSales && (
+                        <HighestOrdersDesignersChart
+                            maxRated={maxRated}
+                            text={"Sales"}
+                            values={maxRated.map((item) => item.totalSales)}
+                        />
+                    )}{" "}
+                    {maxSales && (
+                        <HighestOrdersDesignersChart
+                            maxRated={maxRated}
+                            text={"Rating"}
+                            values={maxRated.map(
+                                (item) => item.avgRatingOfProducts
+                            )}
+                        />
+                    )}
+                </div>
             </div>
             <div className="col-span-full xl:col-span-8 bg-white shadow-lg rounded-sm border border-slate-200">
                 <header className="px-5 py-4 border-b border-slate-100">
@@ -238,6 +293,34 @@ function TopRatedDesigners() {
                             </tbody>
                         </table>
                     </div>
+                </div>
+
+                <div className="flex w-full">
+                    {maxProductsSales && (
+                        <HighestOrdersDesignersChart
+                            maxRated={maxRated}
+                            text={"Orders"}
+                            values={maxRated.map(
+                                (item) => item.totalNoOfOrders
+                            )}
+                        />
+                    )}
+                    {maxProductsSales && (
+                        <HighestOrdersDesignersChart
+                            maxRated={maxRated}
+                            text={"Sales"}
+                            values={maxRated.map((item) => item.totalSales)}
+                        />
+                    )}{" "}
+                    {maxProductsSales && (
+                        <HighestOrdersDesignersChart
+                            maxRated={maxRated}
+                            text={"Rating"}
+                            values={maxRated.map(
+                                (item) => item.avgRatingOfProducts
+                            )}
+                        />
+                    )}
                 </div>
             </div>
         </>

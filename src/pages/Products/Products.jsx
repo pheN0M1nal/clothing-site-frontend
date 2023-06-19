@@ -53,6 +53,24 @@ function Products() {
         }))
     }
     const [clear, setClear] = useState("")
+
+    useEffect(() => {
+        const data = {
+            avgRating: rating,
+            minPrice,
+            maxPrice,
+            category: gen,
+            keyword: formData.searchParam,
+            featured,
+        }
+
+        console.log(data)
+
+        setClear(formData.searchParam)
+
+        dispatch(getAllProducts(data))
+    }, [gen, featured, rating])
+
     const onSubmit = () => {
         const data = {
             avgRating: rating,
@@ -345,7 +363,7 @@ function Products() {
                         )}
 
                         {length > 0 ? (
-                            <div className="flex flex-wrap gap-7 items-center justify-center p-40">
+                            <div className="flex flex-wrap gap-9 items-center justify-center p-4">
                                 {allProducts.products.map((product) => (
                                     <ProductCard
                                         key={product.id}

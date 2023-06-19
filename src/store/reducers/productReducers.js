@@ -37,6 +37,24 @@ export const productDetailReducer = (state = { allProducts: [] }, action) => {
     }
 }
 
+//Get All Products
+export const featuredproductDetailReducer = (
+    state = { featureProducts: [] },
+    action
+) => {
+    switch (action.type) {
+        case ALL_PRODUCT_REQUEST:
+            return { loading: true, featureProducts: action.payload }
+        case ALL_PRODUCT_SUCCESS:
+            return { loading: false, featureProducts: action.payload }
+        case ALL_PRODUCT_FAIL:
+            return { loading: false, error: action.payload }
+
+        default:
+            return state
+    }
+}
+
 //Get Single Product
 export const singleproductReducer = (state = { singleProduct: [] }, action) => {
     switch (action.type) {

@@ -35,9 +35,13 @@ const Wrapper = styled.div`
         align-items: center;
 
         button {
-            background-color: #95a5a6;
+            background-color: #d2ff28;
             padding: 0.8em 1em;
             border-radius: 50px;
+            border: 1px solid black;
+        }
+        button:hover {
+            text-decoration: underline;
         }
     }
 
@@ -51,7 +55,7 @@ const Wrapper = styled.div`
             margin-bottom: 25px;
         }
         .table-header {
-            background-color: #95a5a6;
+            background-color: #d2ff28;
             font-size: 14px;
             text-transform: uppercase;
             letter-spacing: 0.03em;

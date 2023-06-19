@@ -18,19 +18,7 @@ const Navbar = () => {
         dispatch(fetchUserDetails())
         dispatch(fetchDesignerInfo())
         dispatch(fetchAdminInfo())
-
-        dispatch(
-            getAllProducts({
-                keyword: "",
-                minPrice: 0,
-                maxPrice: 99999999,
-                rating: "",
-                category: "",
-                avgRating: "",
-                featured: null,
-            })
-        )
-    }, [])
+    }, [dispatch])
 
     let showMenu = false
 
@@ -105,7 +93,7 @@ const Navbar = () => {
 
     return (
         <>
-            <div className="bg-gray-300 min-w-[320px] sm:w-full">
+            <div className="bg-white min-w-[320px] sm:w-full">
                 <nav className="ml-2 sm:ml-8 p-5 nav-bar">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center space-x-80">
@@ -132,13 +120,13 @@ const Navbar = () => {
                                                 : "/register-designer"
                                             : "/register-designer"
                                     }
-                                    className="nav-link"
+                                    className="nav-link bg-stee px-2 rounded-sm"
                                 >
                                     {user?.userType === "Designer"
                                         ? designerInfo && shopInfo
                                             ? "Designer"
-                                            : "Start Creating"
-                                        : "Start Creating"}
+                                            : "Be a Designer"
+                                        : "Be a Designer"}
                                 </Link>
                                 {user?.userType === "Admin" && (
                                     <Link to="/admin" className="nav-link">
@@ -248,7 +236,7 @@ const Navbar = () => {
                     {/* {showMenu && ( */}
                     <div
                         id="menu"
-                        className="absolute hidden p-6 left-6 right-6 top-20 z-40 bg-gray-300 lg:hidden"
+                        className="absolute hidden p-6 left-6 right-6 top-20 z-40 bg-white lg:hidden"
                     >
                         <div className="flex flex-col items-center justify-center w-full space-y-6 font-bold">
                             <Link to="/" className="nav-links">
@@ -268,8 +256,8 @@ const Navbar = () => {
                                 {user?.userType === "Designer"
                                     ? designerInfo && shopInfo
                                         ? "Designer"
-                                        : "Start Creating"
-                                    : "Start Creating"}
+                                        : "Be a Designer"
+                                    : "Be a Designer"}
                             </Link>
                             {user?.userType === "Admin" && (
                                 <Link to="/admin" className="nav-link">

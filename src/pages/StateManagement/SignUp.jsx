@@ -7,6 +7,7 @@ import validator from "validator"
 import { register } from "../../store/actions/userActions"
 import { useDispatch, useSelector } from "react-redux"
 import { Spinner } from "../../components/Spinner"
+import signInMain from "../../assets/images/signInMain.svg"
 
 import { logo } from "../../assets/svg/logo"
 function SignUp() {
@@ -237,7 +238,7 @@ function SignUp() {
                     </div>
                 </div>
                 <div className="hidden dis md:block">
-                    <div className="w-96 h-full search"></div>
+                    <img src={signInMain} alt="" />
                 </div>
             </div>
         </>

@@ -20,6 +20,9 @@ import {
     FEATURE_PRODUCTS_REQUEST,
     FEATURE_PRODUCTS_SUCCESS,
     FEATURE_PRODUCTS_FAIL,
+    FEATURED_PRODUCT_REQUEST,
+    FEATURED_PRODUCT_SUCCESS,
+    FEATURED_PRODUCT_FAIL,
 } from "../constants/productConstants"
 import { toast } from "react-toastify"
 
@@ -47,6 +50,33 @@ export const getAllProducts = (formData) => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: ALL_PRODUCT_FAIL,
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message,
+        })
+    }
+}
+
+//Fetch FEATURED Products
+export const getFeaturedProducts = () => async (dispatch) => {
+    try {
+        dispatch({
+            type: FEATURED_PRODUCT_REQUEST,
+        })
+
+        const { data } = await axiosInstance().get(
+            `/products/getAllProducts?featured=${true}`
+        )
+        //
+
+        dispatch({
+            type: FEATURED_PRODUCT_SUCCESS,
+            payload: data,
+        })
+    } catch (error) {
+        dispatch({
+            type: FEATURED_PRODUCT_FAIL,
             payload:
                 error.response && error.response.data.message
                     ? error.response.data.message

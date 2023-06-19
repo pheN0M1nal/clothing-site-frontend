@@ -42,7 +42,7 @@ const ProductInfo = ({ product, supplierInfo }) => {
             productName: product.productName,
             size: activeBtn,
             price: product.price,
-            rating: product && product?.rating,
+            rating: product && product?.avgRating,
             designerID: product.designerID,
             quantity: actualQty,
             purchaseQty: 1,

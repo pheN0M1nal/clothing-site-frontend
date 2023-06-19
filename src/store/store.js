@@ -13,6 +13,7 @@ import {
     topProductsReducer,
     featureProductsReducer,
     updateProductReducer,
+    featuredproductDetailReducer,
 } from "./reducers/productReducers"
 
 import {
@@ -29,6 +30,7 @@ import {
     adminsReducer,
     designersReducer,
     ratedDesignersReducer,
+    adminLoginReducer,
 } from "./reducers/adminReducers"
 import thunk from "redux-thunk"
 import { cartReducer } from "./reducers/cartReducers"
@@ -38,7 +40,7 @@ const reducer = combineReducers({
     userLogin: userLoginReducer,
     userRegister: userRegisterReducer,
     userDetails: userDetailsReducer,
-
+    adminLogin: adminLoginReducer,
     allAdmins: adminsReducer,
     allUsers: usersReducer,
     allDesigners: usersReducer,
@@ -51,6 +53,7 @@ const reducer = combineReducers({
     designerData: designerDataReducer,
     addedProduct: addProductReducer,
     updatedProduct: updateProductReducer,
+    featuredProducts: featuredproductDetailReducer,
 
     singleProduct: singleproductReducer,
     registerDesigner: registerDesignerReducer,

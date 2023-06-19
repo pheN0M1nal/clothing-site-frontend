@@ -11,6 +11,23 @@ import { fetchUserOrders } from "../../store/actions/userActions"
 import ResetPassword from "./ResetPassword"
 import UpdateUser from "./UpdateUser"
 import UpdateDesigner from "./UpdateDesigner"
+import axiosInstance from "../../api/axios"
+import { fetchDesignerOrder } from "../../store/actions/designerActions"
+import { toast } from "react-toastify"
+
+const DeliveryStatus = styled.div`
+    padding: 0.5rem;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: xx-small;
+
+    background-color: ${(props) =>
+        props.order.status === "pending"
+            ? "aliceblue"
+            : props.order.status === "processing"
+            ? "#c6f4e88d "
+            : "#c5f6c5 "};
+`
 
 const Wrapper = styled.div`
     max-width: 95%;
@@ -47,16 +64,19 @@ const Wrapper = styled.div`
             box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
         }
         .col-1 {
-            flex-basis: 35%;
+            flex-basis: 30%;
         }
         .col-2 {
-            flex-basis: 30%;
+            flex-basis: 25%;
         }
         .col-3 {
             flex-basis: 10%;
         }
         .col-4 {
             flex-basis: 25%;
+        }
+        .col-5 {
+            flex-basis: 10%;
         }
 
         @media all and (max-width: 767px) {
@@ -93,8 +113,28 @@ const Profile = () => {
     const { user } = useSelector((state) => state.userDetails)
 
     useEffect(() => {
-        user?._id && dispatch(fetchUserOrders(user?._id))
-    }, [dispatch, user?._id])
+        user?.userType === "Customer"
+            ? user?._id && dispatch(fetchUserOrders(user?._id))
+            : user?._id && dispatch(fetchDesignerOrder(user?._id))
+    }, [dispatch, user?.userType, user?._id])
+
+    const delivereyStatus = (order) => {
+        if (order?.status === "delivered") return
+
+        order?.status === "pending"
+            ? axiosInstance()
+                  .put(`/orders/updateOrderStatusToProcessing?id=${order._id}`)
+                  .then(({ data }) => {
+                      toast.success(data.message)
+                      user?._id && dispatch(fetchDesignerOrder(user?._id))
+                  })
+            : axiosInstance()
+                  .put(`/orders/updateOrderStatusToDelivered?id=${order._id}`)
+                  .then(({ data }) => {
+                      toast.success(data.message)
+                      user?._id && dispatch(fetchDesignerOrder(user?._id))
+                  })
+    }
     return (
         <Wrapper>
             {user?.userType && (
@@ -120,28 +160,53 @@ const Profile = () => {
                             <div className="col col-2">Name</div>
                             <div className="col col-3">Price</div>
                             <div className="col col-4">Date and Time</div>
+                            <div className="col col-5">Status</div>
                         </li>
 
                         {!loading && orders?.length === 0 && (
                             <h3>Zero Orders.</h3>
                         )}
 
-                        {orders?.map((user) => (
-                            <li className="table-row" key={user._id}>
+                        {orders?.map((order) => (
+                            <li className="table-row" key={order._id}>
                                 <div className="col col-1" data-label="Id">
-                                    {user._id}
+                                    {order._id}
                                 </div>
                                 <div className="col col-2" data-label="Name">
-                                    {user.fullName}
+                                    {order.fullName}
                                 </div>
                                 <div className="col col-3" data-label="Price">
-                                    {user.price}
+                                    {order.price}
                                 </div>
 
                                 {}
 
                                 <div className="col col-4" data-label="# #">
-                                    {user.createdAt}
+                                    {order.createdAt}
+                                </div>
+                                <div className="col col-5" data-label="Status">
+                                    <DeliveryStatus order={order}>
+                                        {user?.userType === "Designer" ? (
+                                            <button
+                                                onClick={() =>
+                                                    delivereyStatus(order)
+                                                }
+                                            >
+                                                {order?.status === "pending"
+                                                    ? "Mark as processing"
+                                                    : order?.status ===
+                                                      "processing"
+                                                    ? "Mark as delivered"
+                                                    : "Delivered"}
+                                            </button>
+                                        ) : (
+                                            <div>
+                                                {order?.status
+                                                    ? order.status
+                                                    : "Delivered"}
+                                            </div>
+                                        )}
+                                    </DeliveryStatus>
                                 </div>
                             </li>
                         ))}
