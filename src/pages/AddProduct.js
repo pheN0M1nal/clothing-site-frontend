@@ -1,19 +1,19 @@
-import styled from "styled-components"
+import styled from 'styled-components'
 
-import { useCallback, useEffect, useState } from "react"
-import { FormComponent } from "../components/Authentication/FormElement"
-import { InputComponent } from "../components/Authentication/InputELement"
-import { Button } from "../components/Button"
-import { Spinner } from "../components/Spinner"
-import { HandleOnChangeInput } from "../components/helpers/formInput/HandleOnChangeInput"
-import { useDispatch, useSelector } from "react-redux"
-import { notifyFailure } from "../components/helpers/notifications/notifyFailure"
+import { useCallback, useEffect, useState } from 'react'
+import { FormComponent } from '../components/Authentication/FormElement'
+import { InputComponent } from '../components/Authentication/InputELement'
+import { Button } from '../components/Button'
+import { Spinner } from '../components/Spinner'
+import { HandleOnChangeInput } from '../components/helpers/formInput/HandleOnChangeInput'
+import { useDispatch, useSelector } from 'react-redux'
+import { notifyFailure } from '../components/helpers/notifications/notifyFailure'
 // import { editProfile } from "../../store/actions/userActions"
 
-import { ImagePickerComponent } from "../components/helpers/fileManagement/ProfilePicturePickerComponent"
-import { createProduct } from "../store/actions/productActions"
-import DesignerSubNav from "../components/DesignerSubNav"
-import { toast } from "react-toastify"
+import { ImagePickerComponent } from '../components/helpers/fileManagement/ProfilePicturePickerComponent'
+import { createProduct } from '../store/actions/productActions'
+import DesignerSubNav from '../components/DesignerSubNav'
+import { toast } from 'react-toastify'
 
 const StyledComponent = styled.div`
     .profilePicturePickerWrapper > div {
@@ -95,7 +95,7 @@ export const AddProduct = () => {
     const [files, setFiles] = useState({})
     const [data, setData] = useState({
         quantity: [0, 0, 0],
-        size: ["S", "M", "L"],
+        size: ['S', 'M', 'L'],
     })
 
     const dispatch = useDispatch()
@@ -107,10 +107,6 @@ export const AddProduct = () => {
 
     const { user } = useSelector((state) => state.userDetails)
 
-    useEffect(() => {
-        addedProduct && toast.success("Product added successfully.")
-    }, [addedProduct])
-
     // notifying if error from reducer state
     error && notifyFailure(error)
 
@@ -118,12 +114,12 @@ export const AddProduct = () => {
     const validateFields = () => {
         let state = true
         let fields = [
-            "productName",
-            "category",
-            "price",
-            "description",
+            'productName',
+            'category',
+            'price',
+            'description',
 
-            "quantity",
+            'quantity',
         ]
         for (let field of fields) {
             if (!data[field]) {
@@ -149,23 +145,23 @@ export const AddProduct = () => {
         const formData = new FormData()
 
         for (let field in data) {
-            field !== "size" &&
-                field !== "quantity" &&
+            field !== 'size' &&
+                field !== 'quantity' &&
                 formData.append(field, data[field])
         }
 
-        formData.append("designerID", user?._id)
+        formData.append('designerID', user?._id)
 
         Object.keys(files).forEach((i) => {
-            formData.append("image", files[i])
+            formData.append('image', files[i])
         })
 
         data.size.forEach((size) => {
-            formData.append("size", size)
+            formData.append('size', size)
         })
 
         data.quantity.forEach((quantity) => {
-            formData.append("quantity", quantity)
+            formData.append('quantity', quantity)
         })
 
         dispatch(createProduct(formData))
@@ -190,7 +186,7 @@ export const AddProduct = () => {
                 <div className="profileimagePickerWrapper">
                     <ImagePickerComponent
                         image={files}
-                        field_name={"image"}
+                        field_name={'image'}
                         setFiles={setFiles}
                     />
                 </div>
@@ -202,7 +198,7 @@ export const AddProduct = () => {
                         height={40}
                         value={user?._id}
                         onChange={(e) =>
-                            HandleOnChangeInput(e, "designerID", setData, data)
+                            HandleOnChangeInput(e, 'designerID', setData, data)
                         }
                     />
                 </div>
@@ -213,7 +209,7 @@ export const AddProduct = () => {
                         height={40}
                         value={data?.productName}
                         onChange={(e) =>
-                            HandleOnChangeInput(e, "productName", setData, data)
+                            HandleOnChangeInput(e, 'productName', setData, data)
                         }
                     />
                 </div>
@@ -224,7 +220,7 @@ export const AddProduct = () => {
                         height={40}
                         value={data?.category}
                         onChange={(e) =>
-                            HandleOnChangeInput(e, "category", setData, data)
+                            HandleOnChangeInput(e, 'category', setData, data)
                         }
                     />
                 </div>
@@ -269,7 +265,7 @@ export const AddProduct = () => {
                         height={40}
                         value={data?.price}
                         onChange={(e) =>
-                            HandleOnChangeInput(e, "price", setData, data)
+                            HandleOnChangeInput(e, 'price', setData, data)
                         }
                     />
                 </div>
@@ -311,7 +307,7 @@ export const AddProduct = () => {
                         height={40}
                         value={data?.description}
                         onChange={(e) =>
-                            HandleOnChangeInput(e, "description", setData, data)
+                            HandleOnChangeInput(e, 'description', setData, data)
                         }
                     />
                 </div>
@@ -321,10 +317,10 @@ export const AddProduct = () => {
                         <Spinner size={1.5} />
                     ) : (
                         <Button
-                            textTransform={"uppercase"}
+                            textTransform={'uppercase'}
                             fontSize={16}
                             maxWidth={200}
-                            border={"transparent"}
+                            border={'transparent'}
                             height={41}
                             onClick={handleUpdateProfile}
                         >

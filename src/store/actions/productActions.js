@@ -23,11 +23,11 @@ import {
     FEATURED_PRODUCT_REQUEST,
     FEATURED_PRODUCT_SUCCESS,
     FEATURED_PRODUCT_FAIL,
-} from "../constants/productConstants"
-import { toast } from "react-toastify"
+} from '../constants/productConstants'
+import { toast } from 'react-toastify'
 
-import axiosInstance from "../../api/axios"
-import axios from "axios"
+import axiosInstance from '../../api/axios'
+import axios from 'axios'
 
 //Fetch All Products
 export const getAllProducts = (formData) => async (dispatch) => {
@@ -119,7 +119,7 @@ export const createProduct = (product) => async (dispatch) => {
         })
 
         const url =
-            process.env.REACT_APP_NODE_ENV === "development"
+            process.env.REACT_APP_NODE_ENV === 'development'
                 ? process.env.REACT_APP_MAIN_SERVER_URL_DEVELOPMENT
                 : process.env.REACT_APP_MAIN_SERVER_URL_PRODUCTION
 
@@ -128,10 +128,11 @@ export const createProduct = (product) => async (dispatch) => {
             product,
             {
                 headers: {
-                    "Content-Type": "multipart/form-data",
+                    'Content-Type': 'multipart/form-data',
                 },
             }
         )
+        toast.success('Product added successfully.')
 
         dispatch({
             type: ADD_PRODUCT_SUCCESS,
@@ -156,7 +157,7 @@ export const updateProduct = (id, product) => async (dispatch) => {
         })
 
         const url =
-            process.env.REACT_APP_NODE_ENV === "development"
+            process.env.REACT_APP_NODE_ENV === 'development'
                 ? process.env.REACT_APP_MAIN_SERVER_URL_DEVELOPMENT
                 : process.env.REACT_APP_MAIN_SERVER_URL_PRODUCTION
 
@@ -165,12 +166,12 @@ export const updateProduct = (id, product) => async (dispatch) => {
             product,
             {
                 headers: {
-                    "Content-Type": "multipart/form-data",
+                    'Content-Type': 'multipart/form-data',
                 },
             }
         )
 
-        toast.success("Product updated successfully.")
+        toast.success('Product updated successfully.')
 
         dispatch({
             type: UPDATE_PRODUCT_SUCCESS,
@@ -199,7 +200,7 @@ export const deleteProduct = (id) => async (dispatch) => {
         const { data } = await axiosInstance().delete(
             `/products/deleteProductByID/${id}`
         )
-        toast.success("Deleted successfully.")
+        toast.success('Deleted successfully.')
         dispatch({
             type: DELETE_PRODUCT_SUCCESS,
             payload: id,

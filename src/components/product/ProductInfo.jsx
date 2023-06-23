@@ -1,22 +1,23 @@
-import React from "react"
-import { useState } from "react"
-import { DynamicStar } from "react-dynamic-star"
-import { useDispatch, useSelector } from "react-redux"
-import { toast } from "react-toastify"
-import { addToCart } from "../../store/actions/cartActions"
-import ProductImage from "./ProductImage"
+import React from 'react'
+import { useState } from 'react'
+import { DynamicStar } from 'react-dynamic-star'
+import { useDispatch, useSelector } from 'react-redux'
+import { toast } from 'react-toastify'
+import { addToCart } from '../../store/actions/cartActions'
+import ProductImage from './ProductImage'
 
 const ProductInfo = ({ product, supplierInfo }) => {
     const [stock, setStock] = useState(
         product?.quantity && product?.quantity[0]
     )
-    const [activeBtn, setActiveBtn] = useState("S")
+    const [activeBtn, setActiveBtn] = useState('S')
 
     const loginInfo = useSelector((state) => state.userLogin.userInfo)
     const items = useSelector((state) => state.cartItems)
     const dispatch = useDispatch()
 
     const onClick = () => {
+        console.log('s')
         var flag = false
         items.map((item) => {
             if (item._id === product._id.concat(activeBtn)) {
@@ -26,13 +27,13 @@ const ProductInfo = ({ product, supplierInfo }) => {
         })
 
         var actualQty = 0
-        if (activeBtn === "S") {
+        if (activeBtn === 'S') {
             actualQty = product.quantity && product?.quantity[0]
         }
-        if (activeBtn === "M") {
+        if (activeBtn === 'M') {
             actualQty = product.quantity && product?.quantity[1]
         }
-        if (activeBtn === "L") {
+        if (activeBtn === 'L') {
             actualQty = product.quantity && product?.quantity[2]
         }
 
@@ -49,9 +50,9 @@ const ProductInfo = ({ product, supplierInfo }) => {
         }
 
         stock < 1
-            ? toast.error("No stock available")
+            ? toast.error('No stock available')
             : flag
-            ? toast.error("Already in the cart")
+            ? toast.error('Already in the cart')
             : stock > 1 && dispatch(addToCart(data))
     }
 
@@ -93,8 +94,8 @@ const ProductInfo = ({ product, supplierInfo }) => {
                                 <DynamicStar
                                     rating={product?.avgRating}
                                     outlined={true}
-                                    outlinedColor={"#D2FF28"}
-                                    fullStarColor={"#D2FF28"}
+                                    outlinedColor={'#D2FF28'}
+                                    fullStarColor={'#D2FF28'}
                                     height={20}
                                     width={13}
                                 />
@@ -131,8 +132,8 @@ const ProductInfo = ({ product, supplierInfo }) => {
                                         }}
                                         className={`w-20 h-10 cursor-pointer text-center border ${
                                             activeBtn === item
-                                                ? "bg-slate-300"
-                                                : ""
+                                                ? 'bg-slate-300'
+                                                : ''
                                         }`}
                                     >
                                         {item}
@@ -166,7 +167,7 @@ const ProductInfo = ({ product, supplierInfo }) => {
                                 Featured:
                             </span>
                             <span className="text-zinc-600 w-44 lg:w-auto">
-                                {product?.featured ? "Yes" : "No"}
+                                {product?.featured ? 'Yes' : 'No'}
                             </span>
                         </div>
 
@@ -193,10 +194,10 @@ const ProductInfo = ({ product, supplierInfo }) => {
 
                         <div className="flex space-x-2">
                             <span className="text-zinc-400 w-40 lg:w-auto">
-                                Warranty:
+                                -------
                             </span>
                             <span className="text-zinc-600 w-36 sm:w-44 lg:w-auto">
-                                2 years full warranty
+                                -
                             </span>
                         </div>
 

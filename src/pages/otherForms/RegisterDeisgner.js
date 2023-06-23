@@ -1,29 +1,40 @@
-import React, { useEffect } from "react"
-import { useState } from "react"
-import { Link, useNavigate } from "react-router-dom"
-import { useDispatch, useSelector } from "react-redux"
-import { Spinner } from "../../components/Spinner"
-import { logo } from "../../assets/svg/logo"
-import { toast } from "react-toastify"
-import signInMain from "../../assets/images/signInMain.svg"
+import React, { useEffect } from 'react'
+import { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { Spinner } from '../../components/Spinner'
+import { logo } from '../../assets/svg/logo'
+import { toast } from 'react-toastify'
+import signInMain from '../../assets/images/signInMain.svg'
 
 import {
     createShop,
     registerDesigner,
-} from "../../store/actions/designerActions"
+} from '../../store/actions/designerActions'
 
 function RegisterDeisgner() {
     const [formData, setFormData] = useState({})
+    //Indentifying Api response
+    const { loading, error, designerInfo } = useSelector(
+        (state) => state.registerDesigner
+    )
 
     const { user } = useSelector((state) => state.userDetails)
+    const navigate = useNavigate()
+    useEffect(() => {
+        if (!user?._id) {
+            navigate('/sign-in')
+            toast.info('Please sign in to continue.')
+        }
+    }, [user?._id])
 
     useEffect(() => {
         setFormData({
-            myName: "",
-            accountName: "",
+            myName: '',
+            accountName: '',
             email: user?.email,
-            bankName: "",
-            accountNo: "",
+            bankName: '',
+            accountNo: '',
         })
     }, [user])
 
@@ -42,27 +53,23 @@ function RegisterDeisgner() {
         dispatch(registerDesigner(formData))
     }
 
-    //Indentifying Api response
-    const { loading, error, designerInfo } = useSelector(
-        (state) => state.registerDesigner
-    )
     //Navigating to Profile on Success
-    const navigate = useNavigate()
-    designerInfo?.email && navigate("/create-shop")
+
+    designerInfo?.email && navigate('/create-shop')
     //Api error
     useEffect(() => {
-        designerInfo?.email && navigate("/create-shop")
+        designerInfo?.email && navigate('/create-shop')
 
-        if (error && !user?.userType === "Customer") {
+        if (error && !user?.userType === 'Customer') {
             toast.info(error)
-            if (error === "Please login to continue.") {
-                navigate("/sign-in")
+            if (error === 'Please login to continue.') {
+                navigate('/sign-in')
             }
         }
 
         if (designerInfo) {
-            toast.success("Designer registered.")
-            navigate("/create-shop")
+            toast.success('Designer registered.')
+            navigate('/create-shop')
         }
     }, [designerInfo, error])
 

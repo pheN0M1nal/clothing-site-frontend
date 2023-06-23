@@ -1,7 +1,8 @@
-import React from "react"
+import moment from 'moment'
+import React from 'react'
 
-import { DynamicStar } from "react-dynamic-star"
-import { useSelector } from "react-redux"
+import { DynamicStar } from 'react-dynamic-star'
+import { useSelector } from 'react-redux'
 
 const ReviewItem = () => {
     const { reviews } = useSelector((state) => state.reviews)
@@ -21,8 +22,8 @@ const ReviewItem = () => {
                                     <DynamicStar
                                         rating={item.rating}
                                         outlined={true}
-                                        outlinedColor={"#D2FF28"}
-                                        fullStarColor={"#D2FF28"}
+                                        outlinedColor={'#D2FF28'}
+                                        fullStarColor={'#D2FF28'}
                                         height={20}
                                         width={13}
                                     />
@@ -35,7 +36,9 @@ const ReviewItem = () => {
                                     </span>
                                     {/* Date */}
                                     <span className="text-sm font-serif text-zinc-500">
-                                        {item.createdAt}
+                                        {moment(item.createdAt).format(
+                                            'MMMM Do YYYY, h:mm:ss a'
+                                        )}
                                     </span>
                                 </div>
                                 {/* Comment */}

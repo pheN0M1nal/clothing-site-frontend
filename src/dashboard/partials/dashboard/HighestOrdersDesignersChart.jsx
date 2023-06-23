@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react"
-import DoughnutChart from "../../charts/DoughnutChart"
+import React, { useEffect, useState } from 'react'
+import DoughnutChart from '../../charts/DoughnutChart'
 
 // Import utilities
-import { tailwindConfig } from "../../utils/Utils"
-import { useSelector } from "react-redux"
+import { tailwindConfig } from '../../utils/Utils'
+import { useSelector } from 'react-redux'
 
 function HighestOrdersDesignersChart({ maxRated, text, values }) {
     const chartData = {
@@ -16,16 +16,8 @@ function HighestOrdersDesignersChart({ maxRated, text, values }) {
             {
                 label: text,
                 data: values,
-                backgroundColor: [
-                    tailwindConfig().theme.colors.indigo[500],
-                    tailwindConfig().theme.colors.blue[400],
-                    tailwindConfig().theme.colors.indigo[800],
-                ],
-                hoverBackgroundColor: [
-                    tailwindConfig().theme.colors.indigo[600],
-                    tailwindConfig().theme.colors.blue[500],
-                    tailwindConfig().theme.colors.indigo[900],
-                ],
+                backgroundColor: [' #bac690', '#8d9868', '#D2FF28'],
+                hoverBackgroundColor: ['#D2FF28', '#8d9868', ' #bac690'],
                 hoverBorderColor: tailwindConfig().theme.colors.white,
             },
         ],

@@ -1,19 +1,20 @@
-import React, { useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
-import { Spinner } from "../../components/Spinner"
-import styled from "styled-components"
-import { Link } from "react-router-dom"
-import { deleteAdmin } from "../../store/actions/adminActions"
-import "remixicon/fonts/remixicon.css"
+import { Spinner } from '../../components/Spinner'
+import styled from 'styled-components'
+import { Link } from 'react-router-dom'
+import { deleteAdmin } from '../../store/actions/adminActions'
+import 'remixicon/fonts/remixicon.css'
 
-import { fetchUserOrders } from "../../store/actions/userActions"
-import ResetPassword from "./ResetPassword"
-import UpdateUser from "./UpdateUser"
-import UpdateDesigner from "./UpdateDesigner"
-import axiosInstance from "../../api/axios"
-import { fetchDesignerOrder } from "../../store/actions/designerActions"
-import { toast } from "react-toastify"
+import { fetchUserOrders } from '../../store/actions/userActions'
+import ResetPassword from './ResetPassword'
+import UpdateUser from './UpdateUser'
+import UpdateDesigner from './UpdateDesigner'
+import axiosInstance from '../../api/axios'
+import { fetchDesignerOrder } from '../../store/actions/designerActions'
+import { toast } from 'react-toastify'
+import moment from 'moment'
 
 const DeliveryStatus = styled.div`
     padding: 0.5rem;
@@ -22,11 +23,11 @@ const DeliveryStatus = styled.div`
     font-size: xx-small;
 
     background-color: ${(props) =>
-        props.order.status === "pending"
-            ? "aliceblue"
-            : props.order.status === "processing"
-            ? "#c6f4e88d "
-            : "#c5f6c5 "};
+        props.order.status === 'pending'
+            ? 'aliceblue'
+            : props.order.status === 'processing'
+            ? '#c6f4e88d '
+            : '#c5f6c5 '};
 `
 
 const Wrapper = styled.div`
@@ -64,7 +65,8 @@ const Wrapper = styled.div`
             box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
         }
         .col-1 {
-            flex-basis: 30%;
+            flex-basis: 25%;
+            font-size: x-small;
         }
         .col-2 {
             flex-basis: 25%;
@@ -113,15 +115,15 @@ const Profile = () => {
     const { user } = useSelector((state) => state.userDetails)
 
     useEffect(() => {
-        user?.userType === "Customer"
+        user?.userType === 'Customer'
             ? user?._id && dispatch(fetchUserOrders(user?._id))
             : user?._id && dispatch(fetchDesignerOrder(user?._id))
     }, [dispatch, user?.userType, user?._id])
 
     const delivereyStatus = (order) => {
-        if (order?.status === "delivered") return
+        if (order?.status === 'delivered') return
 
-        order?.status === "pending"
+        order?.status === 'pending'
             ? axiosInstance()
                   .put(`/orders/updateOrderStatusToProcessing?id=${order._id}`)
                   .then(({ data }) => {
@@ -139,7 +141,7 @@ const Profile = () => {
         <Wrapper>
             {user?.userType && (
                 <div>
-                    {user.userType === "Designer" ? (
+                    {user.userType === 'Designer' ? (
                         <UpdateDesigner />
                     ) : (
                         <UpdateUser />
@@ -182,28 +184,30 @@ const Profile = () => {
                                 {}
 
                                 <div className="col col-4" data-label="# #">
-                                    {order.createdAt}
+                                    {moment(order.createdAt).format(
+                                        'MMMM Do YYYY, h:mm:ss a'
+                                    )}
                                 </div>
                                 <div className="col col-5" data-label="Status">
                                     <DeliveryStatus order={order}>
-                                        {user?.userType === "Designer" ? (
+                                        {user?.userType === 'Designer' ? (
                                             <button
                                                 onClick={() =>
                                                     delivereyStatus(order)
                                                 }
                                             >
-                                                {order?.status === "pending"
-                                                    ? "Mark as processing"
+                                                {order?.status === 'pending'
+                                                    ? 'Mark as processing'
                                                     : order?.status ===
-                                                      "processing"
-                                                    ? "Mark as delivered"
-                                                    : "Delivered"}
+                                                      'processing'
+                                                    ? 'Mark as delivered'
+                                                    : 'Delivered'}
                                             </button>
                                         ) : (
                                             <div>
                                                 {order?.status
                                                     ? order.status
-                                                    : "Delivered"}
+                                                    : 'Delivered'}
                                             </div>
                                         )}
                                     </DeliveryStatus>

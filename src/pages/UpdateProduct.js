@@ -1,20 +1,20 @@
-import styled from "styled-components"
+import styled from 'styled-components'
 
-import { useCallback, useEffect, useState } from "react"
-import { FormComponent } from "../components/Authentication/FormElement"
-import { InputComponent } from "../components/Authentication/InputELement"
-import { Button } from "../components/Button"
-import { Spinner } from "../components/Spinner"
-import { HandleOnChangeInput } from "../components/helpers/formInput/HandleOnChangeInput"
-import { useDispatch, useSelector } from "react-redux"
-import { notifyFailure } from "../components/helpers/notifications/notifyFailure"
+import { useCallback, useEffect, useState } from 'react'
+import { FormComponent } from '../components/Authentication/FormElement'
+import { InputComponent } from '../components/Authentication/InputELement'
+import { Button } from '../components/Button'
+import { Spinner } from '../components/Spinner'
+import { HandleOnChangeInput } from '../components/helpers/formInput/HandleOnChangeInput'
+import { useDispatch, useSelector } from 'react-redux'
+import { notifyFailure } from '../components/helpers/notifications/notifyFailure'
 // import { editProfile } from "../../store/actions/userActions"
 
-import { ImagePickerComponent } from "../components/helpers/fileManagement/ProfilePicturePickerComponent"
-import { createProduct, updateProduct } from "../store/actions/productActions"
-import DesignerSubNav from "../components/DesignerSubNav"
-import { toast } from "react-toastify"
-import { useParams } from "react-router-dom"
+import { ImagePickerComponent } from '../components/helpers/fileManagement/ProfilePicturePickerComponent'
+import { createProduct, updateProduct } from '../store/actions/productActions'
+import DesignerSubNav from '../components/DesignerSubNav'
+import { toast } from 'react-toastify'
+import { useParams } from 'react-router-dom'
 
 const StyledComponent = styled.div`
     .profilePicturePickerWrapper > div {
@@ -116,17 +116,17 @@ export const UpdateProduct = () => {
 
     const [data, setData] = useState({
         quantity: [0, 0, 0],
-        size: ["S", "M", "L"],
+        size: ['S', 'M', 'L'],
     })
 
     const dispatch = useDispatch()
 
     // checking if user gets registered
-    const { addedProduct, error, loading } = useSelector(
-        (state) => state.addedProduct
-    )
+    const { addedProduct, error } = useSelector((state) => state.addedProduct)
 
     const { user } = useSelector((state) => state.userDetails)
+    const { loading } = useSelector((state) => state.updatedProduct)
+
     // notifying if error from reducer state
     error && notifyFailure(error)
 
@@ -134,12 +134,12 @@ export const UpdateProduct = () => {
     const validateFields = () => {
         let state = true
         let fields = [
-            "productName",
-            "category",
-            "price",
-            "description",
+            'productName',
+            'category',
+            'price',
+            'description',
 
-            "quantity",
+            'quantity',
         ]
         for (let field of fields) {
             if (!data[field]) {
@@ -165,32 +165,32 @@ export const UpdateProduct = () => {
         const formData = new FormData()
 
         for (let field in data) {
-            field !== "size" &&
-                field !== "quantity" &&
-                field !== "_id" &&
-                field !== "avgRating" &&
-                field !== "noOfReviews" &&
-                field !== "noOfSales" &&
-                field !== "featured" &&
-                field !== "createdAt" &&
-                field !== "updatedAt" &&
-                field !== "__v" &&
-                field !== "designerID" &&
-                field !== "updatedAt" &&
-                field !== "image" &&
+            field !== 'size' &&
+                field !== 'quantity' &&
+                field !== '_id' &&
+                field !== 'avgRating' &&
+                field !== 'noOfReviews' &&
+                field !== 'noOfSales' &&
+                field !== 'featured' &&
+                field !== 'createdAt' &&
+                field !== 'updatedAt' &&
+                field !== '__v' &&
+                field !== 'designerID' &&
+                field !== 'updatedAt' &&
+                field !== 'image' &&
                 formData.append(field, data[field])
         }
 
         Object.keys(files).forEach((i) => {
-            typeof files[0] !== "string" && formData.append("image", files[i])
+            typeof files[0] !== 'string' && formData.append('image', files[i])
         })
 
         data.size.forEach((size) => {
-            formData.append("size", size)
+            formData.append('size', size)
         })
 
         data.quantity.forEach((quantity) => {
-            formData.append("quantity", quantity)
+            formData.append('quantity', quantity)
         })
 
         dispatch(updateProduct(toBeUpdatedProduct._id, formData))
@@ -215,7 +215,7 @@ export const UpdateProduct = () => {
                 <div className="profileimagePickerWrapper">
                     <ImagePickerComponent
                         image={files}
-                        field_name={"image"}
+                        field_name={'image'}
                         setFiles={setFiles}
                     />
                 </div>
@@ -227,7 +227,7 @@ export const UpdateProduct = () => {
                         height={40}
                         value={user?._id}
                         onChange={(e) =>
-                            HandleOnChangeInput(e, "designerID", setData, data)
+                            HandleOnChangeInput(e, 'designerID', setData, data)
                         }
                     />
                 </div>
@@ -238,7 +238,7 @@ export const UpdateProduct = () => {
                         height={40}
                         value={data && data?.productName}
                         onChange={(e) =>
-                            HandleOnChangeInput(e, "productName", setData, data)
+                            HandleOnChangeInput(e, 'productName', setData, data)
                         }
                     />
                 </div>
@@ -249,7 +249,7 @@ export const UpdateProduct = () => {
                         height={40}
                         value={data && data?.category}
                         onChange={(e) =>
-                            HandleOnChangeInput(e, "category", setData, data)
+                            HandleOnChangeInput(e, 'category', setData, data)
                         }
                     />
                 </div>
@@ -294,7 +294,7 @@ export const UpdateProduct = () => {
                         height={40}
                         value={data && data?.price}
                         onChange={(e) =>
-                            HandleOnChangeInput(e, "price", setData, data)
+                            HandleOnChangeInput(e, 'price', setData, data)
                         }
                     />
                 </div>
@@ -336,7 +336,7 @@ export const UpdateProduct = () => {
                         height={40}
                         value={data && data?.description}
                         onChange={(e) =>
-                            HandleOnChangeInput(e, "description", setData, data)
+                            HandleOnChangeInput(e, 'description', setData, data)
                         }
                     />
                 </div>
@@ -346,14 +346,14 @@ export const UpdateProduct = () => {
                         <Spinner size={1.5} />
                     ) : (
                         <Button
-                            textTransform={"uppercase"}
+                            textTransform={'uppercase'}
                             fontSize={16}
                             maxWidth={200}
-                            border={"transparent"}
+                            border={'transparent'}
                             height={41}
                             onClick={handleUpdateProfile}
                         >
-                            Create Product
+                            Update Product
                         </Button>
                     )}
                 </div>

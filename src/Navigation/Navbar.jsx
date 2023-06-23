@@ -1,17 +1,17 @@
-import React, { useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { Link, useNavigate } from "react-router-dom"
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
 
-import "remixicon/fonts/remixicon.css"
+import 'remixicon/fonts/remixicon.css'
 
-import { fetchUserDetails, logout } from "../store/actions/userActions"
-import { logo } from "../assets/svg/logo"
+import { fetchUserDetails, logout } from '../store/actions/userActions'
+import { logo } from '../assets/svg/logo'
 import {
     fetchDesignerInfo,
     fetchShopDetails,
-} from "../store/actions/designerActions"
-import { getAllProducts } from "../store/actions/productActions"
-import { fetchAdminInfo } from "../store/actions/adminActions"
+} from '../store/actions/designerActions'
+import { getAllProducts } from '../store/actions/productActions'
+import { fetchAdminInfo } from '../store/actions/adminActions'
 const Navbar = () => {
     const dispatch = useDispatch()
     useEffect(() => {
@@ -28,17 +28,17 @@ const Navbar = () => {
         toggleMenu()
     }
 
-    document.addEventListener("click", (e) => {
+    document.addEventListener('click', (e) => {
         if (
             showMenu &&
-            e.target.closest("#menu") &&
-            !e.target.closest(".dropdown")
+            e.target.closest('#menu') &&
+            !e.target.closest('.dropdown')
         ) {
             showMenu = false
             toggleMenu()
-        } else if (e.target.closest(".dropdown-links")) {
+        } else if (e.target.closest('.dropdown-links')) {
             drop()
-        } else if (e.target.closest(".dropdown-links1") && showMenu) {
+        } else if (e.target.closest('.dropdown-links1') && showMenu) {
             showMenu = false
             drop1()
             toggleMenu()
@@ -46,20 +46,20 @@ const Navbar = () => {
     })
 
     function toggleMenu() {
-        console.log("I am from mobile view")
-        var btn = document.getElementById("menu-btn")
-        var menu = document.getElementById("menu")
-        btn.classList.toggle("open")
+        console.log('I am from mobile view')
+        var btn = document.getElementById('menu-btn')
+        var menu = document.getElementById('menu')
+        btn.classList.toggle('open')
         if (showMenu) {
-            menu.classList.remove("hidden")
+            menu.classList.remove('hidden')
         } else if (!showMenu) {
-            menu.classList.add("hidden")
+            menu.classList.add('hidden')
         }
     }
 
     const drop = () => {
-        var menu = document.querySelector(".dropdown-links")
-        menu.classList.toggle("hidden")
+        var menu = document.querySelector('.dropdown-links')
+        menu.classList.toggle('hidden')
         // if (menu.classList.contains("hidden")) {
         //   menu.classList.remove("hidden");
         // } else {
@@ -67,8 +67,8 @@ const Navbar = () => {
         // }
     }
     const drop1 = () => {
-        var menu = document.querySelector(".dropdown-links1")
-        menu.classList.toggle("hidden")
+        var menu = document.querySelector('.dropdown-links1')
+        menu.classList.toggle('hidden')
 
         // if (menu.classList.contains("hidden")) {
         //   menu.classList.remove("hidden");
@@ -88,7 +88,7 @@ const Navbar = () => {
 
     const logoutHandler = () => {
         dispatch(logout())
-        navigate("/")
+        navigate('/')
     }
 
     return (
@@ -114,21 +114,21 @@ const Navbar = () => {
 
                                 <Link
                                     to={
-                                        user?.userType === "Designer"
+                                        user?.userType === 'Designer'
                                             ? designerInfo && shopInfo
-                                                ? "/designer"
-                                                : "/register-designer"
-                                            : "/register-designer"
+                                                ? '/designer'
+                                                : '/register-designer'
+                                            : '/register-designer'
                                     }
                                     className="nav-link bg-stee px-2 rounded-sm"
                                 >
-                                    {user?.userType === "Designer"
+                                    {user?.userType === 'Designer'
                                         ? designerInfo && shopInfo
-                                            ? "Designer"
-                                            : "Be a Designer"
-                                        : "Be a Designer"}
+                                            ? 'Designer'
+                                            : 'Be a Designer'
+                                        : 'Be a Designer'}
                                 </Link>
-                                {user?.userType === "Admin" && (
+                                {user?.userType === 'Admin' && (
                                     <Link to="/admin" className="nav-link">
                                         Admin Panel
                                     </Link>
@@ -245,28 +245,26 @@ const Navbar = () => {
 
                             <Link
                                 to={
-                                    user?.userType === "Designer"
+                                    user?.userType === 'Designer'
                                         ? designerInfo && shopInfo
-                                            ? "/designer"
-                                            : "/register-designer"
-                                        : "/register-designer"
+                                            ? '/designer'
+                                            : '/register-designer'
+                                        : '/register-designer'
                                 }
                                 className="nav-link"
                             >
-                                {user?.userType === "Designer"
+                                {user?.userType === 'Designer'
                                     ? designerInfo && shopInfo
-                                        ? "Designer"
-                                        : "Be a Designer"
-                                    : "Be a Designer"}
+                                        ? 'Designer'
+                                        : 'Be a Designer'
+                                    : 'Be a Designer'}
                             </Link>
-                            {user?.userType === "Admin" && (
+                            {user?.userType === 'Admin' && (
                                 <Link to="/admin" className="nav-link">
                                     Admin Panel
                                 </Link>
                             )}
-                            <Link to="/admin" className="nav-links">
-                                Admin Panel
-                            </Link>
+
                             <div>
                                 {user?.myName ? (
                                     <div className="relative inline-block text-left">

@@ -1,18 +1,20 @@
-import React, { useEffect } from "react"
-import ReviewItem from "./ReviewItem"
-import { fetchReviews } from "../../store/actions/userActions"
-import { useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { useParams } from "react-router-dom"
-import { toast } from "react-toastify"
-import axiosInstance from "../../api/axios"
+import React, { useEffect } from 'react'
+import ReviewItem from './ReviewItem'
+import { fetchReviews } from '../../store/actions/userActions'
+import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useParams } from 'react-router-dom'
+import { toast } from 'react-toastify'
+import axiosInstance from '../../api/axios'
+import { Spinner } from '../../components/Spinner'
 
 const Reviews = ({ productId }) => {
     const [formData, setFormData] = useState({
-        comment: "",
+        comment: '',
     })
 
     const { comment } = formData
+    const [loading, setLoading] = useState(false)
 
     const ratingNum = [0, 1, 2, 3, 4, 5]
     const [rating, setRating] = useState(0)
@@ -29,15 +31,15 @@ const Reviews = ({ productId }) => {
     const onSubmit = (e) => {
         e.preventDefault()
 
-        if (formData.comment === "" || rating === 0) {
-            toast.info("Please provide a comment and rating.")
+        if (formData.comment === '' || rating === 0) {
+            toast.info('Please provide a comment and rating.')
             return
         }
 
-        console.log(formData, rating)
+        setLoading(true)
 
         axiosInstance()
-            .post("/reviews/addReview", {
+            .post('/reviews/addReview', {
                 userID: user._id,
                 myName: user.myName,
                 productID: productId,
@@ -45,10 +47,13 @@ const Reviews = ({ productId }) => {
                 comment: formData.comment,
             })
             .then(({ data }) => {
+                setLoading(false)
+
                 dispatch(fetchReviews(productId))
             })
             .catch((err) => {
                 console.log(err)
+                setLoading(false)
             })
     }
 
@@ -82,8 +87,8 @@ const Reviews = ({ productId }) => {
                                     key={number}
                                     className={`w-8 h-8 border rounded-full hover:bg-slate-600 hover:text-[#D2FF28] ${
                                         number === rating
-                                            ? "bg-slate-600 text-[#D2FF28]"
-                                            : "bg-slate-200 text-slate-500"
+                                            ? 'bg-slate-600 text-[#D2FF28]'
+                                            : 'bg-slate-200 text-slate-500'
                                     }`}
                                     onClick={() => setRating(number)}
                                 >
@@ -104,16 +109,20 @@ const Reviews = ({ productId }) => {
                             ></textarea>
                         </div>
                         <div className="flex items-center justify-center mt-5 mb-5">
-                            <div className="flex items-center justify-center bg-slate-600 w-36 rounded-3xl">
-                                <button
-                                    type="submit"
-                                    className="p-2 text-[#D2FF28] transition-all duration-200"
-                                >
-                                    SUBMIT
-                                </button>
+                            {loading ? (
+                                <Spinner />
+                            ) : (
+                                <div className="flex items-center justify-center bg-slate-600 w-36 rounded-3xl">
+                                    <button
+                                        type="submit"
+                                        className="p-2 text-[#D2FF28] transition-all duration-200"
+                                    >
+                                        SUBMIT
+                                    </button>
 
-                                <i className="ri-arrow-right-line text-[#D2FF28]"></i>
-                            </div>
+                                    <i className="ri-arrow-right-line text-[#D2FF28]"></i>
+                                </div>
+                            )}
                         </div>
                     </form>
                 </div>

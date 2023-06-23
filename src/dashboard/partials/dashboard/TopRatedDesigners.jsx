@@ -1,6 +1,6 @@
-import React from "react"
-import { useSelector } from "react-redux"
-import HighestOrdersDesignersChart from "./HighestOrdersDesignersChart"
+import React from 'react'
+import { useSelector } from 'react-redux'
+import HighestOrdersDesignersChart from './HighestOrdersDesignersChart'
 
 function TopRatedDesigners() {
     const { maxRated, maxSales, maxProductsSales } = useSelector(
@@ -9,7 +9,7 @@ function TopRatedDesigners() {
 
     return (
         <>
-            {" "}
+            {' '}
             <div className="col-span-full xl:col-span-8 bg-white shadow-lg rounded-sm border border-slate-200">
                 <header className="px-5 py-4 border-b border-slate-100 w-full">
                     <h2 className="font-semibold text-slate-800 ">
@@ -52,7 +52,7 @@ function TopRatedDesigners() {
                                 {maxRated?.map((item) => {
                                     return (
                                         <>
-                                            {" "}
+                                            {' '}
                                             <tr>
                                                 <td className="p-2">
                                                     <div className="flex items-center">
@@ -90,7 +90,7 @@ function TopRatedDesigners() {
                     {maxRated && (
                         <HighestOrdersDesignersChart
                             maxRated={maxRated}
-                            text={"Orders"}
+                            text={'Orders'}
                             values={maxRated.map(
                                 (item) => item.totalNoOfOrders
                             )}
@@ -99,14 +99,14 @@ function TopRatedDesigners() {
                     {maxRated && (
                         <HighestOrdersDesignersChart
                             maxRated={maxRated}
-                            text={"Sales"}
+                            text={'Sales'}
                             values={maxRated.map((item) => item.totalSales)}
                         />
-                    )}{" "}
+                    )}{' '}
                     {maxRated && (
                         <HighestOrdersDesignersChart
                             maxRated={maxRated}
-                            text={"Rating"}
+                            text={'Rating'}
                             values={maxRated.map(
                                 (item) => item.avgRatingOfProducts
                             )}
@@ -156,7 +156,7 @@ function TopRatedDesigners() {
                                 {maxSales?.map((item) => {
                                     return (
                                         <>
-                                            {" "}
+                                            {' '}
                                             <tr>
                                                 <td className="p-2">
                                                     <div className="flex items-center">
@@ -193,25 +193,25 @@ function TopRatedDesigners() {
                 <div className="flex w-full">
                     {maxSales && (
                         <HighestOrdersDesignersChart
-                            maxRated={maxRated}
-                            text={"Orders"}
-                            values={maxRated.map(
+                            maxRated={maxSales}
+                            text={'Orders'}
+                            values={maxSales.map(
                                 (item) => item.totalNoOfOrders
                             )}
                         />
                     )}
                     {maxSales && (
                         <HighestOrdersDesignersChart
-                            maxRated={maxRated}
-                            text={"Sales"}
-                            values={maxRated.map((item) => item.totalSales)}
+                            maxRated={maxSales}
+                            text={'Sales'}
+                            values={maxSales.map((item) => item.totalSales)}
                         />
-                    )}{" "}
+                    )}{' '}
                     {maxSales && (
                         <HighestOrdersDesignersChart
-                            maxRated={maxRated}
-                            text={"Rating"}
-                            values={maxRated.map(
+                            maxRated={maxSales}
+                            text={'Rating'}
+                            values={maxSales.map(
                                 (item) => item.avgRatingOfProducts
                             )}
                         />
@@ -260,7 +260,7 @@ function TopRatedDesigners() {
                                 {maxProductsSales?.map((item) => {
                                     return (
                                         <>
-                                            {" "}
+                                            {' '}
                                             <tr>
                                                 <td className="p-2">
                                                     <div className="flex items-center">
@@ -298,25 +298,27 @@ function TopRatedDesigners() {
                 <div className="flex w-full">
                     {maxProductsSales && (
                         <HighestOrdersDesignersChart
-                            maxRated={maxRated}
-                            text={"Orders"}
-                            values={maxRated.map(
+                            maxRated={maxProductsSales}
+                            text={'Orders'}
+                            values={maxProductsSales.map(
                                 (item) => item.totalNoOfOrders
                             )}
                         />
                     )}
                     {maxProductsSales && (
                         <HighestOrdersDesignersChart
-                            maxRated={maxRated}
-                            text={"Sales"}
-                            values={maxRated.map((item) => item.totalSales)}
+                            maxRated={maxProductsSales}
+                            text={'Sales'}
+                            values={maxProductsSales.map(
+                                (item) => item.totalSales
+                            )}
                         />
-                    )}{" "}
+                    )}{' '}
                     {maxProductsSales && (
                         <HighestOrdersDesignersChart
-                            maxRated={maxRated}
-                            text={"Rating"}
-                            values={maxRated.map(
+                            maxRated={maxProductsSales}
+                            text={'Rating'}
+                            values={maxProductsSales.map(
                                 (item) => item.avgRatingOfProducts
                             )}
                         />

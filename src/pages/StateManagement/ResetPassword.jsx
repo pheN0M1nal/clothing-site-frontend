@@ -1,12 +1,12 @@
-import React from "react"
+import React from 'react'
 
-import { useState } from "react"
-import { Link, useNavigate } from "react-router-dom"
-import { toast } from "react-toastify"
-import { register } from "../../store/actions/userActions"
-import { useDispatch, useSelector } from "react-redux"
-import { Spinner } from "../../components/Spinner"
-import axiosInstance from "../../api/axios"
+import { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
+import { register } from '../../store/actions/userActions'
+import { useDispatch, useSelector } from 'react-redux'
+import { Spinner } from '../../components/Spinner'
+import axiosInstance from '../../api/axios'
 
 function ResetPassword() {
     const [showPassword, setShowPassword] = useState(false)
@@ -16,21 +16,21 @@ function ResetPassword() {
 
     //form data contains all fields data in application like input fields {represents object}
     const [formData, setFormData] = useState({
-        oldPassword: "",
-        newPassword: "",
-        cnewPassword: "",
+        oldPassword: '',
+        newPassword: '',
+        cnewPassword: '',
     })
     //to use email/pasword anywhere in our app we need to de-structure them from formData
     const { oldPassword, newPassword, cnewPassword } = formData
 
     const togglePasswordEye = () => {
-        var set_signin_eye = document.querySelector(".changeeye")
+        var set_signin_eye = document.querySelector('.changeeye')
         if (showPassword) {
-            set_signin_eye.classList.remove("fa-eye-slash")
-            set_signin_eye.classList.add("fa-eye")
+            set_signin_eye.classList.remove('fa-eye-slash')
+            set_signin_eye.classList.add('fa-eye')
         } else {
-            set_signin_eye.classList.add("fa-eye-slash")
-            set_signin_eye.classList.remove("fa-eye")
+            set_signin_eye.classList.add('fa-eye-slash')
+            set_signin_eye.classList.remove('fa-eye')
         }
         setShowPassword((prevState) => !prevState)
     }
@@ -62,11 +62,12 @@ function ResetPassword() {
     const [loading, setLoading] = useState(false)
 
     const onSubmit = async (e) => {
+        e.preventDefault()
         if (newPassword !== cnewPassword) {
             toast.error("Passwords does'nt match.")
+            return
         }
 
-        e.preventDefault()
         setLoading(true)
         axiosInstance()
             .put(`/users/resetPassword/?id=${user._id}`, {
@@ -76,16 +77,16 @@ function ResetPassword() {
             .then(({ data }) => {
                 setLoading(false)
                 setFormData({
-                    oldPassword: "",
-                    newPassword: "",
-                    cnewPassword: "",
+                    oldPassword: '',
+                    newPassword: '',
+                    cnewPassword: '',
                 })
                 toast.success(data.message)
             })
-            .err(() => {
+            .catch(({ response }) => {
                 setLoading(false)
 
-                console.log("error in reset pass user")
+                toast.error(response.data.message)
             })
     }
 
@@ -110,8 +111,8 @@ function ResetPassword() {
                                             <input
                                                 type={
                                                     showPassword
-                                                        ? "text"
-                                                        : "password"
+                                                        ? 'text'
+                                                        : 'password'
                                                 }
                                                 className="p-2 mt-2 w-full rounded-md text-white bg-slate-600 outline-none text-xs"
                                                 id="oldPassword"
@@ -124,8 +125,8 @@ function ResetPassword() {
                                             <input
                                                 type={
                                                     showPassword
-                                                        ? "text"
-                                                        : "password"
+                                                        ? 'text'
+                                                        : 'password'
                                                 }
                                                 className="p-2 mt-2 w-full rounded-md text-white bg-slate-600 outline-none text-xs"
                                                 id="newPassword"
@@ -138,8 +139,8 @@ function ResetPassword() {
                                             <input
                                                 type={
                                                     showPassword
-                                                        ? "text"
-                                                        : "password"
+                                                        ? 'text'
+                                                        : 'password'
                                                 }
                                                 className="p-2 mt-2 w-full rounded-md text-white bg-slate-600 outline-none text-xs"
                                                 id="cnewPassword"

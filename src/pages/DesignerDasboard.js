@@ -1,17 +1,17 @@
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch, useSelector } from 'react-redux'
 
-import styled from "styled-components"
+import styled from 'styled-components'
 
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from 'react-router-dom'
 
-import WelcomeBanner from "../dashboard/partials/dashboard/WelcomeBanner"
+import WelcomeBanner from '../dashboard/partials/dashboard/WelcomeBanner'
 
-import TopRatedDesigners from "../dashboard/partials/dashboard/TopRatedDesigners"
+import TopRatedDesigners from '../dashboard/partials/dashboard/TopRatedDesigners'
 
-import DesignerSubNav from "../components/DesignerSubNav"
-import { useEffect } from "react"
-import DashboardCard06 from "../dashboard/partials/dashboard/DashboardCard06"
-import { fetchDesignerProductsData } from "../store/actions/designerActions"
+import DesignerSubNav from '../components/DesignerSubNav'
+import { useEffect, useState } from 'react'
+import DashboardCard06 from '../dashboard/partials/dashboard/DashboardCard06'
+import { fetchDesignerProductsData } from '../store/actions/designerActions'
 
 const Wrapper = styled.div`
     max-width: 1000px;
@@ -91,17 +91,19 @@ const DesignerDasboard = () => {
     const userDetails = useSelector((state) => state.userDetails)
     const { user } = userDetails
 
+    const [month, setMonth] = useState(6)
+
     const dispatch = useDispatch()
 
     useEffect(() => {
-        user?.userType !== "Designer"
-            ? navigate("/")
-            : dispatch(fetchDesignerProductsData(user._id, 6, 2023))
-    }, [user])
+        user?.userType !== 'Designer'
+            ? navigate('/')
+            : dispatch(fetchDesignerProductsData(user._id, month, 2023))
+    }, [user, month])
 
     return (
         <div>
-            {" "}
+            {' '}
             <div className="flex h-screen overflow-hidden">
                 {/* Sidebar */}
                 {/* <Sidebar
@@ -120,6 +122,17 @@ const DesignerDasboard = () => {
                         <div className="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
                             {/* Welcome banner */}
                             <WelcomeBanner />
+                            <label for="bdaymonth">Select a month:</label>
+                            <input
+                                type="month"
+                                id="bdaymonth"
+                                name="bdaymonth"
+                                onChange={(e) =>
+                                    setMonth(
+                                        parseInt(e.target.value.split('-')[1])
+                                    )
+                                }
+                            />
                             <DashboardCard06 />
 
                             {/* Cards */}
